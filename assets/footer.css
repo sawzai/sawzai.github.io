@@ -1,5 +1,5 @@
 footer {font-size:14px !important; background:#000; text-align:left !important}
-footer h5 {font-size:18px; font-weight:bold}
+footer h5 {font-size:18px; font-weight:bold; margin-block:10px}
 footer .d-flex {display:flex}
 footer .gap-3 {gap:10px}
 footer .pt-4 {padding-top:40px}
