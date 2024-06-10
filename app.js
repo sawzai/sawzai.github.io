@@ -12,7 +12,7 @@ const app = Vue.createApp({
 
   <Modal class="container" textline="Replace Modal Textline" />
 
-  <Tickets class="container" gsheetId="1-Qd3YBy4Oxy9qNXRsbHsfmF-tzpH9V_0GIRuU14xQzE" 
+  <Tickets class="" gsheetId="1-Qd3YBy4Oxy9qNXRsbHsfmF-tzpH9V_0GIRuU14xQzE" 
   gsheetTab="Tickets" gsheetApi="AIzaSyC7w5L8yL4rpdBsr86_ukMkhTIekmk4uHI" />
 
   <teleport to="#app3">    

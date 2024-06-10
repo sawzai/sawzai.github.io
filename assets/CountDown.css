@@ -1,7 +1,7 @@
 
 :has(#CountDown) {text-align:center}
 #CountDown {
-    padding-block:0px; max-width:250px; container-type: inline-size; display:inline-block; 
+    padding-block:0px; width:100%; max-width:250px; container-type: inline-size; display:inline-block; 
     margin:auto; margin-bottom:-5px;
     & .countdown-timer {
         display: flex; gap: 2cqw;
