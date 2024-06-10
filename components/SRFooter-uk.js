@@ -4,7 +4,9 @@ export default {
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <img width="220" style="opacity:.7" src="https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/64cb4ddb83b73_logo.png?o=333&amp;q=high&amp;s=333" data-src="https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/64cb4ddb83b73_logo.png" alt="Success Resources" class="pgb-align-left pgb-image-radius-select-no no-shadow pgb-full-color">
+                    <a class="srlogo" target="_blank" href="https://successresources.com/">
+                        <img width="220" style="opacity:.7" src="https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/64cb4ddb83b73_logo.png?o=333&amp;q=high&amp;s=333" data-src="https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/64cb4ddb83b73_logo.png" alt="Success Resources" class="pgb-align-left pgb-image-radius-select-no no-shadow pgb-full-color">
+                    </a>
                     <div class="py-3 d-flex gap-3">
                         <a class="text-light h2 footer-icon" href="https://www.facebook.com/SuccessResources" target="_blank">
                             <i class="fa fa-facebook-square"></i>
