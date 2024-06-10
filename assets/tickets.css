@@ -1,0 +1,35 @@
+.tickets {
+    display:flex; gap:10px; text-align:center;
+    @media (width <= 1000px) {
+        flex-direction: column; max-width:500px;
+    }
+    h3 {margin:0; padding:0}
+    & > div {border:1px solid #ccc; border-radius:20px; padding:40px 20px}
+    & .featured {
+        background:yellow;
+        
+    }
+    & .soldout {
+        position:relative; 
+        &:before {
+            content:""; display:block; position:absolute; inset:0; border-radius:19px;
+            background: url(https://cch-files.edge.live.ds25.io/cch/v/a4e3489d-6bf3-48c8-affb-c268ba45a538/files/650be1e5c0adf_64f70399b6f89-1080x1080.png) no-repeat center center rgba(0, 0, 0, 0.6);
+            background-size: 250px 250px; z-index:1; background-color:rgba(0,0,0,0.7); 
+        }
+    }
+    & ul {
+        list-style:none; padding-left:35px; padding-block:10px;
+        & li {color:#888; padding-block:3px; text-align:left}
+        & li.active {
+            position:relative; color:#000;
+            &:before {content:"\f00c"; font-family:FontAwesome; position:absolute; left:-25px; color:green}
+        }
+    }
+    & .ticket-btn {
+        padding:8px 40px; background:red; color:#fff; display:inline-block; text-decoration:none;
+        border-radius:10px;
+        &:hover {background:black}
+    }
+}
+
+
