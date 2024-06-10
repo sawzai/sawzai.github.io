@@ -4,7 +4,7 @@
         flex-direction: column; max-width:500px;
     }
     h3 {margin:0; padding:0}
-    & > div {border:1px solid #ccc; border-radius:20px; padding:40px 20px}
+    & > div {border:1px solid #ccc; border-radius:20px; padding:40px 20px; background:#fff}
     & .featured {
         background:yellow;
         
