@@ -1,8 +1,7 @@
 export default {
   template: `
   <div class="tickets" v-if="showTickets">
-  <link rel="stylesheet" href="./assets/tickets.css">
-      <div v-for="ticket in sortedTickets" :key="ticket.order"
+    <div v-for="ticket in sortedTickets" :key="ticket.order"
       :class="[{'featured': ticket.isfeatured === 'TRUE'}, 'category-' + ticket.color.toLowerCase(), 
       {'soldout': ticket.soldout === 'TRUE'}]">
           <div class="category-offer">{{ ticket.offer }}</div>
