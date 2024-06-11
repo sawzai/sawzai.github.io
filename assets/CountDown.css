@@ -1,6 +1,6 @@
 
-:has(#CountDown) {text-align:center}
-#CountDown {
+:has(.countdown) {text-align:center}
+.countdown{
     padding-block:0px; width:100%; max-width:250px; container-type: inline-size; display:inline-block; 
     margin:auto; margin-bottom:-5px;
     & .countdown-timer {

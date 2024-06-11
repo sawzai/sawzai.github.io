@@ -3,7 +3,7 @@ import { Tickets, Modal, SRFooter, CountDown } from './components/index.js';
 const app = Vue.createApp({
   template: `
   <teleport to="#app2">
-    <CountDown class="container" cdtimer="Sep 6, 2024 00:00:00 +8" />
+    <CountDown class="container" cdtimer="Sep 1, 2024 00:00:00 +8" />
   </teleport>
 
   <section class="container">
@@ -12,8 +12,8 @@ const app = Vue.createApp({
 
   <Modal class="container" textline="Replace Modal Textline" />
 
-  <Tickets class="" gsheetId="1-Qd3YBy4Oxy9qNXRsbHsfmF-tzpH9V_0GIRuU14xQzE" 
-  gsheetTab="Tickets" gsheetApi="AIzaSyC7w5L8yL4rpdBsr86_ukMkhTIekmk4uHI" />
+  <Tickets class="" gsheetId="1-Qd3YBy4Oxy9qNXRsbHsfmF-tzpH9V_0GIRuU14xQzE" gsheetTab="Tickets" 
+  gsheetApi="AIzaSyC7w5L8yL4rpdBsr86_ukMkhTIekmk4uHI" />
 
   <teleport to="#app3">    
       <SRFooter />

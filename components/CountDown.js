@@ -1,6 +1,6 @@
 export default {
     template: `
-      <div id="CountDown">
+      <div class="countdown">
         <div class="countdown-timer">
             <div class="countdown-box days">
                 <div class="countdown-number">{{ days }}</div>

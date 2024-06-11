@@ -1,3 +1,5 @@
+import TCountDown from 'https://sawzai.github.io/components/CountDown.js';
+
 export default {
   template: `
   <div class="tickets" v-if="showTickets">
@@ -6,9 +8,10 @@ export default {
       {'soldout': ticket.soldout === 'TRUE'}]">
         <div v-if="ticket.label" class="category-label">{{ ticket.label }}</div>
         <div class="category-header">  
-          <div class="category-offer">{{ ticket.offer }}</div>
+          <div v-if="ticket.offer" class="category-offer">{{ ticket.offer }}</div>
           <h3 class="category-title">{{ ticket.category }}</h3>
-          <div class="category-country">{{ ticket.country }}</div>
+          <div v-if="ticket.country" class="category-country">{{ ticket.country }}</div>
+          <TCountDown v-if="ticket.countdown" class="countdown container" :cdtimer=ticket.countdown />
         </div>
           <div class="category-doorprice">{{ ticket.doorprice }}</div>
           <h3 class="category-price">{{ ticket.price }}</h3>
@@ -30,6 +33,7 @@ export default {
       </div>
   </div>
   `,
+  components: {TCountDown},
   data() {
     return {
       showTickets: false,
@@ -65,6 +69,7 @@ export default {
         .then(data => {
           this.tickets = this.transformData(data);
           this.showTickets = true;
+          console.log(this.tickets)
         })
         .catch(error => console.error('Error loading tickets:', error));
     },
@@ -78,7 +83,7 @@ export default {
         if (rowObj.included) {
           rowObj.includedArray = rowObj.included.split('\n').map(item => item.trim().replace(/["]+/g, ''));
         }
-        //console.log(`Transformed ticket:`, rowObj);
+        console.log(`Transformed ticket:`, rowObj);
         return rowObj;
       });
     },

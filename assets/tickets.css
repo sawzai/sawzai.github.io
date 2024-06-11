@@ -5,14 +5,13 @@
         flex-direction: column; align-items:center;
     }
     &:has(> .featured) {
-        padding-block:50px; 
+        padding-top:40px; 
     }
     & h3 {margin:0; padding:0}
     & > div {
         border:1px solid #ccc; border-radius:20px; background:#fff; max-width:380px; margin-bottom:50px;
-        position:relative; padding-bottom:20px;
+        position:relative; padding-bottom:50px;
         &:nth-child(2) {z-index:1}
-        
     }
     &:has(> div:nth-child(4)) {width:100%; padding-inline:20px}
     & > [class*="category-"] {
@@ -70,7 +69,7 @@
         background:var(--cart-background);
     }
     & .featured {
-        scale:1.1; z-index:2; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6);
+        scale:1.06; z-index:2; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6); transform-origin: bottom center;
         @media (width <= 1000px) {
             scale:1;
         }
@@ -106,10 +105,10 @@
     }
     & .ticket-btn {
         background-color: var(--cart-category-background); display:block; padding: 15px 30px 10px; margin:auto;
-        text-transform: uppercase; border-radius: 20px ; 
-        border: 4px solid var(--main-color); transition: .6s; position: relative; isolation: isolate; overflow: hidden; 
-        animation: button-shadow-grow 3s infinite; font-weight: bold ; color: var(--main-color); margin-bottom:-50px; 
-        max-width:80%; font-size:24px; line-height:1; font-family: 'Poppins', 'Arial'; position:relative;
+        text-transform: uppercase; border-radius: 20px ; position: absolute; bottom:0; left:0; right:0;
+        border: 4px solid var(--main-color); transition: .6s; isolation: isolate; overflow: hidden; 
+        animation: button-shadow-grow 3s infinite; font-weight: bold ; color: var(--main-color); margin-bottom:-30px; 
+        max-width:80%; font-size:24px; line-height:1; font-family: 'Poppins', 'Arial';
         text-decoration:none;
         &:before {
             content: ""; position: absolute; z-index: -2; inset: 0; margin: auto; aspect-ratio: 1; width: 10px; background-color: var(--main-color) !important; 
@@ -126,7 +125,32 @@
         }
 	}
         
+    & .countdown {
+        padding-block:0px; width:100%; max-width:250px; container-type: inline-size; display:inline-block; 
+        margin:auto; margin-bottom:-5px; margin-top:5px;
+        & .countdown-timer {
+            display: flex; gap: 2cqw;
+            & .countdown-box {
+                position:relative; text-align:center; flex: 1;
+                & .countdown-number {
+                    background:#000; border-radius:100%; aspect-ratio:1 / 1; padding-bottom:3cqw;
+                    display:flex; align-items:center; justify-content:center;
+                    font-size:12cqw; color:#fff; font-weight:bold;
+                }
+                & .countdown-label {
+                    font-size:4cqw; margin-top:1cqw; text-transform:uppercase; color:#fff;
+                    position:absolute; bottom:3cqw; left:0; right:0; letter-spacing:0.2cqw;
+                    @container (width <= 250px){
+                        font-size:3.8cqw; bottom:3.5cqw; 
+                    }
+                }
+            }
+        }
+    }
+
 }
+
+
 
 @keyframes button-shadow-grow {
 	0%, 100% {filter: drop-shadow(var(--cart-promo-lable-background) 1px 1px 1px);}
