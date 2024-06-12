@@ -113,7 +113,10 @@
             }
         }
     }
-    & .category-price {font-family:"Poppins", "Arial"; font-size:46px; font-weight:bold; line-height:1;}
+    & h3.category-price {
+        font-family:"Poppins", "Arial"; font-size:46px; font-weight:bold; line-height:1;
+        color:var(--cart-items-color);
+    }
     & .category-save {font-weight:bold;}
     & .category-next {
         background:#000; display:inline-block; color:#fff; padding:5px 20px; border-radius:50px; 
