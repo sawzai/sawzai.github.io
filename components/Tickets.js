@@ -40,7 +40,7 @@ export default {
       isMobile: false,
     };
   },
-  props: ['appScript', 'gsheetId', 'gsheetTab', 'gsheetApi'],
+  props: ['appScript', 'gId', 'gTab', 'ga'],
   computed: {
     sortedTickets() {
       return this.tickets.filter(ticket => ticket.show === "TRUE")
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     fetchTickets() {
-      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${this.gsheetId}/values/${this.gsheetTab}/?alt=json&key=${this.gsheetApi}`)
+      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${this.gId}/values/${this.gTab}/?alt=json&key=${this.ga}`)
         .then(res => res.json())
         .then(data => {
           this.tickets = this.transformData(data);
