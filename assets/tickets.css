@@ -1,6 +1,9 @@
 .tickets {
     display:flex; gap:10px; text-align:center; justify-content:center;  line-height:1.4; 
     width:1120px; margin-inline:0; margin:auto; max-width:100%;
+    @media (width < 1120px) {
+        padding-inline:20px;
+    }
     @media (width <= 1000px) {
         flex-direction: column; align-items:center;
     }
@@ -9,7 +12,7 @@
     }
     & h3 {margin:0; padding:0}
     & > div {
-        border:1px solid #ccc; border-radius:20px; background:#fff; max-width:380px; margin-bottom:50px;
+        border:1px solid #ccc; border-radius:20px; background:#fff; max-width:420px; margin-bottom:50px;
         position:relative; padding-bottom:50px;
         &:nth-child(2) {z-index:1}
     }
@@ -46,6 +49,7 @@
 		--cart-background: linear-gradient(90deg, var(--main-color) 25%, var(--second-color) 60%);
 		--cart-items-color: #fff;
         background:var(--cart-background);
+        color:var(--cart-items-color);
     }
     & .category-yellow {
 		--main-color:#ffbd0e;
@@ -53,6 +57,7 @@
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
 		--cart-items-color: #000;
         background:var(--cart-background);
+        color:var(--cart-items-color);
     }
     & .category-red {
         --main-color:#d20c02;
@@ -60,6 +65,7 @@
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%););
 		--cart-items-color: #fff;
         background:var(--cart-background);
+        color:var(--cart-items-color);
     }
     & .category-blue {
         --main-color:#27a0bb;
@@ -67,6 +73,7 @@
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
 		--cart-items-color: #000;
         background:var(--cart-background);
+        color:var(--cart-items-color);
     }
     & .featured {
         scale:1.06; z-index:2; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6); transform-origin: bottom center;
@@ -92,13 +99,34 @@
         }
         & .category-country {font-size:16px;}
     }
-    & ul {
-        list-style:none; padding-left:35px; padding-block:10px; z-index:-1;
+    & .category-doorprice {
+        margin-top:20px;
+        &:before {
+            content:"\f02c"; font-family:FontAwesome; font-size:120%; display:inline-block; margin-right:5px;
+            scale:-1 1;
+        }
+        & span {
+            display:inline-block; position:relative;
+            &:before {
+                content:""; position:absolute; width:110%; inset:0; left:-5%; top:45%; height:0.09em; background:var(--cart-items-color);
+                transform:rotate(-7deg)
+            }
+        }
+    }
+    & .category-price {font-family:"Poppins", "Arial"; font-size:46px; font-weight:bold; line-height:1;}
+    & .category-save {font-weight:bold;}
+    & .category-next {
+        background:#000; display:inline-block; color:#fff; padding:5px 20px; border-radius:50px; 
+        margin-top:5px;  animation: growing 3s infinite; 
+    }
+    & .category-status {font-family:"Poppins", "Arial"; font-size:18px; font-weight:bold; line-height:1; margin-top:15px;}
+    & ul.category-items {
+        list-style:none; padding-left:35px; padding-block:10px; z-index:-1; margin-inline:25px 30px;
         & li {color:var(--cart-items-color); padding-block:3px; text-align:left; opacity:0.6}
         & li.active {
             position:relative; color:var(--cart-items-color); opacity:1;
             &:before {
-                content:"\f046"; font-family:FontAwesome; position:absolute; left:-25px; 
+                content:"\f046"; font-family:FontAwesome; position:absolute; left:-25px;
                 color:var(--cart-items-color); font-size:120%;
             }
         }
@@ -127,7 +155,7 @@
         
     & .countdown {
         padding-block:0px; width:100%; max-width:250px; container-type: inline-size; display:inline-block; 
-        margin:auto; margin-bottom:-5px; margin-top:5px;
+        margin:auto; margin-bottom:-5px; margin-top:10px;
         & .countdown-timer {
             display: flex; gap: 2cqw;
             & .countdown-box {
@@ -155,5 +183,10 @@
 @keyframes button-shadow-grow {
 	0%, 100% {filter: drop-shadow(var(--cart-promo-lable-background) 1px 1px 1px);}
 	50% {filter: drop-shadow(var(--cart-promo-lable-background) 2px 5px 5px);}
+}
+
+@keyframes growing {
+	0%, 100% {scale: 1;}
+	50% {scale: 0.96;}
 }
 

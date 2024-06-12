@@ -13,14 +13,12 @@ export default {
           <div v-if="ticket.country" class="category-country">{{ ticket.country }}</div>
           <TCountDown v-if="ticket.countdown" class="countdown container" :cdtimer=ticket.countdown />
         </div>
-          <div class="category-doorprice">{{ ticket.doorprice }}</div>
-          <h3 class="category-price">{{ ticket.price }}</h3>
-          <div class="category-save-next">
-            <div class="category-save">Save {{ ticket.save }}</div>
-            <div class="category-next">{{ ticket.next }}</div>
-          </div>
-          <div class="category-status">{{ ticket.status }}</div>
-          <ul class="category-items">
+          <div v-if="ticket.doorprice" class="category-doorprice">DOOR PRICE: <span>{{ ticket.doorprice }}</span></div>
+          <h3 v-if="ticket.price" class="category-price">{{ ticket.price }}</h3>
+          <div v-if="ticket.save" class="category-save">SAVE {{ ticket.save }}</div>
+          <div v-if="ticket.next" class="category-next">{{ ticket.next }}</div>
+          <div v-if="ticket.status" class="category-status">{{ ticket.status }}</div>
+          <ul v-if="ticket.included" class="category-items">
               <li v-for="(item, index) in ticket.includedArray" :key="index"
                   :class="{ 'active': index < ticket.initems }">
                 {{ item }}
