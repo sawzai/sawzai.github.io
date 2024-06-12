@@ -68,7 +68,7 @@ export default {
         .then(data => {
           this.tickets = this.transformData(data);
           this.showTickets = true;
-          console.log(this.tickets)
+          //console.log(this.tickets)
         })
         .catch(error => console.error('Error loading tickets:', error));
     },
@@ -82,7 +82,7 @@ export default {
         if (rowObj.included) {
           rowObj.includedArray = rowObj.included.split('\n').map(item => item.trim().replace(/["]+/g, ''));
         }
-        console.log(`Transformed ticket:`, rowObj);
+        //console.log(`Transformed ticket:`, rowObj);
         return rowObj;
       });
     },
