@@ -12,7 +12,7 @@ const app = Vue.createApp({
 
   <teleport to="#app2">
     <CountDown style="padding-block:60px" class="container" 
-    cdsize="large" cdtimer="Jun 13, 2024 11:54:00 +8" />
+    cdsize="large" cdtimer="Jun 14, 2024 11:54:00 +8" />
   </teleport>
 
   <teleport to="#app3">    
