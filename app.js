@@ -2,18 +2,18 @@ import { Tickets, Modal, SRFooter, CountDown } from './components/index.js';
 
 const app = Vue.createApp({
   template: `
-  <teleport to="#app2">
-    <CountDown class="container" cdtimer="Sep 1, 2024 00:00:00 +8" />
-  </teleport>
-
-  <section class="container">
-    <h2> {{ message }} </h2>
+  <section class="container" style="padding-block:60px">
+    <h1> {{ message }} </h1>
   </section>
 
-  <Modal class="container" textline="Replace Modal Textline" />
+  <!-- <Modal class="container" textline="Replace Modal Textline" /> -->
 
-  <Tickets class="" gId="1-Qd3YBy4Oxy9qNXRsbHsfmF-tzpH9V_0GIRuU14xQzE" gTab="Tickets" 
-  ga="AIzaSyC7w5L8yL4rpdBsr86_ukMkhTIekmk4uHI" />
+  <Tickets class="" gId="1-Qd3YBy4Oxy9qNXRsbHsfmF-tzpH9V_0GIRuU14xQzE" gTab="Tickets" />
+
+  <teleport to="#app2">
+    <CountDown style="padding-block:60px" class="container" 
+    cdsize="small" cdtimer="June 13, 2024 00:00:00 +8" />
+  </teleport>
 
   <teleport to="#app3">    
       <SRFooter />
@@ -21,7 +21,7 @@ const app = Vue.createApp({
     `,
   data() {
     return {
-      message: 'Hello from Main App!',
+      message: 'Welcome to SawZai Components',
     };
   },
   components: { Tickets, Modal, SRFooter, CountDown },

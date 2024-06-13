@@ -1,22 +1,22 @@
 export default {
     template: `
-      <div class="countdown">
+      <div class="countdown" :class="cdsize">
         <div class="countdown-timer">
             <div class="countdown-box days">
-                <div class="countdown-number">{{ days }}</div>
-                <div class="countdown-label">Days</div>
+                <div class="countdown-number">{{ days }}<div v-if="cdsize==='small'"> d</div></div>
+                <div v-if="cdsize!=='small'" class="countdown-label">Days</div>
             </div>
             <div class="countdown-box hours">
-                <div class="countdown-number">{{ hours }}</div>
-                <div class="countdown-label">Hrs</div>
+                <div class="countdown-number">{{ hours }}<div v-if="cdsize==='small'"> h</div></div>
+                <div v-if="cdsize!=='small'" class="countdown-label">Hrs</div>
             </div>
             <div class="countdown-box minutes">
-                <div class="countdown-number">{{ minutes }}</div>
-                <div class="countdown-label">Min</div>
+                <div class="countdown-number">{{ minutes }}<div v-if="cdsize==='small'"> m</div></div>
+                <div v-if="cdsize!=='small'" class="countdown-label">Min</div>
             </div>
             <div class="countdown-box seconds">
-                <div class="countdown-number">{{ seconds }}</div>
-                <div class="countdown-label">Sec</div>
+                <div class="countdown-number">{{ seconds }}<div v-if="cdsize==='small'"> s</div></div>
+                <div v-if="cdsize!=='small'" class="countdown-label">Sec</div>
             </div>
         </div>
       </div>
@@ -33,7 +33,11 @@ export default {
         cdtimer: {
             type: Number, 
             default: () => new Date().getTime() + 300000
-        }
+        },
+        cdsize: {
+            type: String, 
+            default: "medium"
+        },
     },
     methods: {
         updateTimer() {

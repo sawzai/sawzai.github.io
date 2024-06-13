@@ -1,8 +1,9 @@
 
 :has(.countdown) {text-align:center}
 .countdown{
-    padding-block:0px; width:100%; max-width:250px; container-type: inline-size; display:inline-block; 
+    padding-block:0px; width:100%; max-width:350px; container-type: inline-size; 
     margin:auto; margin-bottom:-5px;
+    &.large {max-width:550px}
     & .countdown-timer {
         display: flex; gap: 2cqw;
         & .countdown-box {
@@ -17,6 +18,19 @@
                 position:absolute; bottom:3cqw; left:0; right:0; 
                 @container (width <= 250px){
                     font-size:3.5cqw; bottom:3cqw;
+                }
+            }
+        }
+    }
+    &.small {
+        max-width:200px;
+        & .countdown-timer {
+            & .countdown-box {
+                & .countdown-number {
+                    background:transparent; color:#000;
+                }
+                & .countdown-label {
+                    font-size:4cqw;
                 }
             }
         }

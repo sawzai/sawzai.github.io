@@ -4,7 +4,7 @@ export default {
   template: `
   <div class="tickets" v-if="showTickets">
     <div v-for="ticket in sortedTickets" :key="ticket.order"
-      :class="[{'featured': ticket.isfeatured === 'TRUE'}, 'category-' + ticket.color.toLowerCase(), 
+    :class="[{'featured': ticket.isfeatured === 'TRUE'}, 'category-' + ticket.color.toLowerCase(), 
       {'soldout': ticket.soldout === 'TRUE'}]">
         <div v-if="ticket.label" class="category-label">{{ ticket.label }}</div>
         <div class="category-header">  
@@ -14,22 +14,24 @@ export default {
           <TCountDown v-if="ticket.countdown" class="countdown container" :cdtimer=ticket.countdown />
           <div v-if="ticket.cdtext" class="category-cdtext">{{ ticket.cdtext }}</div>
         </div>
-          <div v-if="ticket.doorprice" class="category-doorprice">DOOR PRICE: <span>{{ ticket.doorprice }}</span></div>
-          <h3 v-if="ticket.price" class="category-price">{{ ticket.price }}</h3>
-          <div v-if="ticket.save" class="category-save">SAVE {{ ticket.save }}</div>
-          <div v-if="ticket.next" class="category-next">{{ ticket.next }}</div>
-          <div v-if="ticket.status" class="category-status">{{ ticket.status }}</div>
-          <ul v-if="ticket.included" class="category-items">
-              <li v-for="(item, index) in ticket.includedArray" :key="index"
-                  :class="{ 'active': index < ticket.initems }">
-                {{ item }}
-              </li>
-          </ul>
-          <a v-if="ticket.soldout === 'FALSE'" class="ticket-btn" :href="ticket.url">
-            <div class="category-btnsub">{{ ticket.buttonsub }}</div>
-            <div class="category-btntitle">{{ ticket.button }}</div>
-          </a>
-      </div>
+        <div v-if="ticket.doorprice" class="category-doorprice">
+          DOOR PRICE: <span>{{ ticket.doorprice }}</span>
+        </div>
+        <h3 v-if="ticket.price" class="category-price">{{ ticket.price }}</h3>
+        <div v-if="ticket.save" class="category-save">SAVE {{ ticket.save }}</div>
+        <div v-if="ticket.next" class="category-next">{{ ticket.next }}</div>
+        <div v-if="ticket.status" class="category-status">{{ ticket.status }}</div>
+        <ul v-if="ticket.included" class="category-items">
+          <li v-for="(item, index) in ticket.includedArray" :key="index"
+          :class="{ 'active': index < ticket.initems }">
+            {{ item }}
+          </li>
+        </ul>
+        <a v-if="ticket.soldout === 'FALSE'" class="ticket-btn" :href="ticket.url">
+          <div class="category-btnsub">{{ ticket.buttonsub }}</div>
+          <div class="category-btntitle">{{ ticket.button }}</div>
+        </a>
+    </div>
   </div>
   `,
   components: {TCountDown},
@@ -40,7 +42,14 @@ export default {
       isMobile: false,
     };
   },
-  props: ['appScript', 'gId', 'gTab', 'ga'],
+  props: {
+    gId: String,
+    gTab: String,
+    ga: {
+      type: String,
+      default: "AIzaSyBKPrSxvCdCZcsBKz-cSAR3HZI44W4xDIA"
+    }
+  },
   computed: {
     sortedTickets() {
       return this.tickets.filter(ticket => ticket.show === "TRUE")
