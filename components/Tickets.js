@@ -11,7 +11,7 @@ export default {
           <div v-if="ticket.offer" class="category-offer">{{ ticket.offer }}</div>
           <h3 class="category-title">{{ ticket.category }}</h3>
           <div v-if="ticket.country" class="category-country">{{ ticket.country }}</div>
-          <TCountDown v-if="ticket.countdown" class="countdown container" :cdtimer=ticket.countdown />
+          <TCountDown v-if="ticket.countdown" :responsive="false" class="countdown container" :cdtimer=ticket.countdown />
           <div v-if="ticket.cdtext" class="category-cdtext">{{ ticket.cdtext }}</div>
         </div>
         <div v-if="ticket.doorprice" class="category-doorprice">
