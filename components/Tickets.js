@@ -90,6 +90,6 @@ export default {
         'category-' + ticket.color.toLowerCase(),
         { 'soldout': ticket.soldout === 'TRUE' }
       ];
-    }
+    },
   }
 };
