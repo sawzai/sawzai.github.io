@@ -1,0 +1,5 @@
+html, body {
+    scroll-behavior: smooth !important;
+    scroll-padding-top:150px !important; 
+}
+  
