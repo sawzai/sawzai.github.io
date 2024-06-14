@@ -2,7 +2,7 @@
     padding-top:0 !important; padding-bottom:0 !important;
 }
 footer {
-    font-size:14px !important; background:#000; text-align:left !important
+    font-size:14px !important; background:#000; text-align:left !important;
     @media (width <= 900px) {
         padding-inline:20px;
     }
