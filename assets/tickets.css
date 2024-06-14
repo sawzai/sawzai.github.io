@@ -125,7 +125,9 @@
         margin-top:5px; animation: growing 3s infinite; margin-inline:30px; 
         font-size:12px; letter-spacing:0.05em;
     }
-    & .category-status {font-family:"Poppins", "Arial"; font-size:18px; font-weight:bold; line-height:1; margin-top:15px;}
+    & .category-status {font-family:"Poppins", "Arial"; font-size:18px; font-weight:bold; line-height:1; margin-top:15px; }
+    & .category-seat-layout {text-align:center; margin-top:10px;margin-bottom:5px; font-weight:bold; font-size:12px}
+    & .category-seat {max-width:100%; width:220px; }
     & ul.category-items {
         list-style:none; padding-left:35px; padding-block:10px; z-index:-1; margin-inline:25px 30px;
         & li {color:var(--cart-items-color); padding-block:3px; text-align:left; opacity:0.6}

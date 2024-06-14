@@ -17,6 +17,8 @@ export default {
         <div v-if="ticket.save" class="category-save">SAVE {{ ticket.save }}</div>
         <div v-if="ticket.next" class="category-next">{{ ticket.next }}</div>
         <div v-if="ticket.status" class="category-status">{{ ticket.status }}</div>
+        <div v-if="ticket.seat" class="category-seat-layout">SEATING LAYOUT</div>
+        <img v-if="ticket.seat" class="category-seat" :src="ticket.seat">
         <ul v-if="ticket.included" class="category-items">
           <li v-for="(item, index) in ticket.includedArray" :key="index" :class="{ 'active': index < ticket.initems }">{{ item }}</li>
         </ul>
