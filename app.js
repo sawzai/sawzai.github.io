@@ -1,4 +1,4 @@
-import { Tickets, Modal, SRFooter, CountDown } from './components/index.js';
+import { Tickets, Modal, SRFooterSG, CountDown } from './components/index.js';
 
 const app = Vue.createApp({
   template: `
@@ -16,7 +16,7 @@ const app = Vue.createApp({
   </teleport>
 
   <teleport to="#app3">    
-      <SRFooter />
+      <SRFooterSG />
   </teleport>
     `,
   data() {
@@ -24,7 +24,7 @@ const app = Vue.createApp({
       message: 'Welcome to SawZai Components',
     };
   },
-  components: { Tickets, Modal, SRFooter, CountDown },
+  components: { Tickets, Modal, SRFooterSG, CountDown },
 }).mount('#app');
 
 

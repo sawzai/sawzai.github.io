@@ -3,6 +3,17 @@ export default {
     <footer class="bg-black text-light py-5">
         <div class="container">
             <div class="row">
+                <div class="col-md-12">
+                    <p class="disclaimer">
+                        Disclaimer (I)<br>
+                        In consideration of my participation in the above mentioned Event presented by Success Resources (“SR”), its Speaker/Trainer and its promoters, I hereby generally release SR and their agents, representatives, employees, promoters, successors, assigns, insurers and affiliated companies for any and all liability whatsoever related to SR’s negligence, negligent conduct or omissions. Including any activity and indemnify each of the aforesaid from any loss or liability arising from any claim arising out of my participation in the event in general and in particular any activity. These releases shall not exclude any liability for death or personal injury caused by negligence or where such limitation or exclusion is not permitted by law.
+                        <br><br>
+                        The information presented at the event and the supplementary materials provided to me are intended for educational and informational purposes only. 
+                        I acknowledge that SR does not make any representation or warranties with respect to the accuracy, applicability, fitness, or completeness of the event presented by the Speaker/Trainer. Nothing contained therein is to be considered as the rendering of legal advice for specific cases or circumstances.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <a class="srlogo" target="_blank" href="https://successresources.com/">
                         <img width="220" style="opacity:.7" src="https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/64cb4ddb83b73_logo.png?o=333&amp;q=high&amp;s=333" data-src="https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/64cb4ddb83b73_logo.png" alt="Success Resources" class="pgb-align-left pgb-image-radius-select-no no-shadow pgb-full-color">
@@ -45,17 +56,23 @@ export default {
                     <ul>
                         <li class="text-light">
                             <i class="fa fa-phone-square" aria-hidden="true"></i>
-                            <a class="text-light" href="tel:+442038683587">+44 203 868 3587</a>
+                            <a target="_blank" class="text-light" href="tel:+6562994677">+6562994677</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                            <a class="text-light" href="https://wa.me/447458159416">+44 745 815 9416</a>
+                            <a target="_blank" class="text-light" href="https://wa.me/6582301682">+65 8230 1682</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <a class="text-light" href="info.uk@srglobal.com">info.uk@srglobal.com</a>
+                            <a target="_blank" class="text-light" href="mailto:info.sg@srglobal.com">info.sg@srglobal.com</a>
                         </li>
                     </ul>
+                    <p>
+                        <b>Success Resources Singapore Pte Ltd</b><br>
+                        33 Ubi Avenue 3<br>
+                        #05-51 Vertex Tower A<br>
+                        Singapore 408868
+                    </p>
                 </div>
             </div>
             <div class="row text-center pt-4">
