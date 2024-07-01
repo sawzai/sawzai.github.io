@@ -37,7 +37,7 @@ const srCart = {
 				thriveLink.setAttribute("href", newBtnSrc);
 			});
 		}
-		let srLogos = document.querySelectorAll(".srlogo, .pgb-custom-srlogo");
+		let srLogos = document.querySelectorAll(".srlogo, .pgb-custom-srlogo, .pgb-custom-hero-location .pgb-buy-button-link");
 		if (srLogos.length > 0) {
 			srLogos.forEach((srLogo) => {
 				let srlogoLink = srLogo.getAttribute("href");

@@ -72,11 +72,11 @@ export default {
             <div class="row text-center pt-4">
                 <div class="col text-light">
                     <div>Presented by Success Resources</div>
-                    <a target="_blank" class="text-light" href="https://docs.google.com/document/d/1PhLwqN0UoL0a8a3KvwKFkYs2VwCdjs6zeDXwZ_hxAq0/">
+                    <a target="_blank" class="text-light" href="https://successresources.com/terms-and-conditions/">
                         Terms & Conditions
                     </a>
                      / 
-                     <a target="_blank" class="text-light" href="https://docs.google.com/document/d/1WWRyCrQ9jwLe8NR4A270KG3Ggyrk1D4b7Sxud95sIYo/edit">
+                     <a target="_blank" class="text-light" href="https://successresources.com/privacy-policy/">
                         Privacy Policy
                     </a>
                 </div>
