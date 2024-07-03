@@ -56,11 +56,11 @@ export default {
                     <ul>
                         <li class="text-light">
                             <i class="fa fa-phone-square" aria-hidden="true"></i>
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+6562994677">+6562994677</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+6562994677">+65 6299 4677</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                            <a target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" class="text-light" href="https://wa.me/6582301682">+65 8230 1682</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.me/447458159416">+44 745 815 9416</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-envelope" aria-hidden="true"></i>

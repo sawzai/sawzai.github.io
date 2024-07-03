@@ -56,7 +56,7 @@ export default {
                     <ul>
                         <li class="text-light">
                             <i class="fa fa-phone-square" aria-hidden="true"></i>
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+442038683587">+44 203 868 3587</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+60378012888">+603 7801 2888</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
@@ -64,7 +64,7 @@ export default {
                         </li>
                         <li class="text-light">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="mailto:info.uk@srglobal.com">info.uk@srglobal.com</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="mailto:info.my@srglobal.com">info.my@srglobal.com</a>
                         </li>
                     </ul>
                 </div>
