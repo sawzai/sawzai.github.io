@@ -1,1 +1,135 @@
-"use strict";const srCart={btnClass:".pgb-custom-cart-row .pgb-buy-button-link",isHome:!1,trackData:{},expiryDays:7,init:function(){this.checkParams();let t=window.location.href;t.includes("-cart")?this.cartPage():this.generateBtn()},checkParams:function(){for(let t in this.trackData)this.trackData[t]=this.getParams(t)||this.readCookie(t)||this.trackData[t],""!==this.getParams(t)&&this.createCookie(t,this.trackData[t],this.expiryDays)},generateBtn:function(){let t=document.querySelectorAll(this.btnClass);t.length>0&&t.forEach(t=>{let e=t.getAttribute("href"),a=new URL(e),r="";a.searchParams.has("add-to-cart")&&(r+="&add-to-cart="+a.searchParams.get("add-to-cart")),a.searchParams.has("plan")&&(r+="&plan="+a.searchParams.get("plan")),a.searchParams.has("coupon")&&(r+="&coupon="+a.searchParams.get("coupon")),e=e.split("?")[0];let i=this.combineParams(r),s=e.includes("?")?"&":"?",o=`${e}${s}${i}`;t.setAttribute("href",o)});let e=document.querySelectorAll(".srlogo, .pgb-custom-srlogo, .pgb-custom-hero-location .pgb-buy-button-link");e.length>0&&e.forEach(t=>{let e=t.getAttribute("href");e=e.split("?")[0];let a=this.generateURL(),r=e.includes("?")?"&":"?",i=`${e}${r}${a}`;t.setAttribute("href",i)})},cartPage:function(){this.checkParams();let t=new URL(window.location.href);t.search!=="?"+this.combineParams()&&(t.search=this.combineParams(),window.location.href=t)},eraseCookie:function(t){this.createCookie(t,"",-1)},readCookie:function(t){let e=t+"=",a=document.cookie?document.cookie.split(";"):[];for(let r=0;r<a.length;r++){let i=a[r].trim();if(0===i.indexOf(e))return i.substring(e.length,i.length)}},createCookie:function(t,e,a){let r="";if(a){let i=new Date;i.setTime(i.getTime()+864e5*a),r="; expires="+i.toGMTString()}document.cookie=`${t}=${e}${r}; secure; path=/`},getParams:function(t){t=t.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");let e=RegExp("[\\?&]"+t+"=([^&#]*)"),a=e.exec(location.search);return null===a?"":decodeURIComponent(a[1].replace(/\+/g," "))},generateURL:function(){let t="";for(let e in this.trackData)t+=""===t?"":"&",t+=void 0!==this.trackData[e]?`${e}=${this.trackData[e]}`:"";return t},combineParams:function(t){let e="";for(let a in this.trackData)e+=""===e?"":"&",e+=void 0!==this.trackData[a]?`${a}=${this.trackData[a]}`:"";return this.getParams("coupon")&&(e+="&coupon="+this.getParams("coupon")),t&&(e+=t),console.log(e),e},help:function(){let t="Update below variable before run init()";t+="\nsrCart.trackData['leadsource_name with quote'] = 'leadsource_data with quote'",t+="\nsrCart.btnClass = 'quote with .classname'",t+="\nsrCart.expiryDays = without quote numbering",t+="\nsrCart.trackData['affiliate'] = 'affiliateID';",t+="\nsrCart.isHome = true;",console.log(t)}};
+"use strict";
+const srCart = {
+	btnClass: ".pgb-custom-cart-row .pgb-buy-button-link",
+	isHome: false,
+	trackData: {
+	},
+	expiryDays: 7,
+	init: function () {
+		this.checkParams();
+		const currentURL = window.location.href;
+		currentURL.includes("-cart") ? this.cartPage() : this.generateBtn();
+	},
+	checkParams: function () {
+		for (let key in this.trackData) {
+			this.trackData[key] = this.getParams(key) || this.readCookie(key) || this.trackData[key]
+			this.getParams(key) !== "" && this.createCookie(key, this.trackData[key], this.expiryDays);
+		}
+	},
+	generateBtn: function () {
+		let thriveLinks = document.querySelectorAll(this.btnClass);
+		if (thriveLinks.length > 0) {
+			thriveLinks.forEach((thriveLink) => {
+				let thriveBtnLink = thriveLink.getAttribute("href");
+				let url = new URL(thriveBtnLink)
+				let addon = "";
+				if(url.searchParams.has('add-to-cart')) {
+                	addon += "&add-to-cart=" + url.searchParams.get('add-to-cart');
+                }
+                if(url.searchParams.has('plan')) {
+                	addon += "&plan=" + url.searchParams.get('plan');
+                }
+				if(url.searchParams.has('coupon')) {
+                	addon += "&coupon=" + url.searchParams.get('coupon');
+                }
+				thriveBtnLink = thriveBtnLink.split('?')[0]
+				const queryString = this.combineParams(addon);
+				const separator = thriveBtnLink.includes('?') ? '&' : '?';
+				const newBtnSrc = `${thriveBtnLink}${separator}${queryString}`;
+				thriveLink.setAttribute("href", newBtnSrc);
+			});
+		}
+		let srLogos = document.querySelectorAll(".srlogo, .pgb-custom-srlogo, .pgb-custom-hero-location .pgb-buy-button-link");
+		if (srLogos.length > 0) {
+			srLogos.forEach((srLogo) => {
+				let srlogoLink = srLogo.getAttribute("href");
+				srlogoLink = srlogoLink.split('?')[0]
+				const queryString = this.generateURL();
+				const separator = srlogoLink.includes('?') ? '&' : '?';
+				const logoBtnSrc = `${srlogoLink}${separator}${queryString}`;
+				srLogo.setAttribute("href", logoBtnSrc);
+			});
+		}
+		
+	},
+	cartPage: function () {
+		this.checkParams();
+		let newUrl = new URL(window.location.href);
+		if (newUrl.search !== "?" + this.combineParams()) {
+			newUrl.search = this.combineParams();
+			window.location.href = newUrl;
+		}
+
+	},
+	eraseCookie: function (name) {
+		this.createCookie(name, "", -1);
+	},
+	readCookie: function (name) {
+		const nameEQ = name + "=";
+		const ca = document.cookie ? document.cookie.split(";") : [];
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i].trim();
+			if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+		}
+	},
+	createCookie: function (name, value, days) {
+		let expires = "";
+		if (days) {
+			const date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+			expires = "; expires=" + date.toGMTString();
+		}
+		document.cookie = `${name}=${value}${expires}; secure; path=/`;
+	},
+	getParams: function (name) {
+		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+		const results = regex.exec(location.search);
+		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	},
+	generateURL: function(){
+		let homeURL = ""
+		for (const key in this.trackData) {
+			homeURL += homeURL === "" ? "" : "&";
+			homeURL += this.trackData[key] !== undefined  ? `${key}=${this.trackData[key]}` : '';
+		};
+		return homeURL;
+	},
+	combineParams: function (addon) {
+		let combineParams = "";
+
+			for (const key in this.trackData) {
+				combineParams += combineParams === "" ? "" : "&";
+				combineParams += this.trackData[key] !== undefined  ? `${key}=${this.trackData[key]}` : '';
+			}
+
+		if(this.getParams('coupon')) {
+			combineParams += "&coupon=" + this.getParams('coupon');
+		}
+
+		if(addon){
+			combineParams += addon
+		}
+		console.log(combineParams)
+		return combineParams;
+	},
+	help: function () {
+		let helpTips = "Update below variable before run init()"
+		helpTips += "\n" + "srCart.trackData['leadsource_name with quote'] = 'leadsource_data with quote'"
+		helpTips += "\n" + "srCart.btnClass = 'quote with .classname'"
+		helpTips += "\n" + "srCart.expiryDays = without quote numbering"
+		helpTips += "\n" + "srCart.trackData['affiliate'] = 'affiliateID';"
+		helpTips += "\n" + "srCart.isHome = true;"
+		console.log(helpTips)
+	}
+
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+	srCart.trackData['utm_source'] = 'affiliateName'
+	srCart.trackData['ref'] = '1'
+	srCart.trackData['utm_campaign'] = 'NAC2024KR'
+	srCart.trackData['utm_medium'] = 'website'
+	srCart.btnClass = '.pgb-custom-cart-row .pgb-buy-button-link'
+	srCart.init();
+});
