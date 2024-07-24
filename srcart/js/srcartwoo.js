@@ -45,7 +45,7 @@ const srCart = {
 				thriveLink.setAttribute("href", newBtnSrc);
 			});
 		}
-		let srLogos = document.querySelectorAll(".srlogo, .pgb-custom-srlogo, .pgb-custom-hero-location .pgb-buy-button-link");
+		let srLogos = document.querySelectorAll(".srlogo, .pgb-custom-srlogo, .pgb-custom-hero-location .pgb-buy-button-link, .srtrack");
 		if (srLogos.length > 0) {
 			srLogos.forEach((srLogo) => {
 				let srlogoLink = srLogo.getAttribute("href");
