@@ -1,4 +1,5 @@
 "use strict";
+
 const srCart = {
 	btnClass: ".pgb-custom-cart-row .pgb-buy-button-link",
 	isHome: false,
@@ -17,6 +18,7 @@ const srCart = {
 			this.trackData['utm_source'] = affiliateParam;
 			this.createCookie('utm_source', affiliateParam, this.expiryDays);
 		}
+
 		for (let key in this.trackData) {
 			this.trackData[key] = this.getParams(key) || this.readCookie(key) || this.trackData[key]
 			this.getParams(key) !== "" && this.createCookie(key, this.trackData[key], this.expiryDays);
@@ -45,10 +47,19 @@ const srCart = {
 				thriveLink.setAttribute("href", newBtnSrc);
 			});
 		}
-		let srLogos = document.querySelectorAll(".srlogo, .pgb-custom-srlogo, .pgb-custom-hero-location .pgb-buy-button-link, .srtrack");
+		let srLogos = document.querySelectorAll(".pgb-custom-srlogo, .pgb-custom-hero-location .pgb-buy-button-link, .srtrack, .srlogo");
 		if (srLogos.length > 0) {
 			srLogos.forEach((srLogo) => {
-				let srlogoLink = srLogo.getAttribute("href");
+				const utmSource = this.getParams('utm_source');
+				const affiliate = this.getParams('affiliate');
+                if (affiliate) {
+                    this.trackData['affiliate'] = affiliate;
+                }
+				if (utmSource && !affiliate) {
+					this.trackData['affiliate'] = utmSource;
+					this.createCookie('affiliate', utmSource, this.expiryDays);
+				}
+                let srlogoLink = srLogo.getAttribute("href");
 				srlogoLink = srlogoLink.split('?')[0]
 				const queryString = this.generateURL();
 				const separator = srlogoLink.includes('?') ? '&' : '?';
@@ -123,4 +134,5 @@ document.addEventListener("DOMContentLoaded", function () {
 	srCart.btnClass = '.pgb-custom-cart-row .pgb-buy-button-link'
 	srCart.init();
 });
+
 
