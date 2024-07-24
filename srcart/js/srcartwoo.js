@@ -11,6 +11,12 @@ const srCart = {
 		currentURL.includes("-cart") ? this.cartPage() : this.generateBtn();
 	},
 	checkParams: function () {
+		const affiliateParam = this.getParams('affiliate');
+		const utmSourceParam = this.getParams('utm_source');
+		if (affiliateParam && !utmSourceParam) {
+			this.trackData['utm_source'] = affiliateParam;
+			this.createCookie('utm_source', affiliateParam, this.expiryDays);
+		}
 		for (let key in this.trackData) {
 			this.trackData[key] = this.getParams(key) || this.readCookie(key) || this.trackData[key]
 			this.getParams(key) !== "" && this.createCookie(key, this.trackData[key], this.expiryDays);
@@ -50,7 +56,6 @@ const srCart = {
 				srLogo.setAttribute("href", logoBtnSrc);
 			});
 		}
-		
 	},
 	cartPage: function () {
 		this.checkParams();
@@ -59,7 +64,6 @@ const srCart = {
 			newUrl.search = this.combineParams();
 			window.location.href = newUrl;
 		}
-
 	},
 	eraseCookie: function (name) {
 		this.createCookie(name, "", -1);
@@ -97,32 +101,18 @@ const srCart = {
 	},
 	combineParams: function (addon) {
 		let combineParams = "";
-
 			for (const key in this.trackData) {
 				combineParams += combineParams === "" ? "" : "&";
 				combineParams += this.trackData[key] !== undefined  ? `${key}=${this.trackData[key]}` : '';
 			}
-
 		if(this.getParams('coupon')) {
 			combineParams += "&coupon=" + this.getParams('coupon');
 		}
-
 		if(addon){
 			combineParams += addon
 		}
-		console.log(combineParams)
 		return combineParams;
-	},
-	help: function () {
-		let helpTips = "Update below variable before run init()"
-		helpTips += "\n" + "srCart.trackData['leadsource_name with quote'] = 'leadsource_data with quote'"
-		helpTips += "\n" + "srCart.btnClass = 'quote with .classname'"
-		helpTips += "\n" + "srCart.expiryDays = without quote numbering"
-		helpTips += "\n" + "srCart.trackData['affiliate'] = 'affiliateID';"
-		helpTips += "\n" + "srCart.isHome = true;"
-		console.log(helpTips)
 	}
-
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -133,3 +123,4 @@ document.addEventListener("DOMContentLoaded", function () {
 	srCart.btnClass = '.pgb-custom-cart-row .pgb-buy-button-link'
 	srCart.init();
 });
+
