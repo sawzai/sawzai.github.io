@@ -67,6 +67,13 @@ export default {
                             <a target="_blank" rel="noopener noreferrer" class="text-light" href="info.uk@srglobal.com">info.uk@srglobal.com</a>
                         </li>
                     </ul>
+                    <p class="address">
+                        <b>Success Resources UK Pte Ltd</b><br>
+                        457 Southchurch Road<br>
+                        Southend on Sea<br>
+                        Essex SS1 2PH<br>
+                        United Kingdom
+                    </p>
                 </div>
             </div>
             <div class="row text-center pt-4">
