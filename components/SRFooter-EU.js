@@ -51,7 +51,7 @@ export default {
                         <li class="text-light"><i class="fa fa-trophy" aria-hidden="true"></i>#1 seminar promoter in the world</li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4"> // test
                     <h5 class="text-light">CONTACT US</h5>
                     <ul>
                         <li class="text-light">
