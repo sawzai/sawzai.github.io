@@ -8,7 +8,7 @@ const app = Vue.createApp({
 
   <!-- <Modal class="container" textline="Replace Modal Textline" /> -->
 
-  <Tickets class="" gId="1-Qd3YBy4Oxy9qNXRsbHsfmF-tzpH9V_0GIRuU14xQzE" gTab="Tickets" />
+  <Tickets class="" />
 
   <teleport to="#app2">
     <CountDown style="padding-block:60px" class="container" 

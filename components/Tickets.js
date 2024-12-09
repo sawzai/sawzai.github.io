@@ -37,14 +37,6 @@ export default {
       isMobile: false,
     };
   },
-  props: {
-    gId: String,
-    gTab: String,
-    ga: {
-      type: String,
-      default: "AIzaSyBKPrSxvCdCZcsBKz-cSAR3HZI44W4xDIA"
-    }
-  },
   computed: {
     sortedTickets() {
       return this.tickets
@@ -56,6 +48,16 @@ export default {
     this.fetchTickets();
     this.updateIsMobile();
     window.addEventListener('resize', this.updateIsMobile);
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      srCart.btnClass = '.ticket-btn';
+      srCart.trackData['affiliate'] = 'affiliateName';
+      srCart.trackData['ls'] = 'JM3';
+      srCart.init();
+    });
+
+    console.log("add")
+
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.updateIsMobile);
