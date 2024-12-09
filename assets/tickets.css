@@ -78,8 +78,8 @@
         color:var(--cart-items-color);
     }
     & .category-bronze {
-        --main-color:#7f5b4b;
-		--second-color:#daa488;
+        --main-color:#9e6811;
+		--second-color:#ca8515;
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
 		--cart-items-color: #000;
         --buttonColor: var(--main-color);
@@ -87,8 +87,8 @@
         color:var(--cart-items-color);
     }
     & .category-silver {
-        --main-color:#c4c4c4;
-		--second-color:#e1e1e3;
+        --main-color:#929292;
+		--second-color:#c8c8c8;
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
 		--cart-items-color: #000;
         --buttonColor: var(--cart-items-color);
