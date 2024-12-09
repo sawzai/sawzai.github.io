@@ -66,7 +66,9 @@ export default {
       fetch(`https://raw.githubusercontent.com/sawzai/sawzai.github.io/main/assets/data.json`)
         .then(res => res.json())
         .then(data => {
-          this.tickets = this.transformData(data);
+          console.log(data)
+          //this.tickets = this.transformData(data);
+          this.tickets = data;
           this.showTickets = true;
           console.log(this.tickets)
         })
