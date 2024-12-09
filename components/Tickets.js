@@ -65,7 +65,7 @@ export default {
       fetch(`https://raw.githubusercontent.com/sawzai/sawzai.github.io/main/assets/data.json`)
         .then(res => res.json())
         .then(data => {
-          console.log("Fetched Data:", data); // Debugging step
+          //console.log("Fetched Data:", data); // Debugging step
           if (Array.isArray(data)) {
             this.tickets = this.transformDataFromArray(data);
           } else if (data.values && Array.isArray(data.values)) {
@@ -75,7 +75,7 @@ export default {
             return;
           }
           this.showTickets = true;
-          console.log("Transformed Tickets:", this.tickets);
+          //console.log("Transformed Tickets:", this.tickets);
         })
         .catch(error => console.error('Error loading tickets:', error));
     },
