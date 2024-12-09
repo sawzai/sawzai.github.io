@@ -78,7 +78,7 @@
         color:var(--cart-items-color);
     }
     & .category-bronze {
-        --main-color:#9e6811;
+        --main-color:#ac7215;
 		--second-color:#ca8515;
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
 		--cart-items-color: #fff;
@@ -87,7 +87,7 @@
         color:var(--cart-items-color);
     }
     & .category-silver {
-        --main-color:#929292;
+        --main-color:#b3b3b3;
 		--second-color:#c8c8c8;
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
 		--cart-items-color: #000;
