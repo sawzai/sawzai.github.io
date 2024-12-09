@@ -69,7 +69,7 @@
         color:var(--cart-items-color);
     }
     & .category-blue {
-        --main-color:#27a0bb;
+        --main-color:#2fb3d1;
 		--second-color:#2dc1e2;
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
 		--cart-items-color: #000;
