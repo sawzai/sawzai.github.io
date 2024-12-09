@@ -73,6 +73,22 @@
         background:var(--cart-background);
         color:var(--cart-items-color);
     }
+    & .category-bronze {
+        --main-color:#7f5b4b;
+		--second-color:#daa488;
+		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
+		--cart-items-color: #000;
+        background:var(--cart-background);
+        color:var(--cart-items-color);
+    }
+    & .category-silver {
+        --main-color:#a8a9ab;
+		--second-color:#e1e1e3;
+		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
+		--cart-items-color: #000;
+        background:var(--cart-background);
+        color:var(--cart-items-color);
+    }
     & .featured {
         scale:1.06; z-index:2; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6); transform-origin: bottom center;
         @media (width <= 1000px) {
