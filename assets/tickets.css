@@ -90,10 +90,10 @@
         --main-color:#929292;
 		--second-color:#c8c8c8;
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
-		--cart-items-color: #fff;
-        --buttonColor: var(--cart-items-color);
+		--cart-items-color: #000;
+        --buttonColor: #5c5c5e;
         background:var(--cart-background);
-        color:#5c5c5e;
+        color:var(--cart-items-color);;
     }
     & .featured {
         scale:1.06; z-index:2; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6); transform-origin: bottom center;
