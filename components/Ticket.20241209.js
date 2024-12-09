@@ -62,26 +62,21 @@ export default {
   },
   methods: {
     fetchTickets() {
+      //fetch(`https://sheets.googleapis.com/v4/spreadsheets/${this.gId}/values/${this.gTab}/?alt=json&key=${this.ga}`)
       fetch(`https://raw.githubusercontent.com/sawzai/sawzai.github.io/main/assets/data.json`)
         .then(res => res.json())
         .then(data => {
-          console.log("Fetched Data:", data); // Debugging step
-          if (Array.isArray(data)) {
-            this.tickets = this.transformDataFromArray(data);
-          } else if (data.values && Array.isArray(data.values)) {
-            this.tickets = this.transformDataFromValues(data.values);
-          } else {
-            console.error("Unexpected data structure:", data);
-            return;
-          }
+          //console.log(data)
+          //this.tickets = this.transformData(data);
+          this.tickets = this.transformData(data);
           this.showTickets = true;
-          console.log("Transformed Tickets:", this.tickets);
+          console.log(this.tickets)
         })
         .catch(error => console.error('Error loading tickets:', error));
     },
-    transformDataFromValues(values) {
-      const headers = values[0];
-      return values.slice(1).map(row => {
+    transformData(data) {
+      const headers = data.values[0];
+      return data.values.slice(1).map(row => {
         const rowObj = headers.reduce((obj, header, index) => {
           obj[header.toLowerCase()] = row[index];
           return obj;
@@ -90,14 +85,6 @@ export default {
           rowObj.includedArray = rowObj.included.split('\n').map(item => item.trim().replace(/["]+/g, ''));
         }
         return rowObj;
-      });
-    },
-    transformDataFromArray(data) {
-      return data.map(ticket => {
-        if (ticket.included) {
-          ticket.includedArray = ticket.included.split('\n').map(item => item.trim().replace(/["]+/g, ''));
-        }
-        return ticket;
       });
     },
     updateIsMobile() {
