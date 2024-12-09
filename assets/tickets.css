@@ -81,7 +81,7 @@
         --main-color:#9e6811;
 		--second-color:#ca8515;
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
-		--cart-items-color: #000;
+		--cart-items-color: #fff;
         --buttonColor: var(--main-color);
         background:var(--cart-background);
         color:var(--cart-items-color);
