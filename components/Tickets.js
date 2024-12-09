@@ -48,16 +48,6 @@ export default {
     this.fetchTickets();
     this.updateIsMobile();
     window.addEventListener('resize', this.updateIsMobile);
-    
-    document.addEventListener("DOMContentLoaded", () => {
-      srCart.btnClass = '.ticket-btn';
-      srCart.trackData['affiliate'] = 'affiliateName';
-      srCart.trackData['ls'] = 'JM3';
-      srCart.init();
-    });
-
-    console.log("add")
-
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.updateIsMobile);
