@@ -73,6 +73,7 @@ export default {
           console.log("tested")
           this.tickets = this.transformData(data);
           this.showTickets = true;
+          console.log(this.tickets)
         })
         .catch(error => console.error('Error loading tickets:', error));
     },
