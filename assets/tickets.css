@@ -14,6 +14,9 @@
         position:relative; padding-bottom:50px;
         &:nth-child(2) {z-index:1}
     }
+    & > div:has(.ticket-btn2) {
+        padding-bottom:150px;
+    }
     &:has(> div:nth-child(4)) {width:100%; padding-inline:20px}
     & > [class*="category-"] {
         --cart-category-background:#fff;
