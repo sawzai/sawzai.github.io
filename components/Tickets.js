@@ -54,7 +54,7 @@ export default {
     window.addEventListener('resize', this.updateIsMobile);
     
     document.addEventListener("DOMContentLoaded", () => {
-      srCart.btnClass = '.ticket-btn';
+      srCart.btnClass = '.ticket-btn, ticket-btn2';
       srCart.trackData['affiliate'] = 'affiliateName';
       srCart.trackData['ls'] = 'JM3';
       srCart.init();
