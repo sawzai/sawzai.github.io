@@ -161,7 +161,7 @@
             }
         }
     }
-    & .ticket-btn {
+    & .ticket-btn, & .ticket-btn2 {
         background-color: var(--cart-category-background); display:block; padding: 15px 30px 10px; margin:auto;
         text-transform: uppercase; border-radius: 20px ; position: absolute; bottom:0; left:0; right:0;
         border: 4px solid var(--main-color); transition: .6s; isolation: isolate; overflow: hidden; 
@@ -182,7 +182,9 @@
             font-size:16px; line-height:1; opacity: 1;
         }
 	}
-        
+    & .ticket-btn2 {
+        bottom:40px;
+    }    
     & .countdown {
         padding-block:0px; width:100%; max-width:250px; container-type: inline-size; display:inline-block; 
         margin:auto; margin-bottom:-5px; margin-top:10px;
