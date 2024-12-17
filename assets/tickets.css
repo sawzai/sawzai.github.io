@@ -15,7 +15,7 @@
         &:nth-child(2) {z-index:1}
     }
     & > div:has(.ticket-btn2) {
-        padding-bottom:150px;
+        padding-bottom:135px;
     }
     &:has(> div:nth-child(4)) {width:100%; padding-inline:20px}
     & > [class*="category-"] {
@@ -186,7 +186,7 @@
         }
 	}
     & .ticket-btn2 {
-        bottom:40px;
+        bottom:85px;
     }    
     & .countdown {
         padding-block:0px; width:100%; max-width:250px; container-type: inline-size; display:inline-block; 
