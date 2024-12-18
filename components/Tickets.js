@@ -43,7 +43,7 @@ export default {
   },
   props: {
     jsonfile: String
-  }
+  },
   computed: {
     sortedTickets() {
       return this.tickets
