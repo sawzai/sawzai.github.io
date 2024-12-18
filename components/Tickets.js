@@ -55,8 +55,6 @@ export default {
     this.fetchTickets();
     this.updateIsMobile();
     window.addEventListener('resize', this.updateIsMobile);
-    
-    this.initSrCart();
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.updateIsMobile);
@@ -77,6 +75,10 @@ export default {
           }
           this.showTickets = true;
           //console.log("Transformed Tickets:", this.tickets);
+
+          this.$nextTick(() => {
+            this.initSrCart();
+          });
         })
         .catch(error => console.error('Error loading tickets:', error));
     },
