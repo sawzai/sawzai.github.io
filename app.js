@@ -8,7 +8,7 @@ const app = Vue.createApp({
 
   <!-- <Modal class="container" textline="Replace Modal Textline" /> -->
 
-  <Tickets class="" />
+  <Tickets jsonfile="https://raw.githubusercontent.com/sawzai/sawzai.github.io/main/assets/data.json" />
 
   <teleport to="#app2">
     <CountDown style="padding-block:60px" class="container" 

@@ -41,6 +41,9 @@ export default {
       isMobile: false,
     };
   },
+  props: {
+    jsonfile: String
+  }
   computed: {
     sortedTickets() {
       return this.tickets
@@ -65,7 +68,7 @@ export default {
   },
   methods: {
     fetchTickets() {
-      fetch(`https://raw.githubusercontent.com/sawzai/sawzai.github.io/main/assets/data.json`)
+      fetch(this.jsonfile)
         .then(res => res.json())
         .then(data => {
           //console.log("Fetched Data:", data); // Debugging step
