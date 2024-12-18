@@ -56,12 +56,7 @@ export default {
     this.updateIsMobile();
     window.addEventListener('resize', this.updateIsMobile);
     
-    document.addEventListener("DOMContentLoaded", () => {
-      srCart.btnClass = '.ticket-btn, .ticket-btn2';
-      srCart.trackData['affiliate'] = 'affiliateName';
-      srCart.trackData['ls'] = 'JM3';
-      srCart.init();
-    });
+    this.initSrCart();
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.updateIsMobile);
@@ -84,6 +79,16 @@ export default {
           //console.log("Transformed Tickets:", this.tickets);
         })
         .catch(error => console.error('Error loading tickets:', error));
+    },
+    initSrCart() {
+      if (typeof srCart !== "undefined") {
+        srCart.btnClass = '.ticket-btn, .ticket-btn2';
+        srCart.trackData['affiliate'] = 'affiliateName';
+        srCart.trackData['ls'] = 'JM3';
+        srCart.init();
+      } else {
+        console.error("srCart is not defined");
+      }
     },
     transformDataFromValues(values) {
       const headers = values[0];
