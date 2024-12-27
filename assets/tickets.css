@@ -80,7 +80,7 @@
         background:var(--cart-background);
         color:var(--cart-items-color);
     }
-    & .category-aqua-blue {
+    & .category-aquablue {
         --main-color:#1e879f;
 		--second-color:#2cc0e2;
 		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
