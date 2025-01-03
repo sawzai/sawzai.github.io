@@ -86,7 +86,7 @@ export default {
       if (typeof srCart !== "undefined") {
         srCart.btnClass = '.ticket-btn, .ticket-btn2';
         srCart.trackData['affiliate'] = 'affiliateName';
-        srCart.trackData['ls'] = 'JM3';
+        srCart.trackData['ls'] = 'ls';
         srCart.init();
       } else {
         console.error("srCart is not defined");
