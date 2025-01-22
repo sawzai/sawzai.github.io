@@ -11,7 +11,7 @@
     & h3 {margin:0; padding:0}
     & > div {
         border:1px solid #ccc; border-radius:20px; background:#fff; max-width:420px; margin-bottom:50px;
-        position:relative; padding-bottom:50px;
+        position:relative; padding-bottom:50px; flex: 1;
         &:nth-child(2) {z-index:1}
     }
     & > div:has(.ticket-btn2) {
