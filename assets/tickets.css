@@ -229,8 +229,6 @@
 
 }
 
-
-
 @keyframes button-shadow-grow {
 	0%, 100% {filter: drop-shadow(var(--cart-promo-lable-background) 1px 1px 1px);}
 	50% {filter: drop-shadow(var(--cart-promo-lable-background) 2px 5px 5px);}
