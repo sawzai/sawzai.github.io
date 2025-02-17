@@ -88,7 +88,7 @@ export default {
     },
     initSrCart() {
       if (typeof srCart !== "undefined") {
-        srCart.btnClass = '.ticket-btn, .ticket-btn2';
+        srCart.btnClass = '.ticket-btn, .ticket-btn2, .ticket-btn3';
         srCart.trackData['affiliate'] = 'affiliateName';
         srCart.trackData['ls'] = 'ls';
         srCart.init();
