@@ -14,11 +14,11 @@
         position:relative; padding-bottom:50px; flex: 1;
         &:nth-child(2) {z-index:1}
     }
-    & > div:has(.ticket-btn3) {
-        padding-bottom:220px;
-    }
     & > div:has(.ticket-btn2) {
         padding-bottom:135px;
+    }
+    & > div:has(.ticket-btn3) {
+        padding-bottom:220px;
     }
     &:has(> div:nth-child(4)) {width:100%; padding-inline:20px}
     & > [class*="category-"] {
