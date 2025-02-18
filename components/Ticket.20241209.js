@@ -20,12 +20,8 @@ export default {
         <div v-if="ticket.seat" class="category-seat-layout">SEATING LAYOUT</div>
         <img v-if="ticket.seat" class="category-seat" :src="ticket.seat">
         <ul v-if="ticket.included" class="category-items">
-          <li v-for="(item, index) in ticket.includedArray" :key="index" :class="{ 'active': index < ticket.initems }" v-html="item"></li>
+          <li v-for="(item, index) in ticket.includedArray" :key="index" :class="{ 'active': index < ticket.initems }">{{ item }}</li>
         </ul>
-        <a v-if="!ticket.soldout === 'FALSE' || ticket.thibuttonon === 'TRUE'" class="ticket-btn3" :href="ticket.thiurl">
-          <div class="category-btnsub">{{ ticket.thibuttonsub }}</div>
-          <div class="category-btntitle">{{ ticket.thibutton }}</div>
-        </a>
         <a v-if="!ticket.soldout === 'FALSE' || ticket.secbuttonon === 'TRUE'" class="ticket-btn2" :href="ticket.securl">
           <div class="category-btnsub">{{ ticket.secbuttonsub }}</div>
           <div class="category-btntitle">{{ ticket.secbutton }}</div>
@@ -46,7 +42,12 @@ export default {
     };
   },
   props: {
-    jsonfile: String
+    gId: String,
+    gTab: String,
+    ga: {
+      type: String,
+      default: "AIzaSyDcSC5ryP_tbNI3PEp4qisCsrObJoLOBW4"
+    }
   },
   computed: {
     sortedTickets() {
@@ -65,40 +66,20 @@ export default {
   },
   methods: {
     fetchTickets() {
-      fetch(this.jsonfile)
+      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${this.gId}/values/${this.gTab}/?alt=json&key=${this.ga}`)
+      //fetch(`https://raw.githubusercontent.com/sawzai/sawzai.github.io/main/assets/data.json`)
         .then(res => res.json())
         .then(data => {
-          //console.log("Fetched Data:", data); // Debugging step
-          if (Array.isArray(data)) {
-            this.tickets = this.transformDataFromArray(data);
-          } else if (data.values && Array.isArray(data.values)) {
-            this.tickets = this.transformDataFromValues(data.values);
-          } else {
-            console.error("Unexpected data structure:", data);
-            return;
-          }
+          console.log("tested")
+          this.tickets = this.transformData(data);
           this.showTickets = true;
-          //console.log("Transformed Tickets:", this.tickets);
-
-          this.$nextTick(() => {
-            this.initSrCart();
-          });
+          console.log(this.tickets)
         })
         .catch(error => console.error('Error loading tickets:', error));
     },
-    initSrCart() {
-      if (typeof srCart !== "undefined") {
-        srCart.btnClass = '.ticket-btn, .ticket-btn2, .ticket-btn3';
-        srCart.trackData['affiliate'] = 'affiliateName';
-        srCart.trackData['ls'] = 'ls';
-        srCart.init();
-      } else {
-        console.error("srCart is not defined");
-      }
-    },
-    transformDataFromValues(values) {
-      const headers = values[0];
-      return values.slice(1).map(row => {
+    transformData(data) {
+      const headers = data.values[0];
+      return data.values.slice(1).map(row => {
         const rowObj = headers.reduce((obj, header, index) => {
           obj[header.toLowerCase()] = row[index];
           return obj;
@@ -107,14 +88,6 @@ export default {
           rowObj.includedArray = rowObj.included.split('\n').map(item => item.trim().replace(/["]+/g, ''));
         }
         return rowObj;
-      });
-    },
-    transformDataFromArray(data) {
-      return data.map(ticket => {
-        if (ticket.included) {
-          ticket.includedArray = ticket.included.split('\n').map(item => item.trim().replace(/["]+/g, ''));
-        }
-        return ticket;
       });
     },
     updateIsMobile() {
