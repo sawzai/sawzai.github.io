@@ -57,6 +57,8 @@ export default {
                         <li class="text-light">
                             <i class="fa fa-phone-square" aria-hidden="true"></i>
                             SG: <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+6562994677">+65 6299 4677</a>
+                            <br>
+                            <i class="fa fa-phone-square" aria-hidden="true"></i>
                             MY: <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+60378012888">+603 7801 2888 </a>
                         </li>
                         <li class="text-light">
