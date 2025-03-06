@@ -15,7 +15,7 @@ export default {
         <div v-if="ticket.doorprice" class="category-doorprice">DOOR PRICE: <span>{{ ticket.doorprice }}</span></div>
         <h3 v-if="ticket.price" class="category-price">{{ ticket.price }}</h3>
         <div v-if="ticket.save" class="category-save">SAVE {{ ticket.save }}</div>
-        <div v-if="ticket.next" class="category-next">{{ ticket.next }}</div>
+        <div v-if="ticket.next" class="category-next" v-html="ticket.next"></div>
         <div v-if="ticket.status" class="category-status">{{ ticket.status }}</div>
         <div v-if="ticket.seat" class="category-seat-layout">SEATING LAYOUT</div>
         <img v-if="ticket.seat" class="category-seat" :src="ticket.seat">
