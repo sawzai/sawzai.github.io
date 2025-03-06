@@ -161,7 +161,7 @@
     & .category-next {
         background:#000; display:block; color:#fff; padding:5px 20px 3px; border-radius:50px; 
         margin-top:5px; animation: growing 3s infinite; margin-inline:30px; 
-        font-size:12px; letter-spacing:0.05em;
+        font-size:20px; letter-spacing:0.05em;
     }
     & .category-status {font-family:"Poppins", "Arial"; font-size:18px; font-weight:bold; line-height:1; margin-top:15px; }
     & .category-seat-layout {text-align:center; margin-top:10px;margin-bottom:5px; font-weight:bold; font-size:12px}
