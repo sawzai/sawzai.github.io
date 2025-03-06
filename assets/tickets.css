@@ -169,7 +169,7 @@
     & ul.category-items {
         list-style:none; padding-left:35px; padding-block:10px; z-index:-1; margin-inline:25px 30px;
         & li {
-            color:var(--cart-items-color); padding-block:3px; text-align:left; opacity:0.3;
+            color:var(--cart-items-color); padding-block:3px; text-align:left; opacity:0.3; position:relative;
             &:before {
                 content:"\f00d"; font-family:FontAwesome; position:absolute; left:-25px;
                 color:var(--cart-items-color); font-size:120%;
