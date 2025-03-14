@@ -62,12 +62,12 @@ export default {
                             MY: <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+60378012888">+603 7801 2888 </a>
                         </li>
                         <li class="text-light">
-                            <i class="fa fa-whatsapp" aria-hidden="true"></i> Lena:
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/gbxmu3">https://wa.link/gbxmu3</a>
+                            <i class="fa fa-whatsapp" aria-hidden="true"></i> 
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/gbxmu3"SG: Lena</a>
                         </li>
                         <li class="text-light">
-                            <i class="fa fa-whatsapp" aria-hidden="true"></i> Emily: 
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/5a8e65">https://wa.link/5a8e65</a>
+                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/5a8e65">MY: Emily</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
