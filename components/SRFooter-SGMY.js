@@ -63,7 +63,7 @@ export default {
                         </li>
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i> 
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/gbxmu3"SG: Lena</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/gbxmu3">SG: Lena</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
