@@ -64,8 +64,7 @@ export default {
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i> 
                             <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/gbxmu3">SG: Lena</a>
-                        </li>
-                        <li class="text-light">
+                            <br>
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
                             <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/5a8e65">MY: Emily</a>
                         </li>
