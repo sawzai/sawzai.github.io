@@ -63,11 +63,11 @@ export default {
                         </li>
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i> Lena:
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/uokqgt">https://wa.link/uokqgt</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/gbxmu3">https://wa.link/gbxmu3</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i> Emily: 
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/wzt0rz">https://wa.link/wzt0rz</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/5a8e65">https://wa.link/5a8e65</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
