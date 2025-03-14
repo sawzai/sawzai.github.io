@@ -14,7 +14,7 @@ footer .pt-4 {padding-top:40px}
 footer.py-5 {padding-block:50px}
 footer .text-light {color:#A0A0A0 !important}
 footer .footer-icon:hover {opacity:0.8}
-footer ul {list-style:none; padding:0}
+footer ul {list-style:none; padding:0; font-size:18px}
 footer ul li {padding-bottom:10px}
 footer p {color:#A0A0A0 !important}
 footer p.disclaimer {color:#A0A0A0 !important; margin-bottom:40px}
