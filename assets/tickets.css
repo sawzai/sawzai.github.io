@@ -69,7 +69,7 @@
     & .category-red {
         --main-color:#d20c02;
 		--second-color:#f40e03;
-		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%););
+		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
 		--cart-items-color: #fff;
         --buttonColor: var(--main-color);
         background:var(--cart-background);
