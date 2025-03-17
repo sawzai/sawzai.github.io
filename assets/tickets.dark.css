@@ -1,5 +1,5 @@
 .tickets {
-  display:flex; gap:0px; text-align:center; justify-content:center;  line-height:1.4; 
+    display:flex; gap:0px; text-align:center; justify-content:center;  line-height:1.4; 
     width:1120px; margin-inline:0; margin:auto; max-width:100%;
     @media (width <= 1120px) {padding-inline:20px;}
     @media (width <= 1000px) {
@@ -21,12 +21,11 @@
         padding-bottom:220px;
     }
     &:has(> div:nth-child(4)) {width:100%; padding-inline:20px}
-	& > [class*="category-"] {
+    & > [class*="category-"] {
         --cart-category-background:#fff;
         --main-color:#000000;
         --second-color:#525252;
         --cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
-        --cart-category-background: #fff;
         --cart-price-color: #fff;
         --cart-promo-lable-background: #000;
         --cart-items-color: #000;
@@ -48,121 +47,73 @@
             &:after {left:unset; right:-20px}
         }
     }
-  
-   & .category-bronze {
-      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      & .category-header {
-        background: radial-gradient(circle, rgba(172,114,21,1) 0%, rgba(202,133,21,1) 50%, rgba(202,133,21,1) 100%); border-radius:19px 19px 0 0 !important;
-        padding-block:13px !important; color:#fff;
-          & h3 {color:white !important;}
-      }
-      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
-      & .category-doorprice {
-          & span:before {background:white !important;}
-      }
-      & .category-items {
-          & li {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-          & li.active {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-      }
-      & .ticket-btn, & .ticket-btn2, & .ticket-btn3 {
-        background: radial-gradient(circle, rgba(172,114,21,1) 0%, rgba(202,133,21,1) 50%, rgba(202,133,21,1) 100%);
-          & .category-btnsub {color:white;}
-          & .category-btntitle {color:white;}
-      }
-   }
-   & .category-yellow {
-      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      & .category-header {
-        background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%); border-radius:19px 19px 0 0 !important;
-        padding-block:13px !important;
-          & h3 {color:white !important;}
-      }
-      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout, & .category-offer {color:white !important;}
-      & .category-doorprice {
-          & span:before {background:white !important;}
-      }
-      & .category-items {
-          & li {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-          & li.active {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-      }
-      & .ticket-btn {
-        background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%);*/
-          & .category-btnsub {color:white;}
-          & .category-btntitle {color:white;}
-      }
-   }
-   & .category-aquablue {
-      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      & .category-header {
-        background: radial-gradient(circle, rgba(5,137,153,1) 0%, rgba(67,235,253,1) 100%); border-radius:19px 19px 0 0 !important;
-        padding-block:13px !important; color:#fff;
-          & h3 {color:white !important;}
-      }
-      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
-      & .category-items {
-          & li {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-          & li.active {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-      }
-      & .ticket-btn {
-        background: radial-gradient(circle, rgba(5,137,153,1) 0%, rgba(67,235,253,1) 100%);
-          & .category-btnsub {color:white;}
-          & .category-btntitle {color:white;}
-      }
-   }
-   
-  & .category-red {
-      max-width: 960px !important; flex-basis: 100%; margin-top: 20px;
-      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important; padding-bottom: 75px !important;
-      & .category-header {
-        background: linear-gradient(144deg, rgba(228, 13, 0, 1) 0%, rgba(138, 18, 17, 1) 47%, rgba(248, 14, 0, 1) 100%) !important;
-        border-radius: 20px 20px 0px 0px !important; color:#fff;
-        padding-block:25px !important;
-          & h3 {color:white !important;}
-      }
-      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
-      & .category-price {font-family: 'Roboto', sans-serif !important; padding-bottom: 0px !important}
-      & .category-items {
-          & li {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-          & li.active {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-      }
-      & .ticket-btn {
-        background: radial-gradient(circle, rgba(112, 21, 0, 1) 0%, rgba(225, 41, 0, 1) 100%) !important; box-shadow: 0 0 10px rgba(255, 255, 255, 1) !important;
-        animation: blink 1.2s infinite; position:static; padding: 20px 30px; font-size: 24px; max-width: fit-content;
-        @media (width <= 720px) {max-width: 80%}
-          & .category-btnsub {color:white;}
-          & .category-btntitle {color:white;}
-      }
-    
-  }
-  & .featured {
+    & .category-green {
+		--main-color:#19751f;
+		--second-color:#219a28;
+		--cart-background: linear-gradient(90deg, var(--main-color) 25%, var(--second-color) 60%);
+		--cart-items-color: #fff;
+        --buttonColor: var(--main-color);
+        background:var(--cart-background);
+        color:var(--cart-items-color);
+    }
+    & .category-yellow {
+		--main-color:#ffbd0e;
+		--second-color:#ffe401;
+		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
+		--cart-items-color: #000;
+        --buttonColor: var(--main-color);
+        background:var(--cart-background);
+        color:var(--cart-items-color);
+    }
+    & .category-red {
+        --main-color:#d20c02;
+		--second-color:#f40e03;
+		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%););
+		--cart-items-color: #fff;
+        --buttonColor: var(--main-color);
+        background:var(--cart-background);
+        color:var(--cart-items-color);
+    }
+    & .category-blue {
+        --main-color:#2fb3d1;
+		--second-color:#2dc1e2;
+		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
+		--cart-items-color: #000;
+        --buttonColor: var(--main-color);
+        background:var(--cart-background);
+        color:var(--cart-items-color);
+    }
+    & .category-aquablue {
+        --main-color:#1e879f;
+		--second-color:#2cc0e2;
+		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
+		--cart-items-color: #fff;
+        --buttonColor: var(--main-color);
+        background:var(--cart-background);
+        color:var(--cart-items-color);
+    }
+    & .category-bronze {
+        --main-color:#ac7215;
+		--second-color:#ca8515;
+		--cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
+		--cart-items-color: #fff;
+        --buttonColor: var(--main-color);
+        background:var(--cart-background);
+        color:var(--cart-items-color);
+    }
+    & .category-silver {
+        --main-color:#b3b3b3;
+		--second-color:#c8c8c8;
+		--cart-background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%);
+        --header-bg-color: radial-gradient(circle, rgba(115,106,100,1) 0%, rgba(194,180,172,1) 100%);
+		--cart-items-color: #000;
+        --cart-category-background:radial-gradient(circle, rgba(115,106,100,1) 0%, rgba(194,180,172,1) 100%);
+        --buttonColor: #ffffff;
+        backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);border: 1px solid rgba(255, 255, 255, 0.3);
+        background:var(--cart-background);
+        color:var(--cart-items-color);;
+    }
+    & .featured {
         scale:1.06; z-index:2; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6); transform-origin: bottom center;
         @media (width <= 1000px) {
             scale:1;
@@ -177,11 +128,11 @@
         }
     }
     & .category-header {
-        background-color:#fff; padding:30px 20px; border-radius:19px; color:#000; 
+        background-color:var(--header-bg-color); padding:30px 13px; border-radius:19px 0; color:#000; 
         font-weight:bold; letter-spacing:-1px; line-height:1;
         & .category-offer {font-size:20px}
         & .category-title {
-            text-transform:uppercase; font-size:46px; font-weight:bold; margin:0; 
+            text-transform:uppercase; font-size:46px; font-weight:bold; margin:0; color:white;
             font-family:"Poppins", "Arial";
         }
         & .category-country {font-size:16px;}
@@ -284,6 +235,15 @@
             }
         }
     }
-   
-   
+
+}
+
+@keyframes button-shadow-grow {
+	0%, 100% {filter: drop-shadow(var(--cart-promo-lable-background) 1px 1px 1px);}
+	50% {filter: drop-shadow(var(--cart-promo-lable-background) 2px 5px 5px);}
+}
+
+@keyframes growing {
+	0%, 100% {scale: 1;}
+	50% {scale: 0.96;}
 }
