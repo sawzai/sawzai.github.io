@@ -1,33 +1,54 @@
 .tickets {
-  gap:20px; flex-wrap: wrap;
-   & .category-silver {
-      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      & .category-header {
-        background: radial-gradient(circle, rgba(115,106,100,1) 0%, rgba(194,180,172,1) 100%); border-radius:19px 19px 0 0 !important;
-        padding-block:13px !important;
-          & h3 {color:white !important;}
-      }
-      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
-      & .category-doorprice {
-          & span:before {background:white !important;}
-      }
-      & .category-items {
-          & li {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-          & li.active {
-            color:white !important;
-              &::before {color:white !important;}
-          }
-      }
-      & .ticket-btn {
-        background: radial-gradient(circle, rgba(115,106,100,1) 0%, rgba(194,180,172,1) 100%);
-          & .category-btnsub {color:white;}
-          & .category-btntitle {color:white;}
-      }
-   }
+  display:flex; gap:0px; text-align:center; justify-content:center;  line-height:1.4; 
+    width:1120px; margin-inline:0; margin:auto; max-width:100%;
+    @media (width <= 1120px) {padding-inline:20px;}
+    @media (width <= 1000px) {
+        flex-direction: column; align-items:center;
+    }
+    &:has(> .featured) {
+        padding-top:58px; 
+    }
+    & h3 {margin:0; padding:0}
+    & > div {
+        border:1px solid #ccc; border-radius:20px; background:#fff; max-width:420px; margin-bottom:50px;
+        position:relative; padding-bottom:50px; flex: 1;
+        &:nth-child(2) {z-index:1}
+    }
+    & > div:has(.ticket-btn2) {
+        padding-bottom:135px;
+    }
+    & > div:has(.ticket-btn3) {
+        padding-bottom:220px;
+    }
+    &:has(> div:nth-child(4)) {width:100%; padding-inline:20px}
+	& > [class*="category-"] {
+        --cart-category-background:#fff;
+        --main-color:#000000;
+        --second-color:#525252;
+        --cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
+        --cart-category-background: #fff;
+        --cart-price-color: #fff;
+        --cart-promo-lable-background: #000;
+        --cart-items-color: #000;
+        --cart-no-items-color: #989898;
+        width:100%;
+        & .category-label {
+            position:absolute; background-color:transparent; left:-45px; top:44px; width:200px; height:20px; 
+            line-height:20px; font-size:12px; font-weight:bold; color:#fff; text-shadow: 0px 2px 2px rgba(0,0,0,.8);
+            transform:rotate(-45deg); letter-spacing:0.05em;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid #f91936;
+            &:before, &:after {
+                content:""; display:inline-block; position:absolute; top:20px; left:-20px;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-top: 6px solid #990a14;
+            }
+            &:after {left:unset; right:-20px}
+        }
+    }
+  
    & .category-bronze {
       background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
       -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
@@ -141,6 +162,128 @@
       }
     
   }
+  & .featured {
+        scale:1.06; z-index:2; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6); transform-origin: bottom center;
+        @media (width <= 1000px) {
+            scale:1;
+        }
+    }
+    & .soldout {
+        position:relative;  isolation:isolate;
+        &:before {
+            content:""; display:block; position:absolute; inset:0; border-radius:19px;
+            background: url(https://cch-files.edge.live.ds25.io/cch/v/a4e3489d-6bf3-48c8-affb-c268ba45a538/files/650be1e5c0adf_64f70399b6f89-1080x1080.png) no-repeat center center rgba(0, 0, 0, 0.6);
+            background-size: 200px 200px; background-color:rgba(0,0,0,0.7); z-index:1;
+        }
+    }
+    & .category-header {
+        background-color:#fff; padding:30px 20px; border-radius:19px; color:#000; 
+        font-weight:bold; letter-spacing:-1px; line-height:1;
+        & .category-offer {font-size:20px}
+        & .category-title {
+            text-transform:uppercase; font-size:46px; font-weight:bold; margin:0; 
+            font-family:"Poppins", "Arial";
+        }
+        & .category-country {font-size:16px;}
+        & .category-cdtext {
+            font-size:16px; margin-top:15px; color:var(--main-color); letter-spacing:0px; 
+            font-family: monospace, Arial;
+        }
+    }
+    & .category-doorprice {
+        margin-top:20px;
+        &:before {
+            content:"\f02c"; font-family:FontAwesome; font-size:120%; display:inline-block; margin-right:5px;
+            scale:-1 1;
+        }
+        & span {
+            display:inline-block; position:relative;
+            &:before {
+                content:""; position:absolute; width:110%; inset:0; left:-5%; top:45%; height:0.09em; background:var(--cart-items-color);
+                transform:rotate(-7deg)
+            }
+        }
+    }
+    & h3.category-price {
+        font-family:"Poppins", "Arial"; font-size:46px; font-weight:bold; line-height:1;
+        color:var(--cart-items-color);
+    }
+    & .category-save {font-weight:bold;}
+    & .category-next {
+        background:#000; display:block; color:#fff; padding:5px 20px 3px; border-radius:50px; 
+        margin-top:5px; animation: growing 3s infinite; margin-inline:30px; 
+        font-size:16px; letter-spacing:0.05em;
+    }
+    & .category-status {font-family:"Poppins", "Arial"; font-size:18px; font-weight:bold; line-height:1; margin-top:15px; }
+    & .category-seat-layout {text-align:center; margin-top:10px;margin-bottom:5px; font-weight:bold; font-size:12px}
+    & .category-seat {max-width:100%; width:220px; }
+    & ul.category-items {
+        list-style:none; padding-left:35px; padding-block:10px; z-index:-1; margin-inline:25px 30px;
+        & li {
+            color:var(--cart-items-color); padding-block:3px; text-align:left; opacity:0.3; position:relative;
+            &:before {
+                content:"\f00d"; font-family:FontAwesome; position:absolute; left:-25px;
+                color:var(--cart-items-color); font-size:120%;
+            }
+            
+        }
+        & li.active {
+            position:relative; color:var(--cart-items-color); opacity:1;
+            &:before {
+                content:"\f00c"; font-family:FontAwesome; position:absolute; left:-25px;
+                color:var(--cart-items-color); font-size:120%;
+            }
+        }
+    }
+    & .ticket-btn, & .ticket-btn2, & .ticket-btn3 {
+        background-color: var(--cart-category-background); display:block; padding: 15px 30px 10px; margin:auto;
+        text-transform: uppercase; border-radius: 20px ; position: absolute; bottom:0; left:0; right:0;
+        border: 4px solid var(--main-color); transition: .6s; isolation: isolate; overflow: hidden; 
+        animation: button-shadow-grow 3s infinite; font-weight: bold ; color: var(--buttonColor); margin-bottom:-30px; 
+        max-width:80%; font-size:24px; line-height:1; font-family: 'Poppins', 'Arial';
+        text-decoration:none;
+        &:before {
+            content: ""; position: absolute; z-index: -2; inset: 0; margin: auto; aspect-ratio: 1; width: 10px; background-color: var(--main-color) !important; 
+            border-radius: 50%; transition: .6s; opacity: 0;
+        }
+        &:hover, &:active, &:focus {
+            background-color: var(--main-color); border: 4px solid var(--cart-category-background); color: var(--cart-category-background) !important; 
+            filter: drop-shadow(var(--cart-promo-lable-background) 2px 5px 5px); scale:0.9;
+
+            &:before {transform: scale(35);opacity: 1; transition: .6s;}
+        }
+        & .category-btnsub {
+            font-size:16px; line-height:1; opacity: 1;
+        }
+	}
+    & .ticket-btn3 {
+        bottom:170px;
+    } 
+    & .ticket-btn2 {
+        bottom:85px;
+    }    
+    & .countdown {
+        padding-block:0px; width:100%; max-width:250px; container-type: inline-size; display:inline-block; 
+        margin:auto; margin-bottom:-5px; margin-top:10px;
+        & .countdown-timer {
+            display: flex; gap: 2cqw;
+            & .countdown-box {
+                position:relative; text-align:center; flex: 1;
+                & .countdown-number {
+                    background:#000; border-radius:100%; aspect-ratio:1 / 1; padding-bottom:3cqw;
+                    display:flex; align-items:center; justify-content:center;
+                    font-size:12cqw; color:#fff; font-weight:bold;
+                }
+                & .countdown-label {
+                    font-size:4cqw; margin-top:1cqw; text-transform:uppercase; color:#fff;
+                    position:absolute; bottom:3cqw; left:0; right:0; letter-spacing:0.2cqw;
+                    @container (width <= 250px){
+                        font-size:3.8cqw; bottom:3.5cqw; 
+                    }
+                }
+            }
+        }
+    }
    
    
 }
