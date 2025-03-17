@@ -1,116 +1,119 @@
-#SRTickets {
-	.tickets {
-		gap:20px; flex-wrap: wrap;
-  		& .category-bronze {
-        background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-        -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        & .category-header {
-          background: radial-gradient(circle, rgba(172,114,21,1) 0%, rgba(202,133,21,1) 50%, rgba(202,133,21,1) 100%); border-radius:19px 19px 0 0 !important;
-          padding-block:13px !important; color:#fff;
-            & h3 {color:white !important;}
-        }
-        & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
-        & .category-doorprice {
-            & span:before {background:white !important;}
-        }
-        & .category-items {
-            & li {
-              color:white !important;
-                &::before {color:white !important;}
-            }
-            & li.active {
-              color:white !important;
-                &::before {color:white !important;}
-            }
-        }
-        & .ticket-btn, & .ticket-btn2, & .ticket-btn3 {
-          background: radial-gradient(circle, rgba(172,114,21,1) 0%, rgba(202,133,21,1) 50%, rgba(202,133,21,1) 100%);
-            & .category-btnsub {color:white;}
-            & .category-btntitle {color:white;}
-        }
-     }
-     & .category-yellow {
-        background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-        -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        & .category-header {
-          background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%); border-radius:19px 19px 0 0 !important;
-          padding-block:13px !important;
-            & h3 {color:white !important;}
-        }
-        & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout, & .category-offer {color:white !important;}
-        & .category-doorprice {
-            & span:before {background:white !important;}*/
-        }
-        & .category-items {
-            & li {
-              color:white !important;*/
-                &::before {color:white !important;}
-            }
-            & li.active {
-              color:white !important;*/
-                &::before {color:white !important;}
-            }
-        }
-        & .ticket-btn {
-          background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%);*/
-            & .category-btnsub {color:white;}
-            & .category-btntitle {color:white;}
-        }
-     }
-     & .category-aquablue {
-        background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-        -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        & .category-header {
-          background: radial-gradient(circle, rgba(5,137,153,1) 0%, rgba(67,235,253,1) 100%); border-radius:19px 19px 0 0 !important;
-          padding-block:13px !important; color:#fff;
-            & h3 {color:white !important;}
-        }
-        & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
-        & .category-items {
-            & li {
-              color:white !important;
-                &::before {color:white !important;}
-            }
-            & li.active {
-              color:white !important;
-                &::before {color:white !important;}
-            }
-        }
-        & .ticket-btn {
-          background: radial-gradient(circle, rgba(5,137,153,1) 0%, rgba(67,235,253,1) 100%);
-            & .category-btnsub {color:white;}
-            & .category-btntitle {color:white;}
-        }
-     }
-    & .category-red {
-        max-width: 960px !important; flex-basis: 100%; margin-top: 20px;
-        background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
-        -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important; padding-bottom: 75px !important;
-        & .category-header {
-          background: linear-gradient(144deg, rgba(228, 13, 0, 1) 0%, rgba(138, 18, 17, 1) 47%, rgba(248, 14, 0, 1) 100%) !important;
-          border-radius: 20px 20px 0px 0px !important; color:#fff;
-          padding-block:25px !important;
-            & h3 {color:white !important;}
-        }
-        & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
-        & .category-price {font-family: 'Roboto', sans-serif !important; padding-bottom: 0px !important}
-        & .category-items {
-            & li {
-              color:white !important;
-                &::before {color:white !important;}
-            }
-            & li.active {
-              color:white !important;
-                &::before {color:white !important;}
-            }
-        }
-        & .ticket-btn {
-          background: radial-gradient(circle, rgba(112, 21, 0, 1) 0%, rgba(225, 41, 0, 1) 100%) !important; box-shadow: 0 0 10px rgba(255, 255, 255, 1) !important;
-          animation: blink 1.2s infinite; position:static; padding: 20px 30px; font-size: 24px; max-width: fit-content;
-          @media (width <= 720px) {max-width: 80%}
-            & .category-btnsub {color:white;}
-            & .category-btntitle {color:white;}
-        }
-    }
+.tickets {
+  gap:20px; flex-wrap: wrap;
+  
+   & .category-bronze {
+      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
+      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      & .category-header {
+        background: radial-gradient(circle, rgba(172,114,21,1) 0%, rgba(202,133,21,1) 50%, rgba(202,133,21,1) 100%); border-radius:19px 19px 0 0 !important;
+        padding-block:13px !important; color:#fff;
+          & h3 {color:white !important;}
+      }
+      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
+      & .category-doorprice {
+          & span:before {background:white !important;}
+      }
+      & .category-items {
+          & li {
+            color:white !important;
+              &::before {color:white !important;}
+          }
+          & li.active {
+            color:white !important;
+              &::before {color:white !important;}
+          }
+      }
+      & .ticket-btn, & .ticket-btn2, & .ticket-btn3 {
+        background: radial-gradient(circle, rgba(172,114,21,1) 0%, rgba(202,133,21,1) 50%, rgba(202,133,21,1) 100%);
+          & .category-btnsub {color:white;}
+          & .category-btntitle {color:white;}
+      }
+   }
+   & .category-yellow {
+      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
+      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      & .category-header {
+        background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%); border-radius:19px 19px 0 0 !important;
+        padding-block:13px !important;
+          & h3 {color:white !important;}
+      }
+      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout, & .category-offer {color:white !important;}
+      & .category-doorprice {
+          & span:before {background:white !important;}
+      }
+      & .category-items {
+          & li {
+            color:white !important;
+              &::before {color:white !important;}
+          }
+          & li.active {
+            color:white !important;
+              &::before {color:white !important;}
+          }
+      }
+      & .ticket-btn {
+        background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%);
+          & .category-btnsub {color:white;}
+          & .category-btntitle {color:white;}
+      }
+   }
+   & .category-aquablue {
+      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
+      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      & .category-header {
+        background: radial-gradient(circle, rgba(5,137,153,1) 0%, rgba(67,235,253,1) 100%); border-radius:19px 19px 0 0 !important;
+        padding-block:13px !important; color:#fff;
+          & h3 {color:white !important;}
+      }
+      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
+      & .category-items {
+          & li {
+            color:white !important;
+              &::before {color:white !important;}
+          }
+          & li.active {
+            color:white !important;
+              &::before {color:white !important;}
+          }
+      }
+      & .ticket-btn {
+        background: radial-gradient(circle, rgba(5,137,153,1) 0%, rgba(67,235,253,1) 100%);
+          & .category-btnsub {color:white;}
+          & .category-btntitle {color:white;}
+      }
+   }
+   
+  & .category-red {
+      max-width: 960px !important; flex-basis: 100%; margin-top: 20px;
+      background: linear-gradient(0deg, rgba(104,104,104,0.3) 0%, rgba(255,255,255,0.3) 100%) !important; backdrop-filter: blur(2px); 
+      -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255, 255, 255, 0.3) !important; padding-bottom: 75px !important;
+      & .category-header {
+        background: linear-gradient(144deg, rgba(228, 13, 0, 1) 0%, rgba(138, 18, 17, 1) 47%, rgba(248, 14, 0, 1) 100%) !important;
+        border-radius: 20px 20px 0px 0px !important; color:#fff;
+        padding-block:25px !important;
+          & h3 {color:white !important;}
+      }
+      & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout {color:white !important;}
+      & .category-price {font-family: 'Roboto', sans-serif !important; padding-bottom: 0px !important}
+      & .category-items {
+          & li {
+            color:white !important;
+              &::before {color:white !important;}
+          }
+          & li.active {
+            color:white !important;
+              &::before {color:white !important;}
+          }
+      }
+      & .ticket-btn {
+        background: radial-gradient(circle, rgba(112, 21, 0, 1) 0%, rgba(225, 41, 0, 1) 100%) !important; box-shadow: 0 0 10px rgba(255, 255, 255, 1) !important;
+        animation: blink 1.2s infinite; position:static; padding: 20px 30px; font-size: 24px; max-width: fit-content;
+        @media (width <= 720px) {max-width: 80%}
+          & .category-btnsub {color:white;}
+          & .category-btntitle {color:white;}
+      }
+    
   }
+   
+   
 }
