@@ -22,15 +22,6 @@
     }
     &:has(> div:nth-child(4)) {width:100%; padding-inline:20px}
     & > [class*="category-"] {
-        --cart-category-background:#fff;
-        --main-color:#000000;
-        --second-color:#525252;
-        --cart-background: linear-gradient(90deg, var(--main-color) 15%, var(--second-color) 50%);
-        --cart-category-background: #fff;
-        --cart-price-color: #fff;
-        --cart-promo-lable-background: #000;
-        --cart-items-color: #000;
-        --cart-no-items-color: #989898;
         width:100%;
         & .category-label {
             position:absolute; background-color:transparent; left:-45px; top:44px; width:200px; height:20px; 
