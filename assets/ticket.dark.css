@@ -39,11 +39,11 @@
       }
       & .category-doorprice, & .category-price, & .category-save, & .category-status, & .category-seat-layout, & .category-offer {color:white !important;}
       & .category-doorprice {
-          & span:before {background:white !important;}*/
+          & span:before {background:white !important;}
       }
       & .category-items {
           & li {
-            color:white !important;*/
+            color:white !important;
               &::before {color:white !important;}
           }
           & li.active {
@@ -52,7 +52,7 @@
           }
       }
       & .ticket-btn {
-        background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%);*/
+        background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%);
           & .category-btnsub {color:white;}
           & .category-btntitle {color:white;}
       }
