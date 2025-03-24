@@ -29,8 +29,19 @@
         --cart-price-color: #fff;
         --cart-promo-lable-background: #000;
         --cart-items-color: #000;
+        border: 1px solid rgba(255, 255, 255, 0.3);
         --cart-no-items-color: #989898;
-        width:100%;
+        width:100%; 
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            border-radius: 20px;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
         & .category-label {
             position:absolute; background-color:transparent; left:-45px; top:44px; width:200px; height:20px; 
             line-height:20px; font-size:12px; font-weight:bold; color:#fff; text-shadow: 0px 2px 2px rgba(0,0,0,.8);
@@ -66,7 +77,6 @@
 		--cart-items-color: #ffffff;
         --cart-category-background: radial-gradient(circle, rgba(154,107,4,1) 0%, rgba(253,194,71,1) 100%);
         --buttonColor: #ffffff;
-        backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
         background:var(--cart-background);
         color:var(--cart-items-color);
     }
@@ -78,7 +88,6 @@
 		--cart-items-color: #ffffff;
         --cart-category-background: radial-gradient(circle, rgba(138,18,17,1) 0%, rgba(228,13,0,1) 50%, rgba(248,14,0,1) 100%);
         --buttonColor: #ffffff;
-        backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);border: 1px solid rgba(255, 255, 255, 0.3);
         background:var(--cart-background);
         color:var(--cart-items-color);
     }
@@ -101,7 +110,6 @@
 		--cart-items-color: #fff;
         --cart-category-background: radial-gradient(circle, rgba(5,137,153,1) 0%, rgba(67,235,253,1) 100%);
         --buttonColor: #ffffff;
-        backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);border: 1px solid rgba(255, 255, 255, 0.3);
         background:var(--cart-background);
         color:var(--cart-items-color);
     }
@@ -113,7 +121,6 @@
 		--cart-items-color: #fff;
         --cart-category-background: radial-gradient(circle, rgba(172,114,21,1) 0%, rgba(202,133,21,1) 50%, rgba(202,133,21,1) 100%);
         --buttonColor: #ffffff;
-        backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);border: 1px solid rgba(255, 255, 255, 0.3);
         background:var(--cart-background);
         color:var(--cart-items-color);
     }
@@ -125,7 +132,6 @@
 		--cart-items-color: #ffffff;
         --cart-category-background:radial-gradient(circle, rgba(115,106,100,1) 0%, rgba(194,180,172,1) 100%);
         --buttonColor: #ffffff;
-        backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);border: 1px solid rgba(255, 255, 255, 0.3);
         background:var(--cart-background);
         color:var(--cart-items-color);
     }
