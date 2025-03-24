@@ -25,9 +25,9 @@ const app = Vue.createApp({
       message: 'Welcome to SawZai Components',
     };
   },
-  mounted() {
-    this.observeTicketChanges();
-  },
+  // mounted() {
+  //   this.observeTicketChanges();
+  // },
   // methods: {
   //   observeTicketChanges() {
   //     const observer = new MutationObserver((mutationsList, observer) => {
