@@ -1,0 +1,424 @@
+/*Video Overlay*/
+.autoplay-video {
+  border-radius: 30px !important;
+  .embed-responsive {
+    position: relative; display: block; width: 100%; padding: 0; overflow: hidden;
+  }
+  .embed-responsive::before {display: block; content: "";}
+  .embed-responsive-16by9::before {padding-top: 56.25%;}
+  .embed-responsive > iframe,
+  .embed-responsive > embed,
+  .embed-responsive > object,
+  .embed-responsive > video {
+    position: absolute; top: 0; left: 0; bottom: 0; height: 100%; width: 100%; border: 0;
+  }
+  .embed-responsive {
+    overflow: hidden !important; border-radius: clamp(20px, 4vw, 60px); box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.4) !important; border: 2px solid #fff;
+  }
+  .video-overlay {
+    position: absolute; inset: 0; background: rgba(0, 0, 0, 0.2);
+  }
+  .video-overlay .unmute {
+    position: absolute; display: block; margin: 0; padding: 0; width: 20%; aspect-ratio: 820 / 240; right: 25px; top: 25px; animation: BigSmall 1.5s infinite;
+  }
+  .video-overlay .play {
+    position: absolute; display: block; margin: auto; padding: 0; width: 15%; aspect-ratio: 1 / 1; inset: 0
+  }
+}
+
+@keyframes BigSmall {
+  0%, 100% {transform: scale(0.9);}
+  50% {transform: scale(1.05);}
+}
+
+/*Hero Banner*/
+.hero-banner {
+  background: 100% auto; background-position: top left; background-repeat: no-repeat; background-attachment: scroll !important; padding-bottom: 150px;
+  & .venue { border-radius: 30px;}
+  @media (width <= 800px) {
+    padding-inline:20px;
+    & .venue {flex-direction: column;}
+  }
+}
+
+/*WALK BRAVELY TOWARDS A REBIRTH PROMISING CONFIDENCE & SUCCESS*/
+.success {
+  background: cover; background-position: top center; background-repeat: no-repeat; background-attachment: scroll;
+  & .icon { 
+    margin-top: -100px; 
+    & > .inner {
+      display: grid; grid-template-rows: auto auto; gap: 10px;
+      & .c-column {
+        padding: 20px !important; background: #225400; border: 2px solid white !important; border-radius: 20px !important;
+        &:nth-child(1) {grid-column: 1; grid-row: span 2 !important;}
+        &:nth-child(2) {grid-column: 2; grid-row: 1;}
+        &:nth-child(3) {grid-column: 2; grid-row: 2;}
+        &:nth-child(4) {grid-column: 3; grid-row: span 2;}
+        &:nth-child(5) {grid-column: 5; grid-row: span 2;}
+      }
+   }
+  }
+  & #sub-heading-267ZC97ULm {
+    border-radius: 25px !important;
+  }
+}
+
+/*It's is a game-changing, life-altering phenomenon that you can benefit massively and financially from!*/
+.million {
+  & .mind {
+    border-radius: 30px 0 30px 0 !important; overflow:hidden;
+    &>.inner {
+      display:grid !important; grid-template-columns: 40% 60% !important; grid-template-rows: auto auto !important;
+      & .c-column {
+        display:grid; grid-template-columns: repeat(1, 1fr); grid-template-rows: auto auto; padding:30px;
+        &:nth-of-type(1) { grid-column: 1; border-radius: 30px 30px 0 30px !important; }
+        &:nth-child(2) { grid-column: 2; border-radius: 0 0 0 30px !important; }
+        &:nth-child(3) { grid-column: 1; border-radius: 0 30px 0 0 !important; }
+        &:nth-child(4)>.bgCover { grid-column: 2; }
+      }
+    }
+  }
+  @media (max-width: 460px) {
+    & .mind {
+      padding:0px !important;
+      &.mind>.inner {
+        display:flex !important; flex-direction:column; border-radius:30px !important; overflow:hidden; justify-content: center !important; padding:0px !important;
+        & .c-column {
+          padding:0px !important; 
+          &:nth-of-type(1) {
+            border-radius: 30px 30px 0 0px !important; padding:40px !important;
+            & p {text-align:center !important;}
+          }
+          &:nth-of-type(2) {
+            background:#146900 !important; 
+            & p {
+              padding:40px !important; border-radius: 30px 0px 0px 30px !important; background:white !important; text-align:center !important;
+              margin-bottom: 5px !important; border:
+            }
+          }
+          &:nth-of-type(3) {
+            background:#146900 !important;
+            & p {
+              padding:40px !important; border-radius: 0px 30px 30px 0px !important; background:white !important; text-align:center !important;
+              margin-top:5px !important;
+            }
+          }
+          &:nth-of-type(4) {
+            background-size:cover !important; padding:40px !important;
+            & p {text-align:center !important;}
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*SECRETS REVEALED FOR THE EUROPEAN AUDIENCE!*/
+.revealed {
+  & .secret {
+    & > .inner {
+      display:grid; grid-template-columns: repeat(2, 1fr); gap:25px;
+      & .c-column {
+        & h2 {margin-bottom:10px;}
+      }
+    }
+  }
+  @media (width <= 800px) {
+    padding-inline:20px !important;
+      & .secret {
+        &>.inner {
+          grid-template-columns: repeat(1, 1fr);
+          & .c-column {
+          &:nth-of-type(odd) {
+            background:#105400 !important; padding:20px !important; border:3px solid #aecaa8 !important; border-radius: 30px !important;
+          }
+          &:nth-of-type(even) {
+            background:linear-gradient(180deg, rgba(32,166,0,1) 0%, rgba(20,107,0,1) 100%) !important; border-radius:30px !important;
+            padding:20px !important; -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75) !important; 
+            -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75) !important; box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75) !important;
+          }
+        }
+      }
+      & .icons {
+        & .c-column {
+          background:#105400 !important; padding:20px !important; border:3px solid #aecaa8 !important; border-radius: 30px !important;
+        }
+      }
+    }
+  }
+}
+
+
+/*ACCELERATED LEARNING FOR  RAPID SUCCESS IN JUST 3 DAYS*/
+.rapid {
+  & .day {
+  overflow:visible;
+        &:nth-of-type(even) {
+            & .c-column {
+                &:nth-of-type(1) {
+                  z-index:2; 
+                    & p {margin-left:40px !important; border-radius: 55px 0 25px 0 !important;}
+                }
+                &:nth-of-type(2) {
+                  margin-left:-20px !important; z-index:1;
+                    & img {border-radius: 0 20px 20px 0 !important; overflow:hidden; border:2px solid white !important;}
+                }
+            }
+        }
+        &:nth-of-type(odd) {
+            & .c-column {
+                &:nth-of-type(2) {
+                  margin-left:-20px !important; z-index:2;
+                    & p {margin-right:40px !important; border-radius: 0 55px 0 25px !important;}
+                }
+                &:nth-of-type(1) {
+                  z-index:1;
+                    & img {border-radius: 20px 0 0 20px !important; overflow:hidden; border:2px solid white !important;}
+                }
+            }
+        }
+  }
+@media (width <= 800px) {
+    padding-inline:20px !important;
+      & .day {
+        /*flex-direction:column;*/
+          &:nth-of-type(even) {
+              & .c-column {
+                &:nth-of-type(1) {
+                  order:2; z-index:2;
+                    & p {margin-left:10px !important;}
+                }
+                &:nth-of-type(2) {
+                  order:1; z-index:1; margin-left:0px !important; margin-bottom:-40px !important;
+                    &>.img-round-corners{border-radius: 20px!important;}
+                }
+              }
+          }
+          &:nth-of-type(odd) {
+              & .c-column {
+                  &:nth-of-type(1) {
+                    z-index:1;
+                      &>.img-round-corners {border-radius: 20px!important; margin-bottom:-40px !important;}
+                  }
+                  &:nth-of-type(2) {
+                    z-index:2; margin-left:0px !important;
+                      & p {margin-right:20px !important;}
+                  }
+              }
+          }
+      }
+  }
+}
+
+/*Meet your trainers*/
+.meet {
+  & .mac {
+    &:nth-of-type(even) {
+      &>.inner {
+        display:grid; grid-template-columns: 40% 60%; gap:10px;
+        & .c-column {
+          width:100%;
+          &:nth-of-type(1), &:nth-of-type(2) {z-index:3;}
+          &:nth-last-of-type(1) {
+            grid-column:1 / 3;
+            & img {margin-top: -330px !important; z-index:1;}
+          }
+        }
+      }
+    }
+    &:nth-of-type(odd) {
+      &>.inner {
+        display:grid !important; grid-template-columns: 60% 40% !important; gap:10px;
+        & .c-column {
+          width:100%;
+          &:nth-of-type(1), &:nth-of-type(2) {z-index:3;}
+          &:nth-last-of-type(1) {
+            grid-column:1 / 3;
+            & img {margin-top: -330px !important; z-index:1;}
+          }
+        }
+      }
+    }
+  }
+  @media (width <= 800px) {
+    padding-inline:20px !important;
+      & .mac {
+        &:nth-of-type(even) {
+      &>.inner {
+        grid-template-columns: 1fr; grid-template-areas:"third" "first" "second";
+          & .c-column {
+            &:nth-of-type(1) {grid-area: first; padding-inline:0px !important;}
+            &:nth-of-type(2) {grid-area: second; padding-inline:0px !important;}
+            &:nth-of-type(3) {
+            grid-area: third;
+              & img {margin-top:0px !important;}
+            }
+          }
+      }
+        }
+        &:nth-of-type(odd) {
+      &>.inner {
+        grid-template-columns: 1fr; grid-template-areas:"third" "first" "second";
+          & .c-column {
+            &:nth-of-type(1) {grid-area: second; padding-inline:0px !important;}
+            &:nth-of-type(2) {
+            grid-area: first; padding-inline:0px !important;
+              & h4, & h5 {text-align:left !important;}
+            }
+            &:nth-of-type(3) {
+            grid-area: third;
+              & img {margin-top:0px !important; z-index:2;}
+            }
+          }
+      }
+        }
+      }
+  }
+}
+/*Group Photo*/
+.group{
+  & .photo {
+    margin-top:-100px !important;
+  }
+}
+
+/*Here's the bonuses you will get*/
+.first {
+  & .pre {
+    &>.inner {
+      display: grid; grid-template-columns: 1fr 1fr; overflow: visible; position: relative;
+      & .c-column {
+        &: nth-of-type(1) {
+          position:relative; overflow: visible;
+          &>.hl-image-picture img { width: 130% !important; max-width: none; height: auto; position: relative; margin-left: -80px !important; margin-top: -50px !important; }
+        }
+      }
+    }
+  }
+
+@media (width <= 800px) {
+  padding-inline:20px !important;
+  & .pre {
+      &>.inner {
+      grid-template-columns: 1fr;
+      height: auto !important;
+      max-height: auto !important;
+      & .c-column {
+        &: nth-of-type(1) {
+          &>.img-none {
+            width:100% !important;
+      margin-left: 0px !important;
+      margin-top: -100px !important;
+  }
+}
+        &:nth-of-type(2) {
+  & h3, & p {text-align: center !important
+}
+        }
+      }
+    }
+  }
+}
+}
+
+/*Tickets are going fast*/
+.selling {
+  background-size: cover !important;
+  background-position: top center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
+  position: relative;
+  & .gradient {
+      & h1 {background: linear-gradient(to right, #98E05F 0%, #0DE3AC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500 !important;
+}
+      &.component-progress-bar {
+  background: #9bb795 !important;
+}
+  }
+  &.chance {
+  display: flex;
+  align-items: center;
+}
+  &.review {
+  overflow: visible;
+  position: relative;
+  & .c-column {
+        position: relative;
+  overflow: visible;
+  & .hl-image-picture {
+            width: 130% !important;
+  max-width: none;
+  height: auto;
+  position: relative;
+  margin-top: -120px !important;
+  margin-inline: 0px !important;
+  left: 50%;
+  transform: translateX(-50%);
+}
+      }
+  }
+
+@media (width <= 800px) {
+  padding-inline:20px !important;
+      & .gradient {
+      & h1 {text-align: center !important
+  }
+}
+      &.chance {
+  flex-direction: column;
+  & .pgb-column {
+              &: nth-of-type(1) {
+                order:2;
+  padding-top: 20px !important;
+  & p {text-align: center !important
+}
+              }
+              &:nth-of-type(2) {
+  order: 1;
+}
+          }
+      }
+      &.review {
+  & .c-column {
+              & img {
+                width: 100% !important;
+  margin-top: -120px !important;
+}
+          }
+      }
+  }
+}
+
+
+/*Button*/
+.button {
+  border-radius: 20px !important;
+}
+
+/*Image Carousel
+.autoplay img, .autoplay2 img {
+width:100%;
+margin:5px;
+overflow:hidden;
+}
+.slick-slide img {
+border-radius:20px !important;
+}
+.autoplay .slick-slide,
+.autoplay2 .slick-slide {
+margin-right: 15px;
+}
+.slick-list {
+margin-right: -15px;
+}
+.autoplay, .text1, .text2, .text3, .text4, .text5, .text6, .text7{
+  direction: rtl !important;
+}
+.text1 h3, .text2 h3, .text3 h3, .text4 h3, .text5 h3, .text6 h3, .text7 h3{
+font-size: 15px; line-height: 50px; display:inline-block; line-height:1em; padding-block:15px;
+text-align: center; color:#fff; font-family:'Poppins', sans-serif; font-weight:bold;
+}*/
