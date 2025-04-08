@@ -23,6 +23,7 @@ export default {
           <li v-for="(item, index) in ticket.includedArray" :key="index" :class="{ 'active': index < ticket.initems }" v-html="item"></li>
         </ul>
         <a v-if="!ticket.soldout === 'FALSE' || ticket.thibuttonon === 'TRUE'" class="ticket-btn3" :href="ticket.thiurl">
+          <div style="display:none" class="button-label">OFFER</div>
           <div class="category-btnsub">{{ ticket.thibuttonsub }}</div>
           <div class="category-btntitle">{{ ticket.thibutton }}</div>
         </a>
@@ -32,6 +33,7 @@ export default {
           <div class="category-btntitle">{{ ticket.secbutton }}</div>
         </a>
         <a v-if="ticket.soldout === 'FALSE'" class="ticket-btn" :href="ticket.url">
+          <div style="display:none" class="button-label">OFFER</div>
           <div class="category-btnsub">{{ ticket.buttonsub }}</div>
           <div class="category-btntitle">{{ ticket.button }}</div>
         </a>
