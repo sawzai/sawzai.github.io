@@ -193,8 +193,8 @@
         text-decoration:none;
         & .button-label {
             position:absolute; background-color:transparent; left:-75px; top:10px; width:195px; height:12px; 
-            line-height:17px; font-size:10px; font-weight:bold; color:#fff; text-shadow: 0px 2px 2px rgba(0,0,0,.8);
-            transform:rotate(-36deg); letter-spacing:0.05em;
+            line-height:18px; font-size:10px; font-weight:bold; color:#fff; text-shadow: 0px 1px 1px rgba(0,0,0,.8);
+            transform:rotate(-36deg); letter-spacing:0.1em;
             border-left: 15px solid transparent;
             border-right: 15px solid transparent;
             border-bottom: 18px solid #f91936;
