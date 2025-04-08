@@ -27,6 +27,7 @@ export default {
           <div class="category-btntitle">{{ ticket.thibutton }}</div>
         </a>
         <a v-if="!ticket.soldout === 'FALSE' || ticket.secbuttonon === 'TRUE'" class="ticket-btn2" :href="ticket.securl">
+          <div style="display:none" class="button-label">OFFER</div>
           <div class="category-btnsub">{{ ticket.secbuttonsub }}</div>
           <div class="category-btntitle">{{ ticket.secbutton }}</div>
         </a>

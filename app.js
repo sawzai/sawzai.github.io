@@ -8,7 +8,7 @@ const app = Vue.createApp({
 
   <!-- <Modal class="container" textline="Replace Modal Textline" /> -->
   <teleport to="#SRTickets">  
-  <Tickets jsonfile="https://sawzai.github.io/json/2025/nac2508sg-partner.json?t=${Date.now()}" />
+  <Tickets jsonfile="https://sawzai.github.io/json/2025/data.json?t=${Date.now()}" />
   </teleport>
 
   <teleport to="#app2">
