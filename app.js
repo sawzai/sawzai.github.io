@@ -6,9 +6,8 @@ const app = Vue.createApp({
     <h1> {{ message }} </h1>
   </section>
 
-  <!-- <Modal class="container" textline="Replace Modal Textline" /> -->
   <teleport to="#SRTickets">  
-  <Tickets jsonfile="https://sawzai.github.io/json/2025/data.json?t=${Date.now()}" />
+    <Tickets jsonfile="https://sawzai.github.io/json/2025/data.json?t=${Date.now()}" />
   </teleport>
 
   <teleport to="#app2">
@@ -17,42 +16,67 @@ const app = Vue.createApp({
   </teleport>
 
   <teleport to="#app3">    
-      <SRFooterSG />
+    <SRFooterSG />
   </teleport>
-    `,
+  `,
   data() {
     return {
       message: 'Welcome to SawZai Components',
     };
   },
-  // mounted() {
-  //   this.observeTicketChanges();
-  // },
-  // methods: {
-  //   observeTicketChanges() {
-  //     const observer = new MutationObserver((mutationsList, observer) => {
-  //       mutationsList.forEach(mutation => {
-  //         const updateItem = document.querySelector('.category-yellow .category-price');
-  //         if (updateItem) {
-  //           updateItem.innerHTML = `S$100`;
-  //           observer.disconnect();
-  //         }
-  //         const updateItem2 = document.querySelector('.category-silver .category-price');
-  //         if (updateItem2) {
-  //           updateItem2.innerHTML = `S$50`;
-  //           observer.disconnect();
-  //         }
-  //       });
-  //     });
-  //     const targetNode = document.getElementById("SRTickets");
-  //     if (targetNode) {
-  //       observer.observe(targetNode, { childList: true, subtree: true });
-  //     } else {
-  //       console.warn("No Item Found to Update");
-  //     }
-  //   }
-  // },
+  mounted() {
+    const utm = new URLSearchParams(window.location.search).get('utm_source');
+    const slug = utm ? utm.toLowerCase() : null;
+
+    const links = {
+      tktk: {
+        bronze: 'https://paystack.com/buy/nac2505jnb-bronze-tktk',
+        diamond: 'https://paystack.com/buy/nac2505jnb-diamond-tktk',
+        vip: 'www.vip.com'
+      },
+      linkedin: {
+        bronze: 'https://paystack.com/buy/nac2505jnb-bronze-linkedin',
+        diamond: 'https://paystack.com/buy/nac2505jnb-diamond-linkedin'
+      },
+      x: {
+        bronze: 'https://paystack.com/buy/nac2505jnb-bronze-x',
+        diamond: 'https://paystack.com/buy/nac2505jnb-diamond-x',
+        vip: 'www.vip.com',
+        general: "http://general.ticket"
+      }
+    };
+
+    if (slug && links[slug]) {
+      const updateLinks = () => {
+        document.querySelectorAll('a[href]').forEach(el => {
+          const isAnchor = el.tagName.toLowerCase() === 'a';
+
+          if (isAnchor && el.href.includes('bronze')) {
+            el.href = links[slug].bronze;
+          }
+          if (isAnchor && el.href.includes('diamond')) {
+            el.href = links[slug].diamond;
+          }
+          if (isAnchor && el.href.includes('vip')) {
+            el.href = links[slug].vip;
+          }
+          if (isAnchor && el.href.includes('general')) {
+            el.href = links[slug].general;
+          }
+
+        });
+      };
+
+      // Run once after component render
+      this.$nextTick(() => {
+        const target = document.querySelector('#SRTickets');
+        if (target) {
+          const observer = new MutationObserver(() => updateLinks());
+          observer.observe(target, { childList: true, subtree: true });
+        }
+        updateLinks(); // Also run once immediately
+      });
+    }
+  },
   components: { Tickets, Modal, SRFooterSG, CountDown },
 }).mount('#app');
-
-
