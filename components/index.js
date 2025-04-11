@@ -6,6 +6,6 @@ export { default as SRFooterUK } from './SRFooter-uk.js';
 export { default as SRFooterSG } from './SRFooter-SG.js';
 export { default as SRFooterEU } from './SRFooter-EU.js';
 export { default as SRFooterSA } from './SRFooter-SA.js';
-export { default as SRFooterSA } from './SRFooter-SA-TK.js';
+export { default as SRFooterSATK } from './SRFooter-SA-TK.js';
 export { default as SRFooterSGMY } from './SRFooter-SGMY.js';
 export { default as CountDown } from './CountDown.js';
