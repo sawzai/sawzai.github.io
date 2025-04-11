@@ -32,11 +32,14 @@ const app = Vue.createApp({
       tktk: {
         bronze: 'https://paystack.com/buy/nac2505jnb-bronze-tktk',
         diamond: 'https://paystack.com/buy/nac2505jnb-diamond-tktk',
-        vip: 'www.vip.com'
+        vip: 'www.vip.com',
+        general: "http://general.ticket"
       },
       linkedin: {
         bronze: 'https://paystack.com/buy/nac2505jnb-bronze-linkedin',
-        diamond: 'https://paystack.com/buy/nac2505jnb-diamond-linkedin'
+        diamond: 'https://paystack.com/buy/nac2505jnb-diamond-linkedin',
+        vip: 'www.vip.com',
+        general: "http://general.ticket"
       },
       x: {
         bronze: 'https://paystack.com/buy/nac2505jnb-bronze-x',
