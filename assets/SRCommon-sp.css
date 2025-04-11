@@ -7,3 +7,5 @@ html, body {
     transition:.5s; cursor:pointer;
     &:hover {scale:1.1; filter: drop-shadow(2px 4px 6px #fce2a9);}
   }
+
+  section > inner {max-width:1200px}
