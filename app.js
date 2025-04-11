@@ -7,7 +7,7 @@ const app = Vue.createApp({
   </section>
 
   <teleport to="#SRTickets">  
-    <Tickets jsonfile="https://sawzai.github.io/json/2025/data.json?t=${Date.now()}" />
+    <Tickets jsonfile="https://sawzai.github.io/json/2025/nac2505sg.json?t=${Date.now()}" />
   </teleport>
 
   <teleport to="#app2">
@@ -70,14 +70,13 @@ const app = Vue.createApp({
         });
       };
 
-      // Run once after component render
       this.$nextTick(() => {
         const target = document.querySelector('#SRTickets');
         if (target) {
           const observer = new MutationObserver(() => updateLinks());
           observer.observe(target, { childList: true, subtree: true });
         }
-        updateLinks(); // Also run once immediately
+        updateLinks();
       });
     }
   },
