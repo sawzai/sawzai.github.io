@@ -10,7 +10,6 @@ export default {
                         <br><br>
                         The information presented at the event and the supplementary materials provided to me are intended for educational and informational purposes only. 
                         I acknowledge that SR does not make any representation or warranties with respect to the accuracy, applicability, fitness, or completeness of the event presented by the Speaker/Trainer. Nothing contained therein is to be considered as the rendering of legal advice for specific cases or circumstances.
-                        This site is not affiliated with TikTok.
                     </p>
                 </div>
             </div>
@@ -57,11 +56,17 @@ export default {
                     <ul>
                         <li class="text-light">
                             <i class="fa fa-phone-square" aria-hidden="true"></i>
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+6562994677">+65 6299 4677</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+6562994677">SG: +65 6299 4677</a>
+                            <br>
+                            <i class="fa fa-phone-square" aria-hidden="true"></i>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="tel:+60378012888">MY: +603 7801 2888 </a>
                         </li>
                         <li class="text-light">
+                            <i class="fa fa-whatsapp" aria-hidden="true"></i> 
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/gbxmu3">SG: Lena</a>
+                            <br>
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.me/447458159416">+44 745 815 9416</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.link/5a8e65">MY: Emily</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
