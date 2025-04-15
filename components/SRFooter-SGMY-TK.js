@@ -10,6 +10,7 @@ export default {
                         <br><br>
                         The information presented at the event and the supplementary materials provided to me are intended for educational and informational purposes only. 
                         I acknowledge that SR does not make any representation or warranties with respect to the accuracy, applicability, fitness, or completeness of the event presented by the Speaker/Trainer. Nothing contained therein is to be considered as the rendering of legal advice for specific cases or circumstances.
+                        This site is not affiliated with TikTok.
                     </p>
                 </div>
             </div>
