@@ -1,7 +1,7 @@
 .tickets {
     display:flex; gap:0px; text-align:center; justify-content:center;  line-height:1.4; 
     width:1120px; margin-inline:0; margin:auto; max-width:100%;
-    font-family:font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     @media (width <= 1120px) {padding-inline:20px;}
     @media (width <= 1000px) {
         flex-direction: column; align-items:center;
