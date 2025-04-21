@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
 .tickets {
     display:flex; gap:0px; text-align:center; justify-content:center;  line-height:1.4; 
     width:1120px; margin-inline:0; margin:auto; max-width:100%;
