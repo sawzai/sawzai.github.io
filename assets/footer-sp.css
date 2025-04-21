@@ -11,6 +11,7 @@ footer {
     }
     @media (width <= 900px) {
         padding-inline:20px;
+        & .row {flex-direction: column;}
     }
 }
 
