@@ -1,4 +1,4 @@
-import { loadCSS } from './index.js';
+import { loadCSS } from 'https://sawzai.github.io/components/index.js';
 
 export default {
     template: `
@@ -58,7 +58,7 @@ export default {
     },
     mounted() {
       Promise.all([
-        loadCSS('./assets/CountDown.css', 'CountDown-css'),
+        loadCSS('https://sawzai.github.io/assets/CountDown.css', 'CountDown-css'),
       ])
       .then(() => {
         this.updateTimer();

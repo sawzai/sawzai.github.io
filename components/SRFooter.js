@@ -1,4 +1,4 @@
-import { loadCSS } from './index.js';
+import { loadCSS } from 'https://sawzai.github.io/components/index.js';
 
 export default {
   template: `
@@ -189,8 +189,8 @@ export default {
 
   mounted() {
     Promise.all([
-      loadCSS('./assets/footer.css', 'footer-css'),
-      loadCSS('./assets/font-awesome.min.css', 'awesome-css')
+      loadCSS('https://sawzai.github.io/assets/footer.css', 'footer-css'),
+      loadCSS('https://sawzai.github.io/assets/font-awesome.min.css', 'awesome-css')
     ]).catch(console.error);
   }
 };

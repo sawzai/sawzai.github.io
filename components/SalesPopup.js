@@ -1,4 +1,4 @@
-import { loadScript, loadCSS } from './index.js';
+import { loadScript, loadCSS } from 'https://sawzai.github.io/components/index.js';
 
 const SalesPopup = {
   template: `<div style="display:none"></div>`,
@@ -30,7 +30,7 @@ const SalesPopup = {
         return Promise.all([
           loadScript('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js', 'toastr-js'),
           loadCSS('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css', 'toastr-css'),
-          loadCSS('./assets/SalesPopup.css', 'salespopup-css')
+          loadCSS('https://sawzai.github.io/assets/SalesPopup.css', 'salespopup-css')
         ]);
       })
       .then(() => {
