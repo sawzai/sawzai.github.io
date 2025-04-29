@@ -7,7 +7,7 @@ const app = Vue.createApp({
   </section>
 
   <teleport to="#SRTickets" >  
-    <TicketsFull theme="default" jsonfile="https://sawzai.github.io/json/2025/nac2505sg.json?t=${Date.now()}" />
+    <TicketsFull theme="default" jsonfile="https://sawzai.github.io/json/2025/data.json?t=${Date.now()}" />
   </teleport>
 
   <teleport to="#app2">
