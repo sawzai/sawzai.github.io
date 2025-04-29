@@ -1,4 +1,4 @@
-import TCountDown from 'https://sawzai.github.io/components/CountDown.js';
+import TCountDown from './CountDown.js';
 
 export default {
   template: `
