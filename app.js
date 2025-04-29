@@ -1,4 +1,4 @@
-import { Tickets, Modal, SRFooterSG, CountDown } from './components/index.js';
+import { TicketsFull, Modal, SRFooter, CountDown } from './components/index.js';
 
 const app = Vue.createApp({
   template: `
@@ -6,17 +6,16 @@ const app = Vue.createApp({
     <h1> {{ message }} </h1>
   </section>
 
-  <teleport to="#SRTickets">  
-    <Tickets jsonfile="https://sawzai.github.io/json/2025/nac2505sg.json?t=${Date.now()}" />
+  <teleport to="#SRTickets" >  
+    <TicketsFull theme="default" jsonfile="https://sawzai.github.io/json/2025/nac2505sg.json?t=${Date.now()}" />
   </teleport>
 
   <teleport to="#app2">
-    <CountDown style="padding-block:60px" class="container" 
-    cdsize="large" cdtimer="July 14, 2025 11:54:00 +8" />
+    <CountDown style="padding-block:60px" class="container" cdsize="large" cdtimer="July 14, 2025 11:54:00 +8" />
   </teleport>
 
   <teleport to="#app3">    
-    <SRFooterSG />
+    <SRFooter country="SGMY" />
   </teleport>
   `,
   data() {
@@ -80,5 +79,5 @@ const app = Vue.createApp({
       });
     }
   },
-  components: { Tickets, Modal, SRFooterSG, CountDown },
+  components: { TicketsFull, Modal, SRFooter, CountDown },
 }).mount('#app');

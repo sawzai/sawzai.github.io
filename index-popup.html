@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="./assets/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="./assets/footer.css">
+    <link type="text/css" rel="stylesheet" href="./assets/tickets.css">
+    <link type="text/css" rel="stylesheet" href="./assets/CountDown.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script> -->
+    <script src="https://sawzai.github.io/srcart/js/srthrivecart-min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <script>
+    $(function() {
+      toastr.options = {
+        closeButton: true, newestOnTop: true, preventDuplicates: true,
+        positionClass: "toast-top-right", timeOut: 8000,
+        showMethod: "fadeIn", hideMethod: "fadeOut"
+      };
+    
+      const tickets = ["1", "2", "3", "4"];
+      const categories = ["Silver", "Gold", "Diamond"];
+      const min = 1000, max = 360000;
+      let arrData = [];
+    
+      $.getJSON("https://sheets.googleapis.com/v4/spreadsheets/1nEgCJil7KL2wlDJxk_SIT-SgeQxQAU4ahbsqyxg8nmU/values/Sheet1/?alt=json&key=AIzaSyBKPrSxvCdCZcsBKz-cSAR3HZI44W4xDIA", function(data) {
+        arrData = data.values.slice(1).map(row => ({
+          no: row[0], name: row[1], package: row[2], location: row[3], date: row[4], time: row[5]
+        }));
+        firstPop(); 
+      });
+    
+      function firstPop() {
+        setTimeout(function() {
+          salePop();
+          randomIntervalPop();
+        }, 10000);
+      }
+    
+      function randomIntervalPop() {
+        setInterval(function() {
+          salePop();
+        }, Math.floor(Math.random() * (40000 - 10000) + 10000));
+      }
+    
+      function salePop() {
+        const item = arrData[Math.floor(Math.random() * arrData.length)];
+        const ticket = tickets[Math.floor(Math.random() * tickets.length)];
+        const category = categories[Math.floor(Math.random() * categories.length)];
+        let timeAgo = Math.floor(Math.random() * (max - min) + min);
+        timeAgo = timeAgo < 60000 ? `${Math.floor(timeAgo/1000)} minutes` : `${Math.floor(timeAgo/60000)} hours`;
+    
+        toastr.success(`Just signed up for ${ticket} ${category} ticket(s)<div>${timeAgo} ago</div>`, `${item.name} from ${item.location}`);
+      }
+    });
+    </script>
+
+<style>
+.toast { border-radius: 30px; max-width: 100%; background: #c99c55; }
+.toast-title { font-size: 15px; padding-right: 10px; }
+.toast-close-button { right: 5px !important; }
+.toast-message { font-size: 13px; margin-top: 3px; }
+.toast-message div { font-size: 11px; margin-top: 3px; }
+#toast-container > div { opacity: 1 !important; text-align: left !important;}
+</style>
+
+    
+</head>
+<body style="background:#000">
+    <div>123</div>
+    <div id="app"></div>
+    <div id="SRTickets"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

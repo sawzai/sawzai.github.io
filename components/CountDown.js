@@ -1,3 +1,5 @@
+import { loadCSS } from './index.js';
+
 export default {
     template: `
       <div :class="['countdown', computedCdsize]">
@@ -10,36 +12,19 @@ export default {
         <div v-else class="countdown-finished">Countdown Finished</div>
       </div>
     `,
+    props: {
+      cdtimer: { type: Number, default: () => Date.now() + 300000 }, // Default 5 minutes
+      cdsize: { type: String, default: 'medium' },
+      responsive: { type: Boolean, default: true }
+    },
     data() {
       return {
-        days: '00',
-        hours: '00',
-        minutes: '00',
-        seconds: '00',
+        days: '00', hours: '00', minutes: '00', seconds: '00',
         countdownFinished: false,
         internalCdsize: this.cdsize,
         intervalId: null,
-        units: {
-          days: 'Days',
-          hours: 'Hrs',
-          minutes: 'Min',
-          seconds: 'Sec'
-        }
+        units: { days: 'Days', hours: 'Hrs', minutes: 'Min', seconds: 'Sec' }
       };
-    },
-    props: {
-      cdtimer: {
-        type: Number,
-        default: () => new Date().getTime() + 300000
-      },
-      cdsize: {
-        type: String,
-        default: 'medium'
-      },
-      responsive: {
-        type: Boolean,
-        default: true
-      }
     },
     computed: {
       computedCdsize() {
@@ -48,19 +33,17 @@ export default {
     },
     methods: {
       updateTimer() {
-        const targetDate = new Date(this.cdtimer);
-        const diff = targetDate.getTime() - new Date().getTime();
-  
+        const diff = new Date(this.cdtimer) - Date.now();
         if (diff <= 0) {
           this.days = this.hours = this.minutes = this.seconds = '00';
           this.countdownFinished = true;
           clearInterval(this.intervalId);
           this.onCountdownFinish();
         } else {
-          this.days = Math.floor(diff / 86400000).toString().padStart(2, '0');
-          this.hours = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
-          this.minutes = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
-          this.seconds = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+          this.days = String(Math.floor(diff / 86400000)).padStart(2, '0');
+          this.hours = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+          this.minutes = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+          this.seconds = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
         }
       },
       updateCdsize() {
@@ -74,18 +57,23 @@ export default {
       }
     },
     mounted() {
-      this.updateTimer();
-      this.intervalId = setInterval(this.updateTimer, 1000);
-      if (this.responsive) {
-        this.updateCdsize();
-        window.addEventListener('resize', this.updateCdsize);
-      }
+      Promise.all([
+        loadCSS('./assets/CountDown.css', 'CountDown-css'),
+      ])
+      .then(() => {
+        this.updateTimer();
+        this.intervalId = setInterval(this.updateTimer, 1000);
+        if (this.responsive) {
+          this.updateCdsize();
+          window.addEventListener('resize', this.updateCdsize);
+        }
+      })
+      .catch(error => console.error('Error during loading:', error));
     },
-    beforeDestroy() {
+    beforeUnmount() {
       clearInterval(this.intervalId);
       if (this.responsive) {
         window.removeEventListener('resize', this.updateCdsize);
       }
     }
   };
-  
