@@ -20,7 +20,7 @@ const app = Vue.createApp({
     <SRFooter country="SGMY" />
   </teleport>
 
-  <SalesPopup :tickets="['1','2','3','4']" :categories="['Silver','Gold','Diamond']" />
+  <!-- <SalesPopup :tickets="['1','2','3','4']" :categories="['Silver','Gold','Diamond']" /> -->
   `,
   data() {
     return {
