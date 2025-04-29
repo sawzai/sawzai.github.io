@@ -1,4 +1,3 @@
-import TCountDown from 'https://sawzai.github.io/components/CountDown.js';
 import { loadScript, loadCSS } from './index.js';
 
 export default {
@@ -41,7 +40,9 @@ export default {
       </div>
     </div>
   `,
-  components: { TCountDown },
+  components: {
+    TCountDown: () => import('./components/CountDown.js')
+  },
 
   props: {
     jsonfile: String,

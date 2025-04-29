@@ -1,5 +1,3 @@
-import TCountDown from 'https://sawzai.github.io/components/CountDown.js';
-
 export default {
   template: `
     <div v-if="showTickets" class="tickets">
@@ -40,7 +38,9 @@ export default {
       </div>
     </div>
   `,
-  components: { TCountDown },
+  components: {
+    TCountDown: () => import('./components/CountDown.js')
+  },
   data() {
     return {
       showTickets: false,
