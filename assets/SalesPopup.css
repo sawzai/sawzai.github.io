@@ -1,0 +1,6 @@
+.toast { border-radius: 30px; max-width: 100%; background: #c99c55; }
+.toast-title { font-size: 15px; padding-right: 10px; }
+.toast-close-button { right: 5px !important; }
+.toast-message { font-size: 13px; margin-top: 3px; }
+.toast-message div { font-size: 11px; margin-top: 3px; }
+#toast-container > div { opacity: 1 !important; text-align: left !important;}

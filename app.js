@@ -1,4 +1,5 @@
-import { TicketsFull, Modal, SRFooter, CountDown } from './components/index.js';
+import { TicketsFull, Modal, SRFooter, CountDown, SalesPopup } from './components/index.js';
+
 
 const app = Vue.createApp({
   template: `
@@ -7,7 +8,8 @@ const app = Vue.createApp({
   </section>
 
   <teleport to="#SRTickets" >  
-    <TicketsFull theme="default" jsonfile="./assets/data.json?t=${Date.now()}" />
+    <!-- <TicketsFull theme="default" jsonfile="./assets/data.json?t=${Date.now()}" /> -->
+    <TicketsFull theme="default" jsonfile="./json/2025/nac2508sg-promotion.json?t=${Date.now()}" />
   </teleport>
 
   <teleport to="#app2">
@@ -17,6 +19,8 @@ const app = Vue.createApp({
   <teleport to="#app3">    
     <SRFooter country="SGMY" />
   </teleport>
+
+  <SalesPopup :tickets="['1','2','3','4']" :categories="['Silver','Gold','Diamond']" />
   `,
   data() {
     return {
@@ -24,6 +28,7 @@ const app = Vue.createApp({
     };
   },
   mounted() {
+  
     const utm = new URLSearchParams(window.location.search).get('utm_source');
     const slug = utm ? utm.toLowerCase() : null;
 
@@ -79,5 +84,5 @@ const app = Vue.createApp({
       });
     }
   },
-  components: { TicketsFull, Modal, SRFooter, CountDown },
+  components: { TicketsFull, Modal, SRFooter, CountDown, SalesPopup },
 }).mount('#app');
