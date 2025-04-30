@@ -1,5 +1,5 @@
-import TCountDown2Raw  from 'https://sawzai.github.io/components/CountDown.js';
-const TCountDown2 = TCountDown2Raw;
+import TCountDown from './CountDown.js';
+
 export default {
   template: `
     <div v-if="showTickets" class="tickets">
@@ -9,7 +9,7 @@ export default {
           <div v-if="ticket.offer" class="category-offer">{{ ticket.offer }}</div>
           <h3 class="category-title">{{ ticket.category }}</h3>
           <div v-if="ticket.country" class="category-country">{{ ticket.country }}</div>
-          <TCountDown2 v-if="ticket.countdown" :responsive="false" class="countdown container" :cdtimer="ticket.countdown" />
+          <TCountDown v-if="ticket.countdown" :responsive="false" class="countdown container" :cdtimer="ticket.countdown" />
           <div v-if="ticket.cdtext" class="category-cdtext">{{ ticket.cdtext }}</div>
         </div>
         <div v-if="ticket.doorprice" class="category-doorprice">DOOR PRICE: <span>{{ ticket.doorprice }}</span></div>
@@ -40,7 +40,7 @@ export default {
       </div>
     </div>
   `,
-  components: { TCountDown2 },
+  components: { TCountDown },
   data() {
     return {
       showTickets: false,
