@@ -1,5 +1,5 @@
-import TCountDown2 from 'https://sawzai.github.io/components/CountDown.js';
-
+import TCountDown2Raw  from 'https://sawzai.github.io/components/CountDown.js';
+const TCountDown2 = TCountDown2Raw;
 export default {
   template: `
     <div v-if="showTickets" class="tickets">
