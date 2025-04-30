@@ -68,12 +68,12 @@ export default {
   },
 
   mounted() {
-    const cssFile = this.theme === 'dark' ? './assets/tickets.dark.css' : './assets/tickets.css';
+    const cssFile = this.theme === 'dark' ? '../assets/tickets.dark.css' : '../assets/tickets.css';
 
     Promise.all([
-      loadScript('./srcart/js/srthrivecart-min.js', 'srCart'),
+      loadScript('../srcart/js/srthrivecart-min.js', 'srCart'),
       loadCSS(cssFile, 'tickets-css'),
-      loadCSS('./assets/font-awesome.min.css', 'awesome-css')
+      loadCSS('../assets/font-awesome.min.css', 'awesome-css')
     ])
     .then(() => {
       this.fetchTickets();
