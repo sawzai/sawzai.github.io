@@ -1,5 +1,5 @@
-import { loadScript, loadCSS } from 'https://sawzai.github.io/components/index.js';
-import TCountDown from 'https://sawzai.github.io/components/CountDown.js';
+import { loadScript, loadCSS } from './index.js';
+import TCountDown from './CountDown.js';
 
 export default {
   template: `

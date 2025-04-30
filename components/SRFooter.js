@@ -1,4 +1,4 @@
-import { loadCSS } from 'https://sawzai.github.io/components/index.js';
+import { loadCSS } from './index.js';
 
 export default {
   template: `
