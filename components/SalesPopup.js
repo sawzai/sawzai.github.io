@@ -1,4 +1,4 @@
-import { loadScript, loadCSS } from 'https://sawzai.github.io/components/index.js';
+import { loadScript, loadCSS } from './index.js';
 
 const SalesPopup = {
   template: `<div style="display:none"></div>`,
