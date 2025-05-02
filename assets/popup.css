@@ -1,3 +1,4 @@
+/* overlay */
 .popup-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -7,6 +8,8 @@
     justify-content: center;
     z-index: 9999;
   }
+  
+  /* popup box */
   .popup-box {
     background: white;
     padding: 2rem;
@@ -15,7 +18,10 @@
     max-width: 400px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    position: relative;
   }
+  
+  /* close button */
   .popup-close {
     position: absolute;
     top: 15px;
@@ -25,7 +31,44 @@
     border: none;
     cursor: pointer;
   }
+  
+  /* title */
   .popup-title {
     margin-bottom: 1rem;
+  }
+  
+  /* fade overlay */
+  .fade-overlay-enter-active, .fade-overlay-leave-active {
+    transition: opacity 0.3s ease;
+  }
+  .fade-overlay-enter-from, .fade-overlay-leave-to {
+    opacity: 0;
+  }
+  .fade-overlay-enter-to, .fade-overlay-leave-from {
+    opacity: 1;
+  }
+  
+  /* slide popup */
+  .slide-down-enter-active {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  .slide-down-leave-active {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .slide-down-enter-from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  .slide-down-enter-to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .slide-down-leave-from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .slide-down-leave-to {
+    transform: translateY(-100px);
+    opacity: 0;
   }
   

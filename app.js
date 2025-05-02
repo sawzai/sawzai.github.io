@@ -7,6 +7,22 @@ const app = Vue.createApp({
     <h1> {{ message }} </h1>
   </section>
 
+<button class="btn btn-success" @click="showOfferPopup = true">Show Offer</button>
+<button class="btn btn-warning" @click="showWarningPopup = true">Show Warning</button>
+<button class="btn btn-info" @click="showNewsletterPopup = true">Show Newsletter</button>
+
+<Popup v-model:show="showOfferPopup" title="🔥 Limited Time Deal">
+  <p>50% off on all Premium Tickets!</p>
+</Popup>
+
+<Popup v-model:show="showWarningPopup" title="⚠️ Important Notice">
+  <p>VIP tickets are almost sold out.</p>
+</Popup>
+
+<Popup v-model:show="showNewsletterPopup" title="📧 Stay Updated">
+  <p>Subscribe to our newsletter and get free bonuses!</p>
+</Popup>
+
   <Modal textline="Change modal text" />
 
   <teleport to="#SRTickets" >  
@@ -18,23 +34,25 @@ const app = Vue.createApp({
     <CountDown style="padding-block:60px" class="container" cdsize="large" cdtimer="July 14, 2025 11:54:00 +8" />
   </teleport>
 
-  <Popup v-model:show="showPopup" title="🔥 Limited Time Deal!">
-      <p>Sign up now and get 50% off your Diamond ticket!</p>
-  </Popup>
 
   <teleport to="#app3">    
     <SRFooter country="SGMY" />
   </teleport>
+
+
 
   <!-- <SalesPopup :tickets="['1','2','3','4']" :categories="['Silver','Gold','Diamond']" /> -->
   `,
   data() {
     return {
       message: 'Welcome to SawZai Components',
+      showOfferPopup: false,
+      showWarningPopup: false,
+      showNewsletterPopup: false
     };
   },
   mounted() {
-  
+    // this.showPopup = true;
     const utm = new URLSearchParams(window.location.search).get('utm_source');
     const slug = utm ? utm.toLowerCase() : null;
 
