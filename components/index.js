@@ -11,10 +11,12 @@ export { default as SRFooterSGMY } from './SRFooter-SGMY.js';
 export { default as CountDown } from './CountDown.js';
 
 
+
 // include Script and CSS on the compenents
 export { default as TicketsFull } from './TicketsFull.js';
 export { default as SRFooter } from './SRFooter.js';
 export { default as SalesPopup } from './SalesPopup.js';
+export { default as Popup } from './Popup.js';
 
 export function loadScript(src, check) {
     if (check && window[check]) return Promise.resolve();

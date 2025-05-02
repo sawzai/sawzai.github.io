@@ -1,4 +1,4 @@
-import { TicketsFull, Modal, SRFooter, CountDown, SalesPopup } from './components/index.js';
+import { TicketsFull, Modal, SRFooter, CountDown, SalesPopup, Popup } from './components/index.js';
 
 
 const app = Vue.createApp({
@@ -6,6 +6,8 @@ const app = Vue.createApp({
   <section class="container" style="padding-block:60px">
     <h1> {{ message }} </h1>
   </section>
+
+  <Modal textline="Change modal text" />
 
   <teleport to="#SRTickets" >  
     <!-- <TicketsFull theme="default" jsonfile="./assets/data.json?t=${Date.now()}" /> -->
@@ -15,6 +17,10 @@ const app = Vue.createApp({
   <teleport to="#app2">
     <CountDown style="padding-block:60px" class="container" cdsize="large" cdtimer="July 14, 2025 11:54:00 +8" />
   </teleport>
+
+  <Popup v-model:show="showPopup" title="🔥 Limited Time Deal!">
+      <p>Sign up now and get 50% off your Diamond ticket!</p>
+  </Popup>
 
   <teleport to="#app3">    
     <SRFooter country="SGMY" />
@@ -84,5 +90,5 @@ const app = Vue.createApp({
       });
     }
   },
-  components: { TicketsFull, Modal, SRFooter, CountDown, SalesPopup },
+  components: { TicketsFull, Modal, SRFooter, CountDown, SalesPopup, Popup },
 }).mount('#app');

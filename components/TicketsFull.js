@@ -45,9 +45,9 @@ export default {
 
   props: {
     jsonfile: String,
-    theme: { // 🔥 New prop for choosing theme
+    theme: {
       type: String,
-      default: 'default' // or 'dark'
+      default: 'default'
     }
   },
 
@@ -68,12 +68,13 @@ export default {
   },
 
   mounted() {
-    const cssFile = this.theme === 'dark' ? 'https://sawzai.github.io/assets/tickets.dark.css' : 'https://sawzai.github.io/assets/tickets.css';
+    const baseUrl = 'https://sawzai.github.io';
+    const cssFile = this.theme === 'dark' ? `${baseUrl}/assets/tickets.dark.css` : `${baseUrl}/assets/tickets.css`;
 
     Promise.all([
-      loadScript('https://sawzai.github.io/srcart/js/srthrivecart-min.js', 'srCart'),
+      loadScript(`${baseUrl}/srcart/js/srthrivecart-min.js`, 'srCart'),
       loadCSS(cssFile, 'tickets-css'),
-      loadCSS('https://sawzai.github.io/assets/font-awesome.min.css', 'awesome-css')
+      loadCSS(`${baseUrl}/assets/font-awesome.min.css`, 'awesome-css')
     ])
     .then(() => {
       this.fetchTickets();
@@ -83,7 +84,7 @@ export default {
     .catch(error => console.error('Error during loading:', error));
   },
 
-  beforeUnmount() { // Vue 3 uses beforeUnmount
+  beforeUnmount() {
     window.removeEventListener('resize', this.updateIsMobile);
   },
 

@@ -23,10 +23,8 @@ const SalesPopup = {
   },
 
   mounted() {
-    // First load jQuery ONLY
     loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js', 'jquery-js')
       .then(() => {
-        // ✅ Only after jQuery loaded, load toastr and css
         return Promise.all([
           loadScript('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js', 'toastr-js'),
           loadCSS('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css', 'toastr-css'),
@@ -34,7 +32,6 @@ const SalesPopup = {
         ]);
       })
       .then(() => {
-        // ✅ Now toastr is safe to use!
         toastr.options = {
           closeButton: true,
           newestOnTop: true,
@@ -44,8 +41,6 @@ const SalesPopup = {
           showMethod: "fadeIn",
           hideMethod: "fadeOut"
         };
-  
-        // Fetch sales data
         fetch("https://sheets.googleapis.com/v4/spreadsheets/1nEgCJil7KL2wlDJxk_SIT-SgeQxQAU4ahbsqyxg8nmU/values/Sheet1/?alt=json&key=AIzaSyBKPrSxvCdCZcsBKz-cSAR3HZI44W4xDIA")
           .then(response => response.json())
           .then(data => {
