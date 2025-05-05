@@ -1,7 +1,13 @@
+const scriptTag = document.querySelector('script[data-jsonfile]');
+const baseJsonfile = scriptTag ? scriptTag.dataset.jsonfile : '';
+
+const jsonfile = `${baseJsonfile}?t=${Date.now()}`;
+
+import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js';
 import { TicketsFull, Modal, SRFooter, CountDown, SalesPopup, Popup } from './components/index.js';
 
 
-const app = Vue.createApp({
+const app = createApp({
   template: `
   <section class="container" style="padding-block:60px">
     <h1> {{ message }} </h1>
@@ -23,11 +29,12 @@ const app = Vue.createApp({
   <p>Subscribe to our newsletter and get free bonuses!</p>
 </Popup>
 
+
   <Modal textline="Change modal text" />
 
   <teleport to="#SRTickets" >  
     <!-- <TicketsFull theme="default" jsonfile="./assets/data.json?t=${Date.now()}" /> -->
-    <TicketsFull theme="default" jsonfile="./json/2025/nac2508sg-promotion.json?t=${Date.now()}" />
+    <TicketsFull theme="default" :jsonfile="jsonfile" />
   </teleport>
 
   <teleport to="#app2">
@@ -46,6 +53,7 @@ const app = Vue.createApp({
   data() {
     return {
       message: 'Welcome to SawZai Components',
+      jsonfile,
       showOfferPopup: false,
       showWarningPopup: false,
       showNewsletterPopup: false
@@ -109,4 +117,6 @@ const app = Vue.createApp({
     }
   },
   components: { TicketsFull, Modal, SRFooter, CountDown, SalesPopup, Popup },
-}).mount('#app');
+});
+
+app.mount('#app');
