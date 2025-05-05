@@ -1,5 +1,5 @@
-const scriptTag = document.querySelector('script[data-jsonfile]');
-const baseJsonfile = scriptTag ? scriptTag.dataset.jsonfile : '';
+const scriptTag = document.getElementById('srapp');
+const baseJsonfile = scriptTag ? scriptTag.dataset.json : '';
 
 const jsonfile = `https://sawzai.github.io/json/${baseJsonfile}?t=${Date.now()}`;
 
