@@ -1,10 +1,10 @@
 const scriptTag = document.querySelector('script[data-jsonfile]');
 const baseJsonfile = scriptTag ? scriptTag.dataset.jsonfile : '';
 
-const jsonfile = `https://sawzai.github.io/json/${baseJsonfile}?t=${Date.now()}`;
+const jsonfile = `../json/${baseJsonfile}?t=${Date.now()}`;
 
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js';
-import { TicketsFull, SRFooter, SalesPopup } from 'https://sawzai.github.io/components/index.js';
+import { TicketsFull, SRFooter, SalesPopup } from '../components/index.js';
 
 const app = createApp({
   template: `
