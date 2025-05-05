@@ -12,7 +12,7 @@ const app = createApp({
       <teleport to="#SRTickets">
         <TicketsFull theme="default" ref="ticketsComponent" :jsonfile="jsonfile" />
       </teleport>
-     <!-- <SalesPopup :tickets="['1','2','3','4']" :categories="['Silver','Gold','Diamond']" /> -->
+     <SalesPopup :tickets="['1','2','3','4']" :categories="['Silver','Gold','Diamond']" />
     `,
   data() {
     return {
