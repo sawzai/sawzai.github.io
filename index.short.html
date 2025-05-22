@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+    <title>Document</title>
+    <!-- Common CSS For Coachannel -->
+<link rel="stylesheet" href="https://sawzai.github.io/assets/SRCommon.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Tickets & Footer only country SG MY SGMY SA UK EU |##| Create #SRTickets #SRFooter -->
+<script id="srapp" type="module" src="https://sawzai.github.io/script/srapp.js" data-json="nacjnb-zar" data-country="SA"></script>
+
+<script type="module">
+  import { createApp, h } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js';
+  import { SalesPopup } from 'https://sawzai.github.io/components/index.js';
+
+  const popupApp = createApp({
+    render() {
+      return h(SalesPopup, {
+        tickets: ['1','2','3','4'],
+        categories: ['Silver','Gold','Diamond']
+      });
+    },
+    components: { SalesPopup }
+  });
+
+  popupApp.mount('#SRPopup');
+</script>
+
+<!-- Change ls & affiliate default value else no need add -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  setTimeout(() => {
+    srCart.btnClass = '.ticket-btn, .ticket-btn2, .ticket-btn3'; // add default button
+    srCart.trackData['affiliate'] = 'NAC2505JNB-Zar';  // default affiliate
+    srCart.trackData['ls'] = 'NAC2505JNB-Zar'; // default ls
+    srCart.init();
+  }, 500);
+});
+</script>
+
+</head>
+<body style="background:#fff">
+    <div>Testing browser</div>
+    <div id="SRPopup"></div>
+    <div id="SRTickets"></div>
+    <div id="SRFooter"></div>
+</body>
+</html>

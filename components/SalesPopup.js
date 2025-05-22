@@ -18,7 +18,8 @@ const SalesPopup = {
     return {
       min: 1000,
       max: 360000,
-      arrData: []
+      arrData: [],
+      intervalId: null
     };
   },
 
@@ -41,6 +42,7 @@ const SalesPopup = {
           showMethod: "fadeIn",
           hideMethod: "fadeOut"
         };
+
         fetch("https://sheets.googleapis.com/v4/spreadsheets/1nEgCJil7KL2wlDJxk_SIT-SgeQxQAU4ahbsqyxg8nmU/values/Sheet1/?alt=json&key=AIzaSyBKPrSxvCdCZcsBKz-cSAR3HZI44W4xDIA")
           .then(response => response.json())
           .then(data => {
@@ -53,6 +55,7 @@ const SalesPopup = {
               time: row[5]
             }));
             this.startPopup();
+            document.addEventListener("visibilitychange", this.handleVisibilityChange); // Start tracking tab visibility
           })
           .catch(error => console.error('Error loading sales data:', error));
       })
@@ -61,18 +64,39 @@ const SalesPopup = {
       });
   },
 
+  beforeDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+    document.removeEventListener("visibilitychange", this.handleVisibilityChange);
+  },
+
   methods: {
     startPopup() {
       setTimeout(() => {
         this.salePop();
-        this.randomIntervalPop();
+        this.startInterval();
       }, 10000);
     },
 
-    randomIntervalPop() {
-      setInterval(() => {
+    startInterval() {
+      const intervalDuration = Math.floor(Math.random() * (40000 - 10000) + 10000);
+      this.intervalId = setInterval(() => {
         this.salePop();
-      }, Math.floor(Math.random() * (40000 - 10000) + 10000));
+      }, intervalDuration);
+    },
+
+    handleVisibilityChange() {
+      if (document.hidden) {
+        if (this.intervalId) {
+          clearInterval(this.intervalId);
+          this.intervalId = null;
+        }
+      } else {
+        if (!this.intervalId) {
+          this.startInterval();
+        }
+      }
     },
 
     salePop() {
@@ -87,7 +111,10 @@ const SalesPopup = {
         ? `${Math.floor(timeAgo / 1000)} minutes`
         : `${Math.floor(timeAgo / 60000)} hours`;
 
-      toastr.success(`Just signed up for ${ticket} ${category} ticket(s)<div>${timeAgo} ago</div>`, `${item.name} from ${item.location}`);
+      toastr.success(
+        `Just signed up for ${ticket} ${category} ticket(s)<div>${timeAgo} ago</div>`,
+        `${item.name} from ${item.location}`
+      );
     }
   }
 };
