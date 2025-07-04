@@ -2,7 +2,7 @@
 
 .tickets {
     display:flex; gap:20px; text-align:center; justify-content:center;  line-height:1.4; 
-    width:1120px; margin-inline:0; margin:auto; max-width:100%;
+    width:1120px; margin-inline:0; margin:auto; max-width:100%; margin-block: 30px;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -43,11 +43,10 @@
             position: absolute;
             inset: 0;
             z-index: -1;
-            border-radius: 20px;
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
         }
-        & .category-label {
+        /* & .category-label {
             position:absolute; background-color:transparent; left:-45px; top:45px; width:200px; height:20px; 
             line-height:20px; font-size:14px; font-weight:bold; color:#fff; 
             transform:rotate(-45deg);
@@ -61,6 +60,10 @@
                 border-top: 6px solid #990a14;
             }
             &:after {left:unset; right:-20px}
+        } */
+        & .category-label {
+            background:#ff2c2c; color:#fff; font-weight:900; letter-spacing:1px; font-size: 20px; 
+            display:inline-block; padding: 5px 20px; margin-block: -20px; transform: translateY(-24px);
         }
     }
     & .category-green {
@@ -150,7 +153,7 @@
     & .soldout {
         position:relative;  isolation:isolate;
         &:before {
-            content:""; display:block; position:absolute; inset:0; border-radius:19px;
+            content:""; display:block; position:absolute; inset:0;
             background: url(https://cch-files.edge.live.ds25.io/cch/v/a4e3489d-6bf3-48c8-affb-c268ba45a538/files/650be1e5c0adf_64f70399b6f89-1080x1080.png) no-repeat center center rgba(0, 0, 0, 0.6);
             background-size: 200px 200px; background-color:rgba(0,0,0,0.7); z-index:1;
         }
@@ -182,9 +185,9 @@
         }
     }
     & h3.category-price {
-        font-size:68px; font-weight:900; line-height:1;
+        font-size:72px; font-weight:900; line-height:1;
         color:var(--cart-items-color);
-        & span {font-size:50%; vertical-align:super}
+        & span {font-size:50%; vertical-align:super; font-style:italic; margin-right:3px}
     }
     & .category-save {
         line-height:1; font-size:18px;
@@ -196,7 +199,7 @@
         font-size:16px; /*letter-spacing:0.05em;*/
     }
     & .category-status {font-size:18px;line-height:1; margin-top:5px; letter-spacing:4px; font-weight:bold}
-    & .category-seat-layout {text-align:center;margin-bottom:10px; font-size:18px; letter-spacing:1px}
+    & .category-seat-layout {text-align:center;margin-bottom:10px; font-size:18px; letter-spacing:1px;}
     & .category-seat {max-width:100%; width:220px; }
     & ul.category-items {
         list-style:none; padding-left:40px; padding-block:10px; z-index:-1; margin-inline:25px 30px;
@@ -221,7 +224,7 @@
         text-transform: uppercase; position: absolute; bottom:0; left:0; right:0;
         transition: .6s; isolation: isolate; overflow: hidden; 
         animation: button-shadow-grow 3s infinite; font-weight: bold ; color: var(--buttonColor); margin-bottom:-30px; 
-        max-width:80%; font-size:24px; line-height:1; font-family: 'Poppins', 'Arial';
+        max-width:80%; font-size:28px; line-height:1; font-family: 'Poppins', 'Arial';
         text-decoration:none;
         &:before {
             content: ""; position: absolute; z-index: -2; inset: 0; margin: auto; aspect-ratio: 1; width: 10px; background-color: var(--second-color) !important; 
