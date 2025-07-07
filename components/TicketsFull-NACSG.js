@@ -18,7 +18,14 @@ export default {
         <div v-if="ticket.cdtext" class="category-cdtext">{{ ticket.cdtext }}</div>
       </div>
       <div v-if="ticket.doorprice" class="category-doorprice">Door Price: <span>{{ ticket.doorprice }}</span></div>
-      <h3 v-if="ticket.price" class="category-price"><span>{{ ticket.currency }}</span>{{ ticket.price.replace(/[^0-9\/]/g, '').split('/')[0].replace(/,/g, '') }}</h3>
+      <h3 v-if="ticket.price" class="category-price">
+        <span v-if="ticket.category === 'Platinum'">
+          {{ ticket.price }}
+        </span>
+        <span v-else>
+          <span class="ticket-currency">{{ ticket.currency }}</span>{{ ticket.price.replace(/[^0-9\/]/g, '').split('/')[0].replace(/,/g, '') }}
+        </span>
+      </h3>
       <div v-if="ticket.save" class="category-save">Save <div>{{ ticket.save }}</div></div>
       <div v-if="ticket.next" class="category-next" v-html="ticket.next"></div>
       
@@ -108,8 +115,8 @@ export default {
   },
 
   mounted() {
-    // const baseUrl = 'https://sawzai.github.io';
-    const baseUrl = '.';
+    const baseUrl = 'https://sawzai.github.io';
+    //const baseUrl = '.';
     let cssFile;
     switch (this.theme) {
     case 'dark':
