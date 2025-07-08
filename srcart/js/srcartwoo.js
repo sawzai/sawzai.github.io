@@ -128,9 +128,7 @@ const srCart = {
 
 document.addEventListener("DOMContentLoaded", function () {
 	srCart.trackData['utm_source'] = 'affiliateName'
-	srCart.trackData['ref'] = '1'
 	srCart.trackData['utm_campaign'] = 'NAC2024KR'
-	srCart.trackData['utm_medium'] = 'website'
 	srCart.btnClass = '.pgb-custom-cart-row .pgb-buy-button-link'
 	srCart.init();
 });
