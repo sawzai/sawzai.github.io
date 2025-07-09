@@ -145,6 +145,19 @@ export default {
             South Africa
           `
         },
+        KUMA: {
+          contact: [
+            { icon: 'fa-phone-square', text: '+94 776 601 601', href: 'tel:+94776601601' },
+            { icon: 'fa-whatsapp', text: '+94 776 601 601', href: 'https://wa.me/94776601601' },
+            { icon: 'fa-envelope', text: 'wisdom@wisdomtrainer.com', href: 'mailto:wisdom@wisdomtrainer.com' }
+          ],
+          address: `
+            <b>Success Resources Singapore Pte Ltd</b><br>
+            33 Ubi Avenue 3<br>
+            #05-51 Vertex Tower A<br>
+            Singapore 408868
+          `
+        },
         UK: {
           contact: [
             { icon: 'fa-phone-square', text: '+44 203 868 3587', href: 'tel:+442038683587' },
