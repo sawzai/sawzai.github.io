@@ -149,7 +149,7 @@ export default {
           contact: [
             { icon: 'fa-phone-square', text: '+94 776 601 601', href: 'tel:+94776601601' },
             { icon: 'fa-whatsapp', text: '+94 776 601 601', href: 'https://wa.me/94776601601' },
-            { icon: 'fa-envelope', text: 'info.my@srglobal.com', href: 'mailto:info.my@srglobal.com' }
+            { icon: 'fa-envelope', text: 'wisdom@wisdomtrainer.com', href: 'mailto:wisdom@wisdomtrainer.com' }
           ],
           address: `
             <b>Success Resources Singapore Pte Ltd</b><br>
