@@ -152,10 +152,9 @@ export default {
             { icon: 'fa-envelope', text: 'wisdom@wisdomtrainer.com', href: 'mailto:wisdom@wisdomtrainer.com' }
           ],
           address: `
-            <b>Success Resources Singapore Pte Ltd</b><br>
-            33 Ubi Avenue 3<br>
-            #05-51 Vertex Tower A<br>
-            Singapore 408868
+            <b>Wisdom Trainer Office</b><br>
+            166/4, High Level Road, Maharagama.<br>
+            Sri Lanka
           `
         },
         UK: {
