@@ -116,7 +116,7 @@ export default {
 
   mounted() {
     const baseUrl = 'https://sawzai.github.io';
-    //const baseUrl = '.';
+    // const baseUrl = '.';
     let cssFile;
     switch (this.theme) {
     case 'dark':

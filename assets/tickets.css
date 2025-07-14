@@ -1,10 +1,10 @@
 .tickets {
     display:flex; gap:0px; text-align:center; justify-content:center;  line-height:1.4; 
-    width:1120px; margin-inline:0; margin:auto; max-width:100%;
-    @media (width <= 1120px) {padding-inline:20px;}
+    width:1120px; margin-inline:0; margin:auto; max-width:100%; flex-wrap:wrap;
+    /* @media (width <= 1120px) {padding-inline:20px;}
     @media (width <= 1000px) {
         flex-direction: column; align-items:center;
-    }
+    } */
     &:has(> .featured) {
         padding-top:58px; 
     }
@@ -31,7 +31,7 @@
         --cart-promo-lable-background: #000;
         --cart-items-color: #000;
         --cart-no-items-color: #989898;
-        width:100%;
+        max-width:800px; min-width: 280px; flex: 1 1 15%;
         & .category-label {
             position:absolute; background-color:transparent; left:-45px; top:44px; width:200px; height:20px; 
             line-height:20px; font-size:12px; font-weight:bold; color:#fff; text-shadow: 0px 2px 2px rgba(0,0,0,.8);
@@ -74,6 +74,47 @@
         --buttonColor: var(--main-color);
         background:var(--cart-background);
         color:var(--cart-items-color);
+        .category-header {margin-bottom:30px;}
+        .category-price {font-size:32px !important; border:1px dashed #fff; margin-inline:30px; padding:30px 20px; margin-top:30px; z-index:1}; 
+        .category-items {
+            padding-left:0; margin-bottom:40px;
+            & li {
+                text-align:center; line-height:1.4;
+                &:before {display:none}
+                & a {display:block; font-weight:900; color:#fff; font-size:28px; margin-top:10px}
+            }
+
+        }
+    }
+    & .category-black {
+        --main-color:#000;
+		--second-color:#ffbc00;
+		--cart-background: var(--main-color);
+        --header-bg-color: transparent;
+		--cart-items-color: #fff;
+        --cart-category-background: #fff;
+        --buttonColor: #ffffff;
+        background:var(--cart-background);
+        background-image:url('https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/687493c0062a3_virtual-bg.jpg');
+        background-size:cover;
+        .category-header {margin-bottom:30px;}
+        & .category-items {
+            & li {line-height:1.1 !important;}
+            b {font-weight:900; font-size:32px; display:block; letter-spacing:1px}
+            span {font-weight:500; font-size:28px; display:block; letter-spacing:1px}
+            div {font-weight:900; font-size:22px; margin-top:20px}
+        }
+        & .ticket-btn, & .ticket-btn2, & .ticket-btn3 {background:#ffbc00; color:#000}
+        color:var(--cart-items-color);
+        .category-items {
+            padding-left:0; margin-bottom:40px;
+            & li {
+                text-align:center; line-height:1.4;
+                &:before {display:none}
+                & a {display:block; font-weight:900; color:var(--second-color); font-size:28px; margin-top:10px}
+            }
+
+        }
     }
     & .category-blue {
         --main-color:#2fb3d1;
