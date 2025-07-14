@@ -123,7 +123,7 @@ export default {
         cssFile = `${baseUrl}/assets/tickets.dark.css`;
         break;
     case 'solid':
-        cssFile = `${baseUrl}/assets/tickets.solid.css`;
+        cssFile = `${baseUrl}/assets/tickets.solid.css?v2`;
         break;
     default:
         cssFile = `${baseUrl}/assets/tickets.css`;
