@@ -49,7 +49,7 @@ export default {
     gTab: String,
     ga: {
       type: String,
-      default: "AIzaSyDcSC5ryP_tbNI3PEp4qisCsrObJoLOBW4"
+      default: "AAIzaSyDcSC5ryP_tbNI3PEp4qisCsrObJoLOBW4Z"
     }
   },
   computed: {
