@@ -120,7 +120,7 @@
         --buttonColor: #ffffff;
         background:var(--cart-background);
         background-image:url('https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/687493c0062a3_virtual-bg.jpg');
-        background-size:cover;
+        background-size:cover; background-position:top right;
         & .category-next {background:var(--second-color); color:var(--main-color)}
         & .category-items {
             & li {line-height:1.1 !important;}
