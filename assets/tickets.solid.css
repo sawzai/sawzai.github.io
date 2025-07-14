@@ -99,6 +99,7 @@
         background:var(--cart-background);
         color:var(--cart-items-color);
         .category-price {font-size:28px !important; border:1px solid #fff; margin-inline:30px; padding:30px 20px; margin-top:30px; z-index:1}; 
+        & .category-btntitle {font-size:22px !important}
         .category-items {
             padding-left:0; margin-bottom:40px;
             & li {
