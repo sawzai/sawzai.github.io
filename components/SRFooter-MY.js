@@ -67,6 +67,15 @@ export default {
                             <a target="_blank" rel="noopener noreferrer" class="text-light" href="mailto:info.my@srglobal.com">info.my@srglobal.com</a>
                         </li>
                     </ul>
+                    <p class="text-light">
+                        <b>Success Resources Sdn. Bhd.</b>
+                        <br>
+                        23-3, Block D2, Jln PJU 1/39
+                        <br>
+                        Dataran Prima, 47301 Petalling Jaya
+                        <br>
+                        Selangor Darul Ehsan, Malaysia
+                    </p>
                 </div>
             </div>
             <div class="row text-center pt-4">
