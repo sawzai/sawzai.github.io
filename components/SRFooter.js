@@ -122,7 +122,8 @@ export default {
           ],
           address: `
           <b>Success Resources Sdn. Bhd.</b><br>
-            Dataran Prima, 47301 Petalling Jaya<br>
+            23-3, Block D2, Jln PJU 1/39 <br>
+            Dataran Prima, 47301 Petalling Jaya <br>
             Selangor Darul Ehsan, Malaysia
           `
         },
