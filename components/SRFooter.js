@@ -120,7 +120,11 @@ export default {
             { icon: 'fa-whatsapp', text: '+44 745 815 9416', href: 'https://wa.me/447458159416' },
             { icon: 'fa-envelope', text: 'info.my@srglobal.com', href: 'mailto:info.my@srglobal.com' }
           ],
-          address: ''
+          address: `
+          <b>Success Resources Sdn. Bhd.</b><br>
+            Dataran Prima, 47301 Petalling Jaya<br>
+            Selangor Darul Ehsan, Malaysia
+          `
         },
         SGMY: {
             contact: [
