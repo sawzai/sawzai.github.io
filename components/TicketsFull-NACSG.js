@@ -1,6 +1,7 @@
 import { loadScript, loadCSS } from './index.js';
 import TCountDown from './CountDown.js';
 
+
 export default {
   template: `
     <div v-if="showTickets" class="tickets">
