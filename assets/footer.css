@@ -23,3 +23,5 @@ footer a, footer ul li a {
     &:hover {text-decoration:underline}
 }
 footer ul li .fa {margin-right:10px}
+
+#SRFooter .container {width:100%}
