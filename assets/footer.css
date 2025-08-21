@@ -24,7 +24,7 @@ footer a, footer ul li a {
 }
 footer ul li .fa {margin-right:10px}
 
-#SRFooter .container {width:100%}
+#SRFooter .container {max-width:100%}
 #SRFooter .fa.fa-twitter-square {
     line-height: 1.3;
     &:before { height: 0.75em; width: 0.75em; border-radius: 5px;}
