@@ -117,7 +117,7 @@ export default {
         MY: {
           contact: [
             { icon: 'fa-phone-square', text: '+603 7801 2888', href: 'tel:+60378012888' },
-            { icon: 'fa-whatsapp', text: '+44 745 815 9416', href: 'https://wa.me/447458159416' },
+            { icon: 'fa-whatsapp', text: '+19 362 491 065', href: 'https://wa.me/19362491065' },
             { icon: 'fa-envelope', text: 'info.my@srglobal.com', href: 'mailto:info.my@srglobal.com' }
           ],
           address: `
