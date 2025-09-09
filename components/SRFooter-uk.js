@@ -60,7 +60,7 @@ export default {
                         </li>
                         <li class="text-light">
                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.me/447458159416">+44 745 815 9416</a>
+                            <a target="_blank" rel="noopener noreferrer" class="text-light" href="https://wa.me/19362491065">+19 362 491 065</a>
                         </li>
                         <li class="text-light">
                             <i class="fa fa-envelope" aria-hidden="true"></i>

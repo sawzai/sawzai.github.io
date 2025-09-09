@@ -165,7 +165,7 @@ export default {
         UK: {
           contact: [
             { icon: 'fa-phone-square', text: '+44 203 868 3587', href: 'tel:+442038683587' },
-            { icon: 'fa-whatsapp', text: '+44 745 815 9416', href: 'https://wa.me/447458159416' },
+            { icon: 'fa-whatsapp', text: '+19 362 491 065', href: 'https://wa.me/19362491065' },
             { icon: 'fa-envelope', text: 'info.uk@srglobal.com', href: 'mailto:info.uk@srglobal.com' }
           ],
           address: `
