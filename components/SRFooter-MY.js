@@ -68,7 +68,7 @@ export default {
                         </li>
                     </ul>
                     <p class="text-light">
-                        <b>Success Resources Sdn. Bhd.</b>
+                        <b>Success Resources Malaysia Group Sdn. Bhd.</b>
                         <br>
                         23-3, Block D2, Jln PJU 1/39
                         <br>
