@@ -121,7 +121,7 @@ export default {
             { icon: 'fa-envelope', text: 'info.my@srglobal.com', href: 'mailto:info.my@srglobal.com' }
           ],
           address: `
-          <b>Success Resources Sdn. Bhd.</b><br>
+          <b>Success Resources Malaysia Group Sdn. Bhd.</b><br>
             23-3, Block D2, Jln PJU 1/39 <br>
             Dataran Prima, 47301 Petalling Jaya <br>
             Selangor Darul Ehsan, Malaysia
