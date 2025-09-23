@@ -89,7 +89,7 @@ export default {
             { icon: 'fa-users', text: '12M attendees' },
             { icon: 'fa-ticket', text: '500 events per year' },
             { icon: 'fa-globe', text: '37 countries represented' },
-            { icon: 'fa-trophy', text: '#1 seminar promoter in the world' }
+            { icon: 'fa-trophy', text: 'One of the world’s leading seminar promoters' }
           ],
           contact: [
             { icon: 'fa-phone-square', text: '+65 6299 4677', href: 'tel:+6562994677' },
