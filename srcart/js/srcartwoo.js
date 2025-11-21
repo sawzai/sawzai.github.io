@@ -128,7 +128,6 @@ const srCart = {
 
 document.addEventListener("DOMContentLoaded", function () {
 	srCart.trackData['utm_source'] = 'affiliateName'
-	srCart.trackData['utm_campaign'] = 'NAC2024KR'
 	srCart.btnClass = '.pgb-custom-cart-row .pgb-buy-button-link'
 	srCart.init();
 });

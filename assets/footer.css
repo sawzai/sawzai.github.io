@@ -11,8 +11,7 @@ footer h5 {font-size:18px; font-weight:bold; margin-block:10px}
 footer .d-flex {display:flex}
 footer .gap-3 {gap:10px}
 footer .pt-4 {padding-top:40px}
-footer.py-5 {padding-block:50px}
-footer .text-light {color:#A0A0A0 !important}
+footer.py-5 {padding-block:50px}ooter .text-light {color:#A0A0A0 !important}
 footer .footer-icon:hover {opacity:0.8}
 footer ul {list-style:none; padding:0; font-size:18px}
 footer ul li {padding-bottom:10px}

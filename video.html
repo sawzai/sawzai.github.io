@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll Video Sync</title>
+<style>
+  body { margin:0; padding:0; }
+  .pgb-custom-video { position: relative; height: 100vh; overflow: hidden; }
+  .pgb-custom-video video { width: 100%; height: 100%; object-fit: cover; }
+</style>
+</head>
+<body>
+
+<div class="pgb-custom-video">
+  <video loop muted playsinline preload="auto" src="https://cch-files.edge.live.ds25.io/cch/v/6a50f05c-d80c-431e-83f4-1bd0bf1d9722/files/691d690854aa9_cfr-bg-2.mp4"></video>
+</div>
+
+<div style="height:500vh;"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const video = document.querySelector(".pgb-custom-video video");
+
+video.onloadedmetadata = () => {
+  // Create GSAP tween after video metadata is ready
+  gsap.to(video, {
+    currentTime: video.duration,
+    ease: "none",
+    scrollTrigger: {
+      trigger: video,
+      start: "top top",
+      end: "+=300%", // length of scroll
+      scrub: 0.5, // smooth scroll-sync
+      pin: true
+    }
+  });
+};
+</script>
+
+</body>
+</html>
