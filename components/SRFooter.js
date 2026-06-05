@@ -114,7 +114,7 @@ export default {
                       活动中介绍的信息和提供给我的补充材料仅用于教育和信息目的。我承认，SR公司不对演讲者/培训师所介绍的活动的准确性、适用性、适应性或完整性作出任何陈述或保证，其中的任何内容都不能被视为对具体案件或情况的法律建议。`
         
         },
-        MY: {
+        MYE: {
           contact: [
             { icon: 'fa-phone-square', text: '+603 7801 2888', href: 'tel:+60378012888' },
             { icon: 'fa-whatsapp', text: '+6019 3396 435', href: 'https://api.whatsapp.com/send?phone=60193396435&text=Hi%20Emily,%20' },
@@ -127,7 +127,7 @@ export default {
             Selangor Darul Ehsan, Malaysia
           `
         },
-        MYE: {
+        MY: {
           contact: [
             { icon: 'fa-phone-square', text: '+603 7801 2888', href: 'tel:+60378012888' },
             { icon: 'fa-whatsapp', text: '+19 362 491 065', href: 'https://wa.me/19362491065' },
