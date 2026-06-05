@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Win The Money Game | Financial Blueprint Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ─── ROOT — LIGHT PALETTE: WHITE/MINT GREEN + FOREST GREEN ─── */
+    :root {
+      --gold:        #a78138;
+      --gold-lt:     #c9a846;
+      --gold-dk:     #7a5e28;
+      --brand:       #054b03;
+      --brand-lt:    #028f02;
+      --win:         #16a34a;
+      --red:         #dc2626;
+      --amber:       #d97706;
+      --t1:          #0c2b0b;
+      --t2:          rgba(12,43,11,0.72);
+      --t3:          rgba(12,43,11,0.48);
+      --t4:          rgba(12,43,11,0.30);
+      --border:      rgba(5,75,3,0.10);
+      --border-gold: rgba(167,129,56,0.28);
+      --card-bg:     rgba(255,255,255,0.82);
+      --card-bg2:    rgba(255,255,255,0.94);
+      --shadow:      0 4px 24px rgba(5,75,3,0.10);
+      --shadow-lg:   0 12px 48px rgba(5,75,3,0.16);
+      --r:           6px;
+      --r-lg:        10px;
+      --card-stripe: var(--brand);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Inter', system-ui, sans-serif;
+      background: linear-gradient(160deg, #ffffff 0%, #eaf5e6 55%, #d2edcc 100%) fixed;
+      background-attachment: fixed;
+      color:var(--t1);
+      min-height:100vh; overflow-x:hidden;
+      font-size:16px; line-height:1.6;
+    }
+
+    /* ─── QUIZ ROOT — self-contained when embedded ── */
+    #quiz-root {
+      font-family:'Inter', system-ui, sans-serif !important;
+      background: linear-gradient(160deg, #ffffff 0%, #eaf5e6 55%, #d2edcc 100%) fixed !important;
+      color:#0c2b0b !important;
+      min-height:100vh !important;
+      width:100% !important;
+      position:relative !important;
+      box-sizing:border-box !important;
+    }
+    #quiz-root *, #quiz-root *::before, #quiz-root *::after { box-sizing:border-box !important; }
+
+    /* ─── SCREENS ───────────────────────────────── */
+    .screen { display:none !important; min-height:100vh; width:100%; }
+    .screen.active { display:flex !important; flex-direction:column !important; align-items:stretch !important; }
+
+    /* ─── NAV ───────────────────────────────────── */
+    .nav {
+      position:fixed !important; top:0 !important; left:0 !important; right:0 !important; z-index:300 !important;
+      padding:14px 44px;
+      display:flex; align-items:center; justify-content:space-between;
+      background:rgba(255,255,255,0.94); backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(5,75,3,0.09);
+    }
+    .nav-logo {
+      font-family:'Cinzel',serif; font-size:12px; font-weight:700;
+      letter-spacing:3px; text-transform:uppercase; color:var(--brand);
+      flex-shrink:0;
+    }
+    .nav-tag { font-size:11px; color:var(--t3); letter-spacing:1.5px; text-transform:uppercase; text-align:right; }
+
+    /* ─── BUTTONS ───────────────────────────────── */
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:16px 44px; border-radius:5px; font-size:13px; font-weight:700;
+      cursor:pointer; border:none; transition:all 0.2s ease;
+      font-family:'Inter',sans-serif; letter-spacing:1.5px; text-transform:uppercase;
+    }
+    .btn-gold {
+      background:var(--brand); color:#ffffff;
+      box-shadow:0 2px 14px rgba(5,75,3,0.28);
+    }
+    .btn-gold:hover { background:var(--brand-lt); transform:translateY(-2px); box-shadow:0 6px 24px rgba(5,75,3,0.38); }
+    .btn-ghost {
+      background:transparent; color:var(--t2); border:1px solid rgba(5,75,3,0.18);
+    }
+    .btn-ghost:hover { border-color:var(--brand); color:var(--brand); }
+
+    /* ─── FORM ───────────────────────────────────── */
+    .form-label {
+      display:block; font-size:12px; font-weight:700;
+      letter-spacing:1.5px; text-transform:uppercase; color:var(--t3); margin-bottom:8px;
+    }
+    .form-input {
+      width:100%; padding:14px 18px; border:1.5px solid rgba(5,75,3,0.14);
+      border-radius:var(--r); font-size:16px; font-family:'Inter',sans-serif;
+      color:var(--t1); background:rgba(255,255,255,0.80); transition:border-color 0.2s; outline:none;
+    }
+    .form-input:focus { border-color:var(--brand); background:#ffffff; }
+    .form-input::placeholder { color:var(--t4); }
+
+    /* ═══════════════════════════════════════════
+       SCREEN 1: OPT-IN
+    ═══════════════════════════════════════════ */
+    #screen-optin {
+      align-items:center !important; justify-content:center !important;
+      padding:100px 24px 60px;
+    }
+    .optin-wrap { max-width:940px; width:100%; display:flex !important; gap:52px; align-items:flex-start; margin:0 auto !important; }
+    .optin-left { flex:1; padding-top:20px; }
+    .optin-right { width:420px; flex-shrink:0; }
+
+    .optin-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(5,75,3,0.07); border:1px solid rgba(5,75,3,0.18);
+      border-radius:100px; padding:6px 18px;
+      font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      color:var(--brand); margin-bottom:20px;
+    }
+    .optin-source {
+      font-size:13px; font-weight:600; color:var(--gold-dk);
+      letter-spacing:0.3px; margin-bottom:18px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .optin-source::before {
+      content:''; display:inline-block; width:28px; height:2px;
+      background:var(--gold); flex-shrink:0;
+    }
+    .optin-headline {
+      font-family:'Cinzel',serif; font-size:clamp(28px,4vw,46px);
+      font-weight:700; color:var(--t1); line-height:1.12; margin-bottom:20px;
+    }
+    .optin-headline em { color:var(--brand-lt); font-style:normal; }
+    .optin-desc { font-size:17px; color:var(--t2); line-height:1.75; margin-bottom:36px; }
+    .optin-stats {
+      display:flex; gap:0; margin-top:36px;
+      border:1px solid rgba(5,75,3,0.12); border-radius:var(--r); overflow:hidden;
+    }
+    .optin-stat {
+      flex:1; padding:18px 12px; text-align:center;
+      background:rgba(255,255,255,0.60);
+    }
+    .optin-stat + .optin-stat { border-left:1px solid rgba(5,75,3,0.10); }
+    .os-num { font-family:'Cinzel',serif; font-size:28px; font-weight:700; color:var(--brand); line-height:1; margin-bottom:5px; }
+    .os-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--t3); }
+
+    .optin-card {
+      background:var(--card-bg); border-radius:var(--r-lg);
+      border:1px solid var(--border-gold); box-shadow:var(--shadow-lg);
+      padding:38px 32px;
+    }
+    .optin-card-title {
+      font-family:'Cinzel',serif; font-size:19px; font-weight:700; color:var(--t1); margin-bottom:6px;
+    }
+    .optin-card-sub { font-size:14px; color:var(--t3); margin-bottom:26px; }
+    .form-row { margin-bottom:18px; }
+    .tier-label-row {
+      font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--t3); margin-bottom:10px; display:block;
+    }
+    .tier-pills { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+    .tier-pill {
+      border:1.5px solid rgba(5,75,3,0.12); border-radius:var(--r);
+      background:rgba(255,255,255,0.50); padding:14px 8px 12px;
+      cursor:pointer; transition:all 0.2s; text-align:center; font-family:'Inter',sans-serif;
+    }
+    .tier-pill:hover { border-color:var(--brand); background:rgba(5,75,3,0.05); }
+    .tier-pill.selected {
+      border-color:var(--brand); background:rgba(5,75,3,0.07);
+      box-shadow:0 0 0 3px rgba(5,75,3,0.10);
+    }
+    .tier-pill-icon {
+      width:32px; height:32px; margin:0 auto 8px;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(5,75,3,0.08); border-radius:6px; color:var(--brand);
+    }
+    .tier-pill-lbl { font-size:12px; font-weight:700; color:var(--t1); line-height:1.3; }
+    .tier-pill-sub { font-size:10px; color:var(--t3); margin-top:3px; }
+    .optin-submit { width:100%; margin-top:22px; padding:18px; font-size:14px; }
+    .optin-privacy {
+      font-size:12px; color:var(--t4); margin-top:12px;
+      display:flex; align-items:center; justify-content:center; gap:6px;
+    }
+
+    /* ═══════════════════════════════════════════
+       SCREEN 2: INTRO
+    ═══════════════════════════════════════════ */
+    #screen-intro {
+      align-items:center !important; justify-content:center !important;
+      padding:100px 24px 60px; text-align:center;
+    }
+    .intro-inner { max-width:800px; margin:0 auto; }
+    .intro-greeting { font-size:18px; color:var(--t3); font-weight:500; margin-bottom:10px; }
+    .intro-greeting strong { color:var(--gold); }
+    .intro-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(5,75,3,0.07); border:1px solid rgba(5,75,3,0.18);
+      border-radius:100px; padding:7px 20px; margin-bottom:28px;
+      font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--brand);
+    }
+    .intro-title {
+      font-family:'Cinzel',serif; font-size:clamp(36px,6.5vw,72px);
+      font-weight:700; line-height:1.1; margin-bottom:8px; letter-spacing:2px;
+    }
+    .intro-title .line1 { display:block; color:var(--t1); font-size:0.65em; }
+    .intro-title .line2 {
+      display:block;
+      background:linear-gradient(135deg,#032d02 0%,#054b03 40%,#028f02 70%,#054b03 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .intro-sub {
+      font-size:clamp(16px,2vw,19px); color:var(--t2); line-height:1.75;
+      max-width:560px; margin:20px auto 44px;
+    }
+
+    /* Boss preview strip */
+    .boss-strip {
+      display:flex; align-items:stretch; justify-content:center;
+      gap:14px; margin-bottom:48px; flex-wrap:wrap;
+    }
+    .boss-preview {
+      background:var(--card-bg); border:1px solid var(--border-gold);
+      border-top:2px solid var(--gold-dk); border-radius:var(--r);
+      padding:22px 16px 18px; min-width:140px; flex:1; max-width:200px;
+      text-align:center; transition:all 0.2s; position:relative; overflow:hidden;
+    }
+    .boss-preview:hover { border-top-color:var(--gold); transform:translateY(-3px); box-shadow:var(--shadow); }
+    .boss-preview.boss-final { border-top-color:var(--gold-lt); }
+    .bp-lvl {
+      font-size:10px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase;
+      color:var(--t4); margin-bottom:14px;
+    }
+    .boss-preview.boss-final .bp-lvl { color:var(--gold); }
+    .bp-icon {
+      width:46px; height:46px; margin:0 auto 12px;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--brand); opacity:.85;
+    }
+    .boss-preview.boss-final .bp-icon { opacity:1; }
+    .bp-name { font-size:12px; font-weight:700; color:var(--t1); text-transform:uppercase; letter-spacing:.5px; line-height:1.35; }
+    .bp-theme { font-size:10px; color:var(--gold); font-weight:600; margin-top:5px; opacity:.7; }
+
+    .intro-rules {
+      display:flex; align-items:center; justify-content:center;
+      gap:28px; flex-wrap:wrap; margin-bottom:44px;
+    }
+    .rule-item { display:flex; align-items:center; gap:9px; font-size:15px; color:var(--t2); }
+    .rule-item svg { color:var(--brand); flex-shrink:0; }
+    .rule-item strong { color:var(--t1); font-weight:700; }
+    .intro-cta-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; }
+    .intro-btn { padding:20px 64px; font-size:14px; }
+    .intro-meta { font-size:12px; color:var(--t4); }
+
+    /* ═══════════════════════════════════════════
+       SCREEN 3: BATTLE
+    ═══════════════════════════════════════════ */
+    #screen-battle { padding-top:64px; }
+
+    /* HUD */
+    .hud {
+      position:sticky; top:64px; z-index:50;
+      background:rgba(255,255,255,0.97); backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(5,75,3,0.09);
+      padding:12px 44px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .hud-section { display:flex; flex-direction:column; gap:3px; }
+    .hud-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--t4); }
+    .hud-val { font-size:18px; font-weight:800; color:var(--t1); font-family:'Cinzel',serif; }
+    .hud-val.gold { color:var(--gold); }
+    .hud-boss-track {
+      flex:1; max-width:220px; display:flex; flex-direction:column; align-items:center; gap:4px;
+    }
+    .hud-boss-name { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--t3); text-align:center; }
+    .move-pips { display:flex; gap:7px; }
+    .move-pip { width:28px; height:4px; background:rgba(255,255,255,0.10); border-radius:100px; transition:background .3s; }
+    .move-pip.done-correct { background:var(--win); }
+    .move-pip.done-neutral  { background:var(--amber); }
+    .move-pip.done-wrong    { background:var(--red); }
+    .move-pip.current       { background:var(--brand); }
+
+    /* Battle content */
+    .battle-area { flex:1; padding:36px 24px 60px; max-width:720px; margin:0 auto; width:100%; }
+
+    /* Boss header card */
+    .boss-header {
+      background:var(--card-bg); border-radius:var(--r-lg);
+      border:1px solid var(--border-gold); border-top:3px solid var(--gold);
+      padding:28px 32px 24px; margin-bottom:20px;
+      display:flex; align-items:center; gap:24px;
+    }
+    .bh-icon {
+      flex-shrink:0; width:64px; height:64px; border-radius:50%;
+      background:rgba(5,75,3,0.08); border:1.5px solid rgba(5,75,3,0.20);
+      display:flex; align-items:center; justify-content:center; color:var(--brand);
+    }
+    .bh-info { flex:1; }
+    .bh-level { font-size:10px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; color:var(--t4); margin-bottom:5px; }
+    .bh-name { font-family:'Cinzel',serif; font-size:clamp(18px,3vw,24px); font-weight:700; color:var(--t1); margin-bottom:4px; }
+    .bh-subtitle { font-size:14px; color:var(--t3); font-style:italic; }
+
+    /* Question card */
+    .question-card {
+      background:var(--card-bg); border-radius:var(--r-lg);
+      border:1px solid var(--border-gold); box-shadow:var(--shadow);
+      padding:36px 36px 28px; margin-bottom:16px;
+    }
+    .q-tag {
+      font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      color:var(--t3); margin-bottom:18px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .q-tag::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.07); }
+    .q-personal { font-size:14px; color:var(--brand); font-weight:600; margin-bottom:10px; font-style:italic; }
+    .q-text { font-size:clamp(19px,2.5vw,23px); font-weight:600; color:var(--t1); line-height:1.5; }
+
+    /* Choices */
+    .choices-wrap { display:flex; flex-direction:column; gap:11px; }
+    .choice-btn {
+      display:flex; align-items:flex-start; gap:16px;
+      background:rgba(255,255,255,0.75); border:1.5px solid rgba(5,75,3,0.12);
+      border-radius:var(--r); padding:18px 20px;
+      cursor:pointer; transition:all 0.2s; text-align:left; width:100%;
+      font-family:'Inter',sans-serif;
+    }
+    .choice-btn:hover:not(:disabled) { border-color:var(--brand); background:rgba(255,255,255,0.95); transform:translateX(2px); }
+    .choice-key {
+      flex-shrink:0; width:32px; height:32px; border-radius:50%;
+      background:rgba(5,75,3,0.08); display:flex; align-items:center; justify-content:center;
+      font-size:12px; font-weight:800; color:var(--t3);
+    }
+    .choice-text { font-size:17px; color:var(--t1); line-height:1.55; padding-top:6px; font-weight:400; }
+    .choice-btn.is-correct  { border-color:var(--win); background:rgba(22,163,74,0.07); }
+    .choice-btn.is-correct  .choice-key { background:var(--win); color:#fff; }
+    .choice-btn.is-neutral  { border-color:var(--amber); background:rgba(217,119,6,0.07); }
+    .choice-btn.is-neutral  .choice-key { background:var(--amber); color:#fff; }
+    .choice-btn.is-wrong    { border-color:var(--red); background:rgba(220,38,38,0.07); }
+    .choice-btn.is-wrong    .choice-key { background:var(--red); color:#fff; }
+    .choice-btn:disabled { cursor:default; }
+
+    /* ═══════════════════════════════════════════
+       HIT OVERLAY (dismissible answer result)
+    ═══════════════════════════════════════════ */
+    .hit-overlay {
+      position:fixed !important; inset:0 !important; z-index:600 !important;
+      background:rgba(220,242,216,0.78); backdrop-filter:blur(8px);
+      display:none !important; align-items:center !important; justify-content:center !important; padding:24px;
+    }
+    .hit-overlay.show { display:flex !important; }
+    .hit-card {
+      background:var(--card-bg2); border-radius:var(--r-lg);
+      border:1px solid var(--border-gold);
+      border-top:4px solid var(--card-stripe);
+      max-width:520px; width:100%; padding:40px 36px;
+      text-align:center; box-shadow:var(--shadow-lg);
+      animation:hitSlideUp 0.28s ease both;
+    }
+    @keyframes hitSlideUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .hit-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius:100px; padding:6px 18px; margin-bottom:20px;
+      font-size:11px; font-weight:800; letter-spacing:2.5px; text-transform:uppercase;
+    }
+    .hit-badge.win     { background:rgba(74,222,128,0.12); border:1px solid rgba(74,222,128,0.32); color:var(--win); }
+    .hit-badge.neutral { background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.32); color:var(--amber); }
+    .hit-badge.loss    { background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.32); color:var(--red); }
+    .hit-icon {
+      width:64px; height:64px; margin:0 auto 20px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .hit-icon.win     { background:rgba(74,222,128,0.12); color:var(--win); }
+    .hit-icon.neutral { background:rgba(251,191,36,0.12); color:var(--amber); }
+    .hit-icon.loss    { background:rgba(248,113,113,0.12); color:var(--red); }
+    .hit-verdict {
+      font-family:'Cinzel',serif; font-size:clamp(18px,3vw,24px); font-weight:700;
+      color:var(--t1); line-height:1.25; margin-bottom:14px;
+    }
+    .hit-explain {
+      font-size:16px; color:var(--t2); line-height:1.7; margin-bottom:28px;
+    }
+    .hit-next {
+      background:var(--brand); color:#ffffff;
+      padding:14px 40px; font-size:13px; letter-spacing:1.5px; text-transform:uppercase;
+      border-radius:5px; border:none; cursor:pointer; font-family:'Inter',sans-serif;
+      font-weight:700; transition:all 0.2s; display:inline-flex; align-items:center; gap:8px;
+    }
+    .hit-next:hover { background:var(--brand-lt); transform:translateY(-1px); }
+
+    /* ═══════════════════════════════════════════
+       SCREEN 4: BOSS COMPLETE
+    ═══════════════════════════════════════════ */
+    #screen-boss-complete {
+      align-items:center; justify-content:center;
+      padding:80px 24px; text-align:center;
+    }
+    .bc-card {
+      background:var(--card-bg); border-radius:var(--r-lg);
+      border:1px solid var(--border-gold); border-top:4px solid var(--gold);
+      box-shadow:var(--shadow-lg); padding:52px 44px; max-width:500px; width:100%;
+    }
+    .bc-icon {
+      width:72px; height:72px; margin:0 auto 24px; border-radius:50%;
+      background:rgba(5,75,3,0.08); border:1.5px solid rgba(5,75,3,0.20);
+      display:flex; align-items:center; justify-content:center; color:var(--brand);
+    }
+    .bc-eyebrow { font-size:11px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--brand); margin-bottom:12px; }
+    .bc-title { font-family:'Cinzel',serif; font-size:clamp(20px,3vw,28px); font-weight:700; color:var(--t1); line-height:1.2; margin-bottom:16px; }
+    .bc-insight { font-size:16px; color:var(--t2); line-height:1.75; margin-bottom:28px; }
+    .bc-score { display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.05); border-radius:var(--r); padding:12px 24px; margin-bottom:32px; font-size:14px; color:var(--t2); }
+    .bc-score-num { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold); }
+
+    /* ═══════════════════════════════════════════
+       SCREEN 5: ANALYSIS
+    ═══════════════════════════════════════════ */
+    #screen-analysis { align-items:center; justify-content:center; padding:80px 24px; }
+    .an-card {
+      background:var(--card-bg); border-radius:var(--r-lg); border:1px solid var(--border-gold);
+      box-shadow:var(--shadow-lg); padding:52px 44px; max-width:480px; width:100%; text-align:center;
+    }
+    .an-icon { width:72px; height:72px; margin:0 auto 28px; background:rgba(5,75,3,0.08); border-radius:50%; border:1.5px solid rgba(5,75,3,0.18); display:flex; align-items:center; justify-content:center; color:var(--brand); }
+    .an-title { font-family:'Cinzel',serif; font-size:clamp(20px,3vw,28px); font-weight:700; color:var(--t1); margin-bottom:12px; }
+    .an-sub { font-size:16px; color:var(--t2); line-height:1.65; margin-bottom:32px; }
+    .an-prog-track { height:5px; background:rgba(255,255,255,0.07); border-radius:100px; overflow:hidden; margin-bottom:32px; }
+    .an-prog-fill { height:100%; background:var(--gold); border-radius:100px; width:0%; transition:width .4s ease; }
+    .an-steps { text-align:left; }
+    .an-step { display:flex; align-items:center; justify-content:space-between; padding:13px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:15px; }
+    .an-step:last-child { border-bottom:none; }
+    .an-step-left { display:flex; align-items:center; gap:12px; color:var(--t2); }
+    .an-step-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.12); flex-shrink:0; transition:background .3s; }
+    .an-step.active .an-step-dot { background:var(--brand); }
+    .an-step.done   .an-step-dot { background:var(--win); }
+    .an-step-state { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--t4); }
+    .an-step.active .an-step-state { color:var(--brand); }
+    .an-step.done   .an-step-state { color:var(--win); }
+
+    /* ═══════════════════════════════════════════
+       SCREEN 6: RESULT
+    ═══════════════════════════════════════════ */
+    #screen-result {}
+
+    .result-hero {
+      background: radial-gradient(ellipse at 68% 30%, #1a2e1a 0%, #0c180c 40%, #060d06 100%);
+      padding:100px 40px 72px; text-align:center;
+      position:relative; overflow:hidden;
+      border-bottom:1px solid rgba(212,175,55,0.18);
+    }
+    .result-hero::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 70% 25%, rgba(212,175,55,0.06) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    /* Bright gold overrides for dark hero */
+    .result-hero .rh-tag,
+    .result-hero .rh-level,
+    .result-hero .rh-score,
+    .result-hero .rs-num,
+    .result-hero .download-btn { color:#D4AF37; }
+    .result-hero .result-stats  { border-color:rgba(212,175,55,0.32); }
+    .result-hero .rs-item + .rs-item { border-left-color:rgba(212,175,55,0.20); }
+    .result-hero .download-btn  { border-color:rgba(212,175,55,0.35); background:rgba(212,175,55,0.08); }
+    .result-hero .download-btn:hover { background:rgba(212,175,55,0.18); }
+    .rh-tag { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#D4AF37; margin-bottom:20px; opacity:.9; }
+    .rh-greeting { font-size:18px; color:rgba(255,255,255,0.60); margin-bottom:16px; }
+    .rh-score { font-family:'Cinzel',serif; font-size:clamp(72px,12vw,110px); font-weight:700; color:#D4AF37; line-height:1; margin-bottom:8px; }
+    .rh-score-denom { font-size:clamp(28px,4vw,40px); color:rgba(255,255,255,0.35); font-family:'Cinzel',serif; }
+    .rh-level {
+      font-family:'Cinzel',serif;
+      font-size:clamp(22px,3.5vw,36px); font-weight:700;
+      letter-spacing:6px; text-transform:uppercase;
+      color:#D4AF37; margin:20px 0 14px;
+      text-shadow: 0 0 40px rgba(212,175,55,0.45);
+    }
+    .rh-title { font-family:'Cinzel',serif; font-size:clamp(16px,2.8vw,26px); font-weight:600; color:rgba(255,255,255,0.88); line-height:1.3; margin-bottom:36px; }
+    .result-stats { display:flex; align-items:center; justify-content:center; border:1px solid rgba(167,129,56,0.30); border-radius:var(--r); overflow:hidden; max-width:420px; margin:0 auto 28px; background:rgba(255,255,255,0.06); }
+    .rs-item { flex:1; padding:18px 14px; text-align:center; }
+    .rs-item + .rs-item { border-left:1px solid rgba(167,129,56,0.22); }
+    .rs-num { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--gold-lt); }
+    .rs-label { font-size:11px; color:rgba(255,255,255,0.50); text-transform:uppercase; letter-spacing:1.5px; margin-top:4px; }
+
+    /* Download button */
+    .download-btn-wrap { display:flex; justify-content:center; margin-top:16px; }
+    .download-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(218,191,136,0.10); border:1px solid rgba(218,191,136,0.28);
+      border-radius:5px; padding:12px 28px;
+      font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--gold); cursor:pointer; font-family:'Inter',sans-serif;
+      transition:all 0.2s;
+    }
+    .download-btn:hover { background:rgba(218,191,136,0.18); transform:translateY(-1px); }
+
+    .result-body { padding:64px 40px; max-width:800px; margin:0 auto !important; width:100%; }
+    .result-section { margin-bottom:56px; }
+    .rs-eyebrow { font-size:11px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--brand); margin-bottom:12px; }
+    .rs-heading { font-family:'Cinzel',serif; font-size:clamp(18px,3vw,24px); font-weight:700; color:var(--t1); margin-bottom:16px; line-height:1.3; }
+    .rs-body { font-size:17px; color:var(--t2); line-height:1.8; }
+
+    .boss-breakdown { display:flex; flex-direction:column; gap:10px; }
+    .bb-row { display:flex; align-items:center; gap:16px; background:var(--card-bg); border-radius:var(--r); border:1px solid var(--border-gold); padding:16px 20px; }
+    .bb-icon { width:40px; height:40px; flex-shrink:0; border-radius:8px; background:rgba(218,191,136,0.10); display:flex; align-items:center; justify-content:center; color:var(--gold); }
+    .bb-info { flex:1; min-width:0; }
+    .bb-name { font-size:14px; font-weight:700; color:var(--t1); margin-bottom:6px; }
+    .bb-track { height:4px; background:rgba(255,255,255,0.07); border-radius:100px; overflow:hidden; }
+    .bb-fill { height:100%; border-radius:100px; transition:width 1s ease; }
+    .bb-num { font-size:14px; font-weight:700; color:var(--t3); flex-shrink:0; min-width:40px; text-align:right; }
+
+    /* ─── ADVICE ROADMAP ─────────────────────────── */
+    .advice-block {
+      background:var(--card-bg); border-radius:var(--r-lg);
+      padding:44px 40px; margin-bottom:56px;
+      border:1px solid var(--border-gold); border-top:3px solid var(--gold);
+    }
+    .ab-eyebrow { font-size:11px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--brand); margin-bottom:12px; }
+    .ab-tier { display:inline-flex; align-items:center; gap:8px; background:rgba(5,75,3,0.07); border:1px solid rgba(5,75,3,0.18); border-radius:100px; padding:5px 14px; font-size:12px; font-weight:700; color:var(--brand); margin-bottom:20px; }
+    .ab-headline { font-family:'Cinzel',serif; font-size:clamp(18px,3vw,24px); font-weight:700; color:var(--t1); line-height:1.3; margin-bottom:10px; }
+    .ab-sub { font-size:16px; color:var(--t2); line-height:1.65; margin-bottom:36px; }
+
+    /* Roadmap */
+    .roadmap { position:relative; padding-left:56px; }
+    .roadmap-track {
+      position:absolute; left:17px; top:18px; bottom:18px; width:2px;
+      background:linear-gradient(to bottom, var(--brand), var(--brand-lt), rgba(2,143,2,0.10));
+    }
+    .rm-step { position:relative; margin-bottom:24px; }
+    .rm-step:last-child { margin-bottom:0; }
+    .rm-node {
+      position:absolute; left:-56px; top:0;
+      width:36px; height:36px; border-radius:50%;
+      background:var(--brand); border:2px solid var(--brand-lt);
+      display:flex; align-items:center; justify-content:center;
+      font-size:13px; font-weight:800; color:#ffffff;
+      font-family:'Cinzel',serif; z-index:1;
+    }
+    .rm-content {
+      background:rgba(0,0,0,0.03); border-radius:var(--r);
+      border:1px solid var(--border-gold); border-left:3px solid var(--gold-dk);
+      padding:18px 22px;
+    }
+    .rm-step-label { font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--t4); margin-bottom:6px; }
+    .rm-step-title { font-size:16px; font-weight:700; color:var(--t1); margin-bottom:6px; line-height:1.35; }
+    .rm-step-body { font-size:14px; color:var(--t2); line-height:1.65; margin-bottom:10px; }
+    .rm-step-action { font-size:12px; font-weight:700; color:var(--brand); text-transform:uppercase; letter-spacing:1px; }
+
+    /* ─── EMAIL NOTICE ──────────────────────────── */
+    .email-notice {
+      display:flex; align-items:flex-start; gap:16px;
+      background:rgba(5,75,3,0.06); border:1px solid rgba(5,75,3,0.14);
+      border-left:3px solid var(--gold-dk);
+      border-radius:var(--r); padding:20px 24px;
+      margin-bottom:0; max-width:800px; margin:0 auto 0;
+    }
+    .email-notice-icon {
+      flex-shrink:0; margin-top:2px; color:var(--gold-dk);
+    }
+    .email-notice-text {
+      font-size:15px; color:var(--t2); line-height:1.7;
+    }
+    .email-notice-text strong { color:var(--t1); font-weight:700; }
+
+    /* ─── OFFER ──────────────────────────────────── */
+    .offer-section {
+      background: radial-gradient(ellipse at 68% 30%, #1a2e1a 0%, #0c180c 40%, #060d06 100%);
+      padding:72px 40px; text-align:center;
+      border-top:1px solid rgba(212,175,55,0.18);
+    }
+    /* Bright gold overrides for offer section */
+    .offer-section .offer-eyebrow,
+    .offer-section .offer-brand { color:#D4AF37; }
+    .offer-section .offer-box   { border-color:rgba(212,175,55,0.32); background:rgba(0,0,0,0.30); }
+    .offer-inner { max-width:580px; margin:0 auto; overflow:hidden; }
+    .offer-eyebrow { font-size:11px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--gold-lt); margin-bottom:16px; opacity:.9; }
+    .offer-title { font-family:'Cinzel',serif; font-size:clamp(22px,4vw,34px); font-weight:700; color:#ffffff; line-height:1.2; margin-bottom:16px; }
+    .offer-sub { font-size:17px; color:rgba(255,255,255,0.68); line-height:1.75; margin-bottom:40px; }
+    .offer-box {
+      background:rgba(255,255,255,0.06); border:1px solid rgba(167,129,56,0.30);
+      border-radius:var(--r-lg); padding:36px 32px;
+    }
+    .offer-brand {
+      font-family:'Cinzel',serif; font-size:22px; font-weight:700;
+      color:var(--gold); margin-bottom:8px;
+    }
+    .offer-brand-sub { font-size:14px; color:rgba(255,255,255,0.55); margin-bottom:24px; }
+    .offer-urgency-headline {
+      font-size:18px; font-weight:700; color:#ffffff; margin-bottom:10px; line-height:1.45;
+    }
+    .offer-urgency-body {
+      font-size:15px; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:32px;
+    }
+    .offer-cta {
+      padding:20px 40px; font-size:15px;
+      background: linear-gradient(135deg, #ff3b3b 0%, #cc0000 100%) !important;
+      box-shadow: 0 6px 32px rgba(204,0,0,0.45) !important;
+      color:#ffffff !important;
+      white-space:normal; line-height:1.4;
+      max-width:100%; word-break:break-word;
+    }
+    .offer-cta:hover {
+      background: linear-gradient(135deg, #ff5555 0%, #e60000 100%) !important;
+      transform:translateY(-2px);
+      box-shadow: 0 10px 40px rgba(204,0,0,0.55) !important;
+    }
+    .offer-urgency-note { font-size:13px; color:rgba(255,255,255,0.40); margin-top:14px; }
+
+    /* FAQ */
+    .faq-section { padding:56px 40px; max-width:700px; margin:0 auto; }
+    .faq-eyebrow { font-size:11px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--gold); text-align:center; margin-bottom:28px; }
+    .faq-item { margin-bottom:22px; border-bottom:1px solid var(--border); padding-bottom:22px; }
+    .faq-q { font-size:16px; font-weight:700; color:var(--brand); margin-bottom:8px; }
+    .faq-a { font-size:15px; color:var(--t2); line-height:1.75; }
+    .footer { background:#021a01; padding:28px 40px; text-align:center; border-top:1px solid rgba(212,175,55,0.18); }
+    .footer-logo { font-family:'Cinzel',serif; font-size:12px; font-weight:700; color:var(--gold); letter-spacing:2px; margin-bottom:8px; }
+    .footer-text { font-size:12px; color:rgba(255,255,255,0.38); line-height:1.7; }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+
+    /* Tablet: stack optin left/right */
+    @media(max-width:860px){
+      .optin-wrap { flex-direction:column; align-items:center; }
+      .optin-right { width:100%; max-width:480px; }
+      .optin-left  { max-width:480px !important; padding-top:0; }
+    }
+
+    /* Mobile: ≤640px — full overhaul */
+    @media(max-width:640px){
+
+      /* ── NAV ── */
+      .nav { padding:10px 16px; }
+      .nav-logo { font-size:10px; letter-spacing:2px; }
+      .nav-tag  { font-size:9px;  letter-spacing:1px; }
+
+      /* ── OPT-IN ── */
+      #screen-optin { padding:76px 16px 48px; }
+      .optin-wrap   { gap:28px; }
+      .optin-badge  { font-size:10px; padding:5px 14px; }
+      .optin-headline { font-size:clamp(24px,7vw,32px); line-height:1.15; }
+      .optin-desc   { font-size:15px; margin-bottom:24px; }
+      .optin-stats  { margin-top:20px; }
+      .os-num       { font-size:22px; }
+      .os-label     { font-size:10px; }
+      .optin-card   { padding:28px 20px; }
+
+      /* ── INTRO ── */
+      #screen-intro { padding:76px 16px 48px; }
+      .intro-greeting { font-size:15px; }
+      .intro-sub    { font-size:15px; margin:14px auto 28px; }
+      .boss-strip   { gap:8px; flex-wrap:wrap; }
+      .boss-preview { min-width:calc(33% - 6px); padding:14px 8px 12px; }
+      .bp-icon      { width:36px; height:36px; }
+      .bp-icon svg  { width:20px; height:20px; }
+      .bp-name      { font-size:10px; letter-spacing:0; }
+      .bp-theme     { font-size:9px; }
+      .intro-rules  {
+        flex-direction:column; align-items:flex-start;
+        gap:12px; padding:0 4px; margin-bottom:32px;
+      }
+      .rule-item    { font-size:14px; }
+      .intro-btn    { padding:16px 44px; font-size:13px; width:100%; }
+
+      /* ── HUD ── */
+      .hud          { padding:8px 12px; gap:6px; top:52px; }
+      .hud-label    { font-size:9px; letter-spacing:1.5px; }
+      .hud-val      { font-size:14px; }
+      .hud-boss-name { font-size:9px; letter-spacing:1px; }
+      .move-pip     { width:20px; }
+
+      /* ── BATTLE ── */
+      #screen-battle { padding-top:52px; }
+      .battle-area  { padding:16px 12px 48px; }
+      .boss-header  { padding:16px 16px 14px; gap:14px; }
+      .bh-icon      { width:44px; height:44px; }
+      .bh-name      { font-size:17px; }
+      .bh-subtitle  { font-size:12px; }
+      .question-card { padding:20px 16px 18px; }
+      .q-text       { font-size:clamp(16px,4.5vw,20px); }
+      .choice-btn   { padding:14px 14px; gap:10px; }
+      .choice-text  { font-size:15px; padding-top:4px; }
+      .choice-key   { width:28px; height:28px; font-size:11px; }
+
+      /* ── HIT OVERLAY ── */
+      .hit-card     { padding:28px 18px; }
+      .hit-verdict  { font-size:18px; }
+      .hit-explain  { font-size:14px; line-height:1.65; }
+      .hit-next     { padding:13px 28px; font-size:12px; }
+
+      /* ── BOSS COMPLETE / ANALYSIS ── */
+      .bc-card,.an-card { padding:28px 18px; }
+      .bc-insight, .an-sub { font-size:14px; }
+      .bc-score     { flex-wrap:wrap; justify-content:center; gap:6px; }
+
+      /* ── RESULT HERO ── */
+      .result-hero  { padding:80px 18px 48px; }
+      .rh-tag       { font-size:10px; letter-spacing:2px; }
+      .rh-greeting  { font-size:15px; }
+      .rh-score     { font-size:clamp(60px,15vw,90px); }
+      .rh-score-denom { font-size:clamp(22px,5vw,32px); }
+      .rh-level     { font-size:clamp(14px,4.5vw,20px); letter-spacing:2px; margin:14px 0 10px; }
+      .rh-title     { font-size:clamp(14px,3.5vw,18px); margin-bottom:24px; }
+      .result-stats { max-width:100%; }
+      .rs-item      { padding:12px 6px; }
+      .rs-num       { font-size:18px; }
+      .rs-label     { font-size:9px; letter-spacing:1px; }
+
+      /* ── RESULT BODY ── */
+      .result-body  { padding:36px 16px; }
+      .rs-heading   { font-size:16px; }
+      .rs-body      { font-size:15px; }
+      .result-section { margin-bottom:40px; }
+      .bb-row       { padding:12px 14px; gap:10px; }
+      .bb-icon      { width:32px; height:32px; }
+      .bb-name      { font-size:13px; }
+
+      /* ── ADVICE ROADMAP ── */
+      .advice-block { padding:28px 16px; margin-bottom:40px; }
+      .ab-headline  { font-size:16px; }
+      .ab-sub       { font-size:14px; }
+      .roadmap      { padding-left:44px; }
+      .roadmap-track { left:13px; }
+      .rm-node      { left:-44px; width:28px; height:28px; font-size:11px; }
+      .rm-content   { padding:14px 16px; }
+      .rm-step-title { font-size:14px; }
+      .rm-step-body { font-size:13px; }
+
+      /* ── EMAIL NOTICE ── */
+      .email-notice { padding:16px 16px; gap:12px; }
+      .email-notice-text { font-size:14px; }
+
+      /* ── OFFER ── */
+      .offer-section { padding:48px 16px; }
+      .offer-box    { padding:28px 18px; }
+      .offer-title  { font-size:clamp(18px,5.5vw,26px); }
+      .offer-sub    { font-size:14px; }
+      .offer-urgency-headline { font-size:16px; }
+      .offer-urgency-body { font-size:13px; }
+      .offer-cta    {
+        width:100%; padding:18px 16px;
+        font-size:13px; letter-spacing:0.8px;
+        white-space:normal; line-height:1.45;
+      }
+      .offer-urgency-note { font-size:12px; }
+
+      /* ── FAQ ── */
+      .faq-section  { padding:36px 16px; }
+      .faq-q        { font-size:15px; }
+      .faq-a        { font-size:14px; }
+    }
+
+    /* Very small phones: ≤380px */
+    @media(max-width:380px){
+      .nav-logo { letter-spacing:1.5px; }
+      .nav-tag  { display:none; }
+      .optin-headline { font-size:22px; }
+      .rh-level { font-size:13px; letter-spacing:1.5px; }
+      .boss-preview { min-width:calc(33% - 6px); }
+    }
+
+    /* ─── PRINT / DOWNLOAD ───────────────────────── */
+    @media print {
+      /* ── Hide everything except result page ── */
+      .nav, #screen-optin, #screen-intro, #screen-battle,
+      #screen-boss-complete, #screen-analysis, .hit-overlay,
+      .offer-section, .faq-section, .footer,
+      .email-notice, .download-btn-wrap { display:none !important; }
+      #screen-result { display:block !important; }
+
+      /* ── Page & body ── */
+      @page { margin:0; size:A4; }
+      body {
+        background:#ffffff !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+        /* NOTE: no color:#000 here — hero text must stay white/gold */
+      }
+
+      /* ═══════════════════════════════════════════
+         RESULT HERO — dark green, gold + white text
+      ═══════════════════════════════════════════ */
+      .result-hero {
+        background: linear-gradient(155deg, #0f3d0f 0%, #1a5c1a 40%, #0c2e0c 75%, #061506 100%) !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+        padding:56px 48px 44px !important;
+      }
+      /* Every text element in the hero gets an explicit light colour */
+      .rh-tag              { color:#D4AF37 !important; opacity:1 !important; }
+      .rh-greeting         { color:rgba(255,255,255,0.78) !important; }
+      .rh-score            { color:#D4AF37 !important; }
+      .rh-score-denom      { color:rgba(255,255,255,0.42) !important; }
+      .rh-level            { color:#D4AF37 !important; text-shadow:none !important; }
+      .rh-title            { color:rgba(255,255,255,0.90) !important; }
+      /* Stats strip inside hero */
+      .result-stats        {
+        border-color:rgba(212,175,55,0.44) !important;
+        background:rgba(255,255,255,0.08) !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      }
+      .rs-num              { color:#D4AF37 !important; }
+      .rs-label            { color:rgba(255,255,255,0.52) !important; }
+      .rs-item + .rs-item  { border-left-color:rgba(212,175,55,0.24) !important; }
+
+      /* ═══════════════════════════════════════════
+         RESULT BODY — clean white with forest-green type
+      ═══════════════════════════════════════════ */
+      .result-body         { padding:32px 40px; background:#ffffff !important; }
+      .rs-eyebrow          { color:#a78138 !important; }
+      .rs-heading          { color:#032d02 !important; }
+      .rs-body             { color:#2d2d2d !important; }
+      .result-section      { margin-bottom:36px; }
+
+      /* Boss breakdown rows */
+      .bb-row {
+        background:#f2f9f0 !important; border-color:#c8e6c2 !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      }
+      .bb-icon             { background:#e0f0dc !important; color:#054b03 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+      .bb-name             { color:#032d02 !important; }
+      .bb-num              { color:#054b03 !important; }
+
+      /* Advice block */
+      .advice-block {
+        background:#f2f9f0 !important; border-color:#c8e6c2 !important;
+        border-top-color:#a78138 !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      }
+      .ab-eyebrow          { color:#a78138 !important; }
+      .ab-headline         { color:#032d02 !important; }
+      .ab-sub              { color:#2d2d2d !important; }
+      .ab-tier             {
+        background:#e0f0dc !important; border-color:#9ec49a !important;
+        color:#032d02 !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      }
+
+      /* Roadmap */
+      .roadmap-track {
+        background:linear-gradient(to bottom, #a78138, #d4b870, #dde8dd) !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      }
+      .rm-node {
+        background:#054b03 !important; border-color:#028f02 !important;
+        color:#ffffff !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      }
+      .rm-content {
+        background:#fafff8 !important;
+        border-color:#c8e6c2 !important; border-left-color:#a78138 !important;
+        -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      }
+      .rm-step-label       { color:#a78138 !important; }
+      .rm-step-title       { color:#032d02 !important; }
+      .rm-step-body        { color:#333333 !important; }
+      .rm-step-action      { color:#054b03 !important; }
+    }
+  </style>
+</head>
+<body>
+<div id="quiz-root">
+
+<!-- ─── NAV ──────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-logo">Win The Money Game</div>
+  <div class="nav-tag">Financial Blueprint Challenge</div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 1: OPT-IN
+═══════════════════════════════════════════ -->
+<div id="screen-optin" class="screen active">
+  <div class="optin-wrap" style="flex-wrap:wrap;padding-top:16px">
+
+    <div class="optin-left" style="max-width:460px">
+      <div class="optin-badge">Free &middot; 3 Challenges &middot; 6 Scenarios</div>
+      <p class="optin-source">Built after studying 100+ millionaire mindsets</p>
+      <h1 class="optin-headline">
+        We Studied<br>100+ Millionaires.<br><em>Are You One of Them?</em>
+      </h1>
+      <p class="optin-desc">
+        6 real-world scenarios. The exact decisions that made them rich and kept everyone else stuck. Find out which side of the line your mind is on.
+      </p>
+      <div class="optin-stats">
+        <div class="optin-stat"><div class="os-num">3</div><div class="os-label">Challenges</div></div>
+        <div class="optin-stat"><div class="os-num">6</div><div class="os-label">Scenarios</div></div>
+        <div class="optin-stat"><div class="os-num">&lt;3</div><div class="os-label">Minutes</div></div>
+      </div>
+    </div>
+
+    <div class="optin-right">
+      <div class="optin-card">
+        <div class="optin-card-title">Start Your Challenge</div>
+        <form onsubmit="handleOptIn(event)">
+          <div class="form-row">
+            <label class="form-label" for="g-name">First Name</label>
+            <input class="form-input" type="text" id="g-name" placeholder="Your first name" required autocomplete="given-name">
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="g-email">Email Address</label>
+            <input class="form-input" type="email" id="g-email" placeholder="Your best email" required autocomplete="email">
+          </div>
+          <div class="form-row">
+            <span class="tier-label-row">Your Current Investable Capital</span>
+            <p style="font-size:12px;color:var(--t3);margin:4px 0 10px;line-height:1.5;">This personalises your roadmap based on where you are right now.</p>
+            <div class="tier-pills">
+              <button type="button" class="tier-pill" data-tier="starter" onclick="selectTier('starter')">
+                <div class="tier-pill-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+                <div class="tier-pill-lbl">Under<br>$1,000</div>
+                <div class="tier-pill-sub">Building</div>
+              </button>
+              <button type="button" class="tier-pill" data-tier="builder" onclick="selectTier('builder')">
+                <div class="tier-pill-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                <div class="tier-pill-lbl">$1K<br>to $10K</div>
+                <div class="tier-pill-sub">Growing</div>
+              </button>
+              <button type="button" class="tier-pill" data-tier="scaler" onclick="selectTier('scaler')">
+                <div class="tier-pill-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <div class="tier-pill-lbl">$10K<br>&amp; above</div>
+                <div class="tier-pill-sub">Scaling</div>
+              </button>
+            </div>
+            <input type="hidden" id="g-tier" value="">
+          </div>
+          <button type="submit" class="btn btn-gold optin-submit">Start My Challenge &rarr;</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 2: INTRO
+═══════════════════════════════════════════ -->
+<div id="screen-intro" class="screen">
+  <div class="intro-inner" style="padding-top:16px">
+    <div class="intro-greeting">Welcome, <strong id="intro-name">there</strong>. Your challenge is ready.</div>
+    <div class="intro-badge">Financial Blueprint Challenge</div>
+    <div class="intro-title">
+      <span class="line1">Win The</span>
+      <span class="line2">Money Game</span>
+    </div>
+    <p class="intro-sub">
+      Three financial challenges stand between you and the Millionaire Mind. Each one exposes a core money pattern that either builds wealth, or quietly blocks it. Can you conquer all three?
+    </p>
+
+    <div class="boss-strip">
+      <div class="boss-preview">
+        <div class="bp-lvl">Challenge 1</div>
+        <div class="bp-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="bp-name">The Poverty Trap</div>
+        <div class="bp-theme">Abundance Mindset</div>
+      </div>
+      <div class="boss-preview">
+        <div class="bp-lvl">Challenge 2</div>
+        <div class="bp-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <div class="bp-name">The Comfort Keeper</div>
+        <div class="bp-theme">Financial Discipline</div>
+      </div>
+      <div class="boss-preview boss-final">
+        <div class="bp-lvl">Final Challenge</div>
+        <div class="bp-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="bp-name">The Inner Blueprint</div>
+        <div class="bp-theme">Inner Programming</div>
+      </div>
+    </div>
+
+    <div class="intro-rules">
+      <div class="rule-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <strong>2 rounds</strong> per challenge
+      </div>
+      <div class="rule-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <strong>Adaptive...</strong> your answers shape the challenge
+      </div>
+      <div class="rule-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <strong>Under 3 minutes</strong>
+      </div>
+    </div>
+
+    <div class="intro-cta-wrap">
+      <button class="btn btn-gold intro-btn" onclick="startGame()">Begin Challenge &rarr;</button>
+      <div class="intro-meta">Complimentary &middot; Financial Blueprint Assessment</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 3: BATTLE
+═══════════════════════════════════════════ -->
+<div id="screen-battle" class="screen">
+
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-section">
+      <div class="hud-label">Stage</div>
+      <div class="hud-val" id="hud-boss">1 / 3</div>
+    </div>
+    <div class="hud-boss-track">
+      <div class="hud-boss-name" id="hud-boss-name">THE POVERTY TRAP</div>
+      <div class="move-pips" id="move-pips">
+        <div class="move-pip current" id="mpip-0"></div>
+        <div class="move-pip" id="mpip-1"></div>
+      </div>
+    </div>
+    <div class="hud-section" style="align-items:flex-end">
+      <div class="hud-label">Score</div>
+      <div class="hud-val gold" id="hud-score">0</div>
+    </div>
+  </div>
+
+  <!-- Battle content area -->
+  <div class="battle-area">
+
+    <!-- Boss header -->
+    <div class="boss-header" id="boss-header">
+      <div class="bh-icon" id="bh-icon"></div>
+      <div class="bh-info">
+        <div class="bh-level" id="bh-level">CHALLENGE 1 OF 3</div>
+        <div class="bh-name" id="bh-name">The Poverty Trap</div>
+        <div class="bh-subtitle" id="bh-subtitle">"Every opportunity you avoid compounds silently."</div>
+      </div>
+    </div>
+
+    <!-- Question -->
+    <div class="question-card">
+      <div class="q-tag" id="q-tag">Round 1 of 2</div>
+      <div class="q-personal" id="q-personal" style="display:none"></div>
+      <div class="q-text" id="q-text"></div>
+    </div>
+
+    <!-- Choices -->
+    <div class="choices-wrap" id="choices-wrap"></div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     HIT OVERLAY (fixed layer — dismissible)
+═══════════════════════════════════════════ -->
+<div class="hit-overlay" id="hit-overlay">
+  <div class="hit-card">
+    <div class="hit-badge" id="hit-badge">Wealth Mindset</div>
+    <div class="hit-icon" id="hit-icon"></div>
+    <div class="hit-verdict" id="hit-verdict"></div>
+    <div class="hit-explain" id="hit-explain"></div>
+    <button class="hit-next" id="hit-next-btn" onclick="dismissHitOverlay()">
+      Got it, Next Round
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 4: BOSS COMPLETE
+═══════════════════════════════════════════ -->
+<div id="screen-boss-complete" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;flex:1;padding:80px 24px">
+    <div class="bc-card">
+      <div class="bc-icon" id="bc-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="bc-eyebrow" id="bc-eyebrow">Challenge 1 Complete</div>
+      <h2 class="bc-title" id="bc-title">The Poverty Trap</h2>
+      <p class="bc-insight" id="bc-insight"></p>
+      <div class="bc-score">
+        <span>Your score this challenge:</span>
+        <span class="bc-score-num" id="bc-score-num">7</span>
+        <span style="font-size:14px;color:var(--t3)">/6</span>
+      </div>
+      <button class="btn btn-gold" onclick="advanceBoss()">
+        Begin Challenge <span id="bc-next-num">2</span> &rarr;
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 5: ANALYSIS
+═══════════════════════════════════════════ -->
+<div id="screen-analysis" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;flex:1;padding:80px 24px">
+    <div class="an-card">
+      <div class="an-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h2 class="an-title">Decoding Your Blueprint</h2>
+      <p class="an-sub" id="an-sub">Your responses are being analysed to build your personalised financial profile.</p>
+      <div class="an-prog-track"><div class="an-prog-fill" id="an-prog-fill"></div></div>
+      <div class="an-steps">
+        <div class="an-step active" id="an-s0">
+          <div class="an-step-left"><div class="an-step-dot"></div><span>Mapping your financial belief patterns</span></div>
+          <span class="an-step-state">Analysing</span>
+        </div>
+        <div class="an-step" id="an-s1">
+          <div class="an-step-left"><div class="an-step-dot"></div><span>Scoring your challenge responses</span></div>
+          <span class="an-step-state">Pending</span>
+        </div>
+        <div class="an-step" id="an-s2">
+          <div class="an-step-left"><div class="an-step-dot"></div><span>Generating your personalised wealth roadmap</span></div>
+          <span class="an-step-state">Pending</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 6: RESULT
+═══════════════════════════════════════════ -->
+<div id="screen-result" class="screen">
+
+  <section class="result-hero">
+    <div class="rh-tag">Financial Blueprint Score</div>
+    <div class="rh-greeting" id="rh-greeting">Your result is ready.</div>
+    <div class="rh-score" id="rh-score">14<span class="rh-score-denom">/18</span></div>
+    <div class="rh-level" id="rh-level">Wealth Architect</div>
+    <div class="rh-title" id="rh-title">You think like the wealthy.</div>
+    <div class="result-stats">
+      <div class="rs-item"><div class="rs-num">3</div><div class="rs-label">Challenges Done</div></div>
+      <div class="rs-item"><div class="rs-num" id="rs-score">61</div><div class="rs-label">Score / 100</div></div>
+      <div class="rs-item"><div class="rs-num" id="rs-pct" style="font-size:16px;letter-spacing:0.5px;">Advanced</div><div class="rs-label">Financial Stage</div></div>
+    </div>
+    <div class="download-btn-wrap">
+      <button class="download-btn" onclick="printResultOnly()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download My Results
+      </button>
+    </div>
+  </section>
+
+  <div class="result-body">
+
+    <div class="result-section">
+      <div class="rs-eyebrow">Your Result</div>
+      <h2 class="rs-heading" id="res-verdict-title"></h2>
+      <p class="rs-body" id="res-verdict-body"></p>
+    </div>
+
+    <div class="result-section">
+      <div class="rs-eyebrow">Challenge Breakdown</div>
+      <h2 class="rs-heading">Where your thinking aligned with wealth, and where the patterns still have the edge.</h2>
+      <div class="boss-breakdown" id="boss-breakdown"></div>
+    </div>
+
+    <div class="result-section">
+      <div class="rs-eyebrow">What This Means For You</div>
+      <h2 class="rs-heading" id="res-means-title"></h2>
+      <p class="rs-body" id="res-means-body"></p>
+    </div>
+
+    <div class="advice-block" id="advice-block">
+      <div class="ab-eyebrow">Your Personalised Wealth Roadmap</div>
+      <div class="ab-tier" id="ab-tier"></div>
+      <h2 class="ab-headline" id="ab-headline"></h2>
+      <p class="ab-sub" id="ab-sub"></p>
+      <div class="roadmap" id="ab-roadmap">
+        <div class="roadmap-track"></div>
+      </div>
+    </div>
+
+    <!-- Email watch-out notice -->
+    <div class="email-notice">
+      <div class="email-notice-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div class="email-notice-text">
+        <strong>Watch out for our next email.</strong> We will be sharing powerful tools and insights to help you gear up for your next move, curated specifically for where you are right now.
+      </div>
+    </div>
+
+  </div>
+
+  <section class="offer-section">
+    <div class="offer-inner">
+      <div class="offer-eyebrow">Ready to Go Deeper</div>
+      <h2 class="offer-title">Discover How to Improve Your Financial Blueprint</h2>
+      <p class="offer-sub">Your score reveals exactly where your money mindset stands. Now find out how to permanently upgrade it.</p>
+      <div class="offer-box">
+        <div class="offer-brand">Millionaire Mind Online</div>
+        <div class="offer-brand-sub">The proven method for reprogramming your financial blueprint</div>
+        <div class="offer-urgency-headline">We Are Running a Special Offer Right Now</div>
+        <div class="offer-urgency-body">
+          Discover how to upgrade the beliefs driving your financial results... check it out before it runs out.
+        </div>
+        <button class="btn btn-gold offer-cta" onclick="window.open('https://www.millionairemind.online/','_blank')">Discover How to Improve My Blueprint &rarr;</button>
+        <div class="offer-urgency-note">Limited time offer &middot; millionairemind.online</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="faq-section">
+    <div class="faq-eyebrow">Frequently Asked Questions</div>
+    <div class="faq-item">
+      <div class="faq-q">What do the three challenges represent?</div>
+      <div class="faq-a">The Poverty Trap, The Comfort Keeper, and The Inner Blueprint are three core money patterns that consistently prevent people from building lasting wealth, regardless of income. Each challenge is designed to surface whether these patterns are active in your own financial decision-making.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How accurate is this as a financial assessment?</div>
+      <div class="faq-a">Each scenario is designed to reveal behavioural patterns that research consistently links to financial outcomes. It is not a diagnostic tool, but as a self-awareness instrument it is highly effective at surfacing the beliefs that drive financial results.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why are the answer options shuffled each time?</div>
+      <div class="faq-a">The challenge randomises the order of answer options to ensure your responses reflect your genuine instincts rather than pattern recognition. Each scenario has three distinct approaches, any of which could appear in any position.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+/* ══════════════════════════════════════════════
+   BOSS DATA — 3 bosses, each has:
+     q1  — universal opening question
+     q2  — array[3]: adaptive Q based on q1 original-index
+     q3  — universal capstone question
+   scores[i]: 3=wealth mindset · 2=building · 1=scarcity
+   NOTE: answers are shuffled on render, so score[0] is NOT
+   always the "best" answer in the UI.
+══════════════════════════════════════════════ */
+const BOSSES = [
+  {
+    id: 'scarcity',
+    bossNum: 1,
+    name: 'The Poverty Trap',
+    subtitle: '"Every opportunity you avoid compounds silently."',
+    icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    insight: 'Your responses reveal how your foundational beliefs about opportunity and risk are shaping your financial decisions. The poverty trap is not about income, it is about the mindset that keeps wealth at arm\'s length regardless of how much you earn.',
+
+    q1: {
+      text: 'A credible investment opportunity presents itself. The risk-reward analysis is solid, but it requires committing $20,000 you have available. Your instinctive response is:',
+      choices: [
+        'Analyse the numbers clearly. If the risk-reward is sound, commit with full conviction.',
+        'Request a smaller entry point first, validate before committing fully.',
+        'Pass. Protecting what I have feels more important than pursuing upside.'
+      ],
+      scores: [3, 2, 1],
+      feedback: [
+        { verdict: 'Millionaire Move, Conviction Over Fear', type: 'win',     explain: 'Millionaires evaluate risk with data, not emotion. Analysing clearly then committing is the defining difference between wealth builders and those who watch opportunities pass them by.' },
+        { verdict: 'Building Mindset, Validation First',   type: 'neutral',  explain: 'Wanting to validate before committing is sensible, but it can become a pattern of indefinitely delaying action. Ask yourself: does this hesitation serve your financial goals, or protect your comfort zone?' },
+        { verdict: 'Scarcity Pattern Detected',            type: 'loss',     explain: 'Protecting what you have feels safe, but it has a compounding cost. Every opportunity declined for fear-based reasons silently accumulates into years of missed financial progress. This is called "playing not to lose."' }
+      ]
+    },
+
+    q2: [
+      {
+        // Q2a — shown if Q1 original index = 0 (abundance thinker)
+        text: 'Your business revenue drops 35% in a single quarter. Stress is high. What is your primary strategic focus?',
+        choices: [
+          'Face the numbers immediately. Find the root cause and make one decisive forward move.',
+          'Cut costs and protect cash flow while waiting for conditions to stabilise.',
+          'Avoid looking at the numbers in detail until the pressure eases.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, Clarity Over Avoidance', type: 'win',     explain: 'Millionaires move toward financial problems with clarity, not away from them in fear. Facing the numbers immediately, even when uncomfortable, is the defining habit of high-net-worth decision makers.' },
+          { verdict: 'Building Mindset, Cautious Response',      type: 'neutral',  explain: 'Protecting cash flow is prudent. But waiting for conditions to stabilise can become avoidance. The real question: are you also actively creating new revenue channels while cutting costs?' },
+          { verdict: 'Scarcity Pattern Detected',                type: 'loss',     explain: 'Avoidance always costs more than clarity. The less you examine the numbers, the less control you have. This pattern keeps most people in cycles of financial stress regardless of their income level.' }
+        ]
+      },
+      {
+        // Q2b — shown if Q1 original index = 1 (cautious thinker)
+        text: 'A world-class business mentor charges $8,000 for a programme that could fundamentally shift your earning trajectory. You have the funds. Do you:',
+        choices: [
+          'Invest without hesitation. The right mentor compresses years of trial and error.',
+          'Research testimonials extensively before deciding, due diligence is essential.',
+          'Decline. $8,000 is too significant to risk on something that is not guaranteed.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, Investment Mindset',   type: 'win',     explain: 'The wealthiest people invest heavily in mentorship, not because they have money to spare, but because the right guidance is the single highest-ROI investment available.' },
+          { verdict: 'Building Mindset, Research Before Risk', type: 'neutral',  explain: 'Due diligence is sensible. The next evolution: notice whether extensive research is genuine evaluation, or a delay mechanism that protects the status quo.' },
+          { verdict: 'Scarcity Pattern Detected',              type: 'loss',     explain: '"Can\'t risk it" is the scarcity blueprint speaking, not the bank balance. The real question: what is the cost of NOT investing in the right guidance? That number is always larger.' }
+        ]
+      },
+      {
+        // Q2c — shown if Q1 original index = 2 (scarcity thinker)
+        text: 'You are offered a 20% salary increase at a new company, but it requires leaving the security of your current role. What do you do?',
+        choices: [
+          'Accept. Growth consistently requires stepping into the unknown, that is how wealth is built.',
+          'Use the offer as leverage to negotiate a raise with your current employer first.',
+          'Stay. The security and familiarity of your current role outweigh the potential gain.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, Growth Over Security', type: 'win',     explain: 'Every wealth-building leap requires tolerating temporary discomfort. Accepting growth opportunities even when they feel risky is a foundational habit of high-earners across every field.' },
+          { verdict: 'Building Mindset, Smart Negotiation',    type: 'neutral',  explain: 'Using competing offers as leverage is smart strategy. Key question: would you actually leave if they declined, or is this a way to feel comfortable staying exactly where you are?' },
+          { verdict: 'Scarcity Pattern Detected',              type: 'loss',     explain: 'Prioritising security over growth is the most common wealth-limiting pattern. Real financial security only comes from actively building wealth, not from protecting a fixed position.' }
+        ]
+      }
+    ],
+
+    q3: {
+      text: 'A core wealth principle: "Your outer world is a reflection of your inner world." When you look honestly at your current financial results, your assessment is:',
+      choices: [
+        'My results directly reflect my beliefs, and I am actively identifying and changing the ones that limit me.',
+        'Mindset plays a role, but external circumstances are also significantly responsible for where I am.',
+        'My financial situation is largely determined by factors outside my control.'
+      ],
+      scores: [3, 2, 1],
+      feedback: [
+        { verdict: 'Millionaire Move, Full Ownership',    type: 'win',     explain: 'Taking complete ownership of your financial results is the first and most powerful step. You can only change what you own. Every wealthy person builds on this foundation.' },
+        { verdict: 'Building Mindset, Partial Ownership', type: 'neutral',  explain: 'Circumstances do play a role. But the distinction between wealthy and not-wealthy thinking is whether you see yourself as primarily responding to circumstances, or primarily creating them.' },
+        { verdict: 'Scarcity Pattern Detected',           type: 'loss',     explain: 'Attributing results to external factors removes your power to change them. The instant you take full ownership of your results, you regain the ability to shift them.' }
+      ]
+    }
+  },
+
+  {
+    id: 'goblin',
+    bossNum: 2,
+    name: 'The Comfort Keeper',
+    subtitle: '"Comfort today. Compounding cost tomorrow."',
+    icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>',
+    insight: 'Your responses reveal your relationship with delayed gratification and financial discipline. The Comfort Keeper wins every time you choose what feels good now over what builds wealth later. Top earners overcome it the same way: pre-deciding what to do with every dollar before emotion gets a vote.',
+
+    q1: {
+      text: 'When it comes to managing money on a month-to-month basis, which statement is most accurate for you right now?',
+      choices: [
+        'I follow a clear allocation system. Every dollar has a defined purpose before the month begins.',
+        'I manage reasonably well, but I do not follow a structured system consistently.',
+        'I am not always certain where my income goes, expenses seem to consume it regardless.'
+      ],
+      scores: [3, 2, 1],
+      feedback: [
+        { verdict: 'Millionaire Move, Systems Thinking',         type: 'win',     explain: 'Pre-deciding what to do with money before it arrives removes emotion entirely. This is how wealthy people maintain discipline regardless of income level, the system runs, not the feelings.' },
+        { verdict: 'Building Mindset, Managed but Unstructured', type: 'neutral',  explain: 'Managing well without a formal system works to a point, but it leaks. As income grows, unstructured management typically leads to lifestyle inflation rather than wealth accumulation.' },
+        { verdict: 'Scarcity Pattern Detected',                  type: 'loss',     explain: '"Money disappears" is one of the most common wealth-limiting patterns at every income level. Without deliberate allocation, income expands to fill the space available, regardless of the amount.' }
+      ]
+    },
+
+    q2: [
+      {
+        // Q2a — disciplined allocator (Q1 original index = 0)
+        text: 'An unexpected $25,000 bonus arrives. Your immediate action is:',
+        choices: [
+          'Execute my pre-set allocation: the majority invested, a defined portion for enjoyment.',
+          'Clear any outstanding debts first, then invest whatever remains.',
+          'Celebrate... you have earned it. The investment strategy can wait.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, Pre-Set Allocation', type: 'win',     explain: 'Executing a predetermined allocation immediately, before lifestyle ideas take hold, is the behaviour that separates wealth builders from income earners. The decision was already made; you simply implement it.' },
+          { verdict: 'Building Mindset, Debt First',         type: 'neutral',  explain: 'Prioritising debt clearance shows financial awareness. The additional consideration: does "investing what remains" have a pre-defined amount, or does it become whatever is left after other spending?' },
+          { verdict: 'Scarcity Pattern Detected',            type: 'loss',     explain: 'Every windfall spent on immediate reward rather than allocated to wealth-building creates a compounding deficit over time, regardless of how justified the reward feels in the moment.' }
+        ]
+      },
+      {
+        // Q2b — moderate manager (Q1 original index = 1)
+        text: 'You identify $1,500 per month being spent on lifestyle costs that do not align with your wealth goals. Your response is:',
+        choices: [
+          'Redirect that $1,500 immediately into an investment or savings vehicle.',
+          'Cut back gradually over the coming months, sustainable change takes time.',
+          'Life is for living. The $1,500 is worth the quality of life it provides.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, Immediate Redirection', type: 'win',     explain: '$1,500 per month redirected to investments over 10 years creates significant wealth. The decision to redirect immediately rather than gradually is the gap between knowing and actually building.' },
+          { verdict: 'Building Mindset, Gradual Change',        type: 'neutral',  explain: 'Gradual change is better than none. The question: does "gradually" have a defined timeline with milestones, or does it become indefinite permission to maintain the status quo?' },
+          { verdict: 'Scarcity Pattern Detected',               type: 'loss',     explain: 'Lifestyle protection is the most expensive financial habit most people carry. The money will always feel justified in the moment, which is exactly why a system, decided in advance, removes this decision entirely.' }
+        ]
+      },
+      {
+        // Q2c — unstructured (Q1 original index = 2)
+        text: 'The most impactful step you could take to improve your financial results this month is:',
+        choices: [
+          'Implement a structured allocation system, give every dollar a specific role before it arrives.',
+          'Open a dedicated savings account and set up an automatic transfer from each pay.',
+          'Focus on earning more. Higher income makes financial management much easier.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, Build the System',  type: 'win',     explain: 'A structured allocation system transforms money from a source of stress to a predictable wealth-building tool. Giving every dollar a role is the most practical financial discipline available.' },
+          { verdict: 'Building Mindset, Automation First',  type: 'neutral',  explain: 'Automating savings is an excellent first step. The limitation is that a single account does not distinguish between wealth-building, enjoyment, and emergency funds, structure multiplies the impact significantly.' },
+          { verdict: 'Scarcity Pattern Detected',           type: 'loss',     explain: '"More income will fix it" is the most common money myth. Most people who increase income simply increase their lifestyle in proportion. The pattern, not the amount, determines the outcome.' }
+        ]
+      }
+    ],
+
+    q3: {
+      text: 'Delayed gratification is one of the most studied predictors of long-term wealth. In your financial decisions, you most consistently:',
+      choices: [
+        'Choose long-term financial gain over short-term comfort, even when the short-term choice is tempting.',
+        'Balance present enjoyment with future planning. Life is for living, not only accumulating.',
+        'Reward yourself now with the intention of being more disciplined in the future.'
+      ],
+      scores: [3, 2, 1],
+      feedback: [
+        { verdict: 'Millionaire Move, Long-Term Thinking',  type: 'win',     explain: 'Consistent prioritisation of long-term outcomes over short-term comfort is one of the most reliable differentiators between wealth accumulators and income earners. This habit compounds dramatically.' },
+        { verdict: 'Building Mindset, Balanced Approach',   type: 'neutral',  explain: 'Balance is healthy. The key is whether "balance" is a deliberate allocation, such as 10% play and 90% building, or an emotional justification for spending that feels reasonable in the moment.' },
+        { verdict: 'Scarcity Pattern Detected',             type: 'loss',     explain: '"I\'ll be more disciplined in the future" is one of the most expensive promises people make to themselves. The future version of you will face the same temptations. Build the system today.' }
+      ]
+    }
+  },
+
+  {
+    id: 'blueprint',
+    bossNum: 3,
+    name: 'The Inner Blueprint',
+    subtitle: '"Your hidden operating system for money."',
+    icon: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+    insight: 'Your responses reveal the deepest layer of your financial operating system, the unconscious beliefs about money, wealth, and your own worthiness to receive it. Every strategy you apply runs through this filter first. Change the filter, and everything else becomes more effective.',
+
+    q1: {
+      text: 'Your "financial blueprint" is your unconscious belief system about money and wealth. Which statement feels most fundamentally true when you reflect honestly?',
+      choices: [
+        'I deserve to be wealthy and I am genuinely capable of creating significant financial abundance.',
+        'I would like to be wealthy, but I am not fully certain I have what it takes to achieve it.',
+        'Truly wealthy people had advantages, connections, or starting points that were not available to me.'
+      ],
+      scores: [3, 2, 1],
+      feedback: [
+        { verdict: 'Millionaire Move, Abundance Blueprint', type: 'win',     explain: 'Believing you deserve wealth and are capable of creating it is the prerequisite. Without this foundation, every wealth-building strategy will be unconsciously self-sabotaged to stay consistent with "I don\'t deserve this."' },
+        { verdict: 'Building Mindset, Partial Belief',      type: 'neutral',  explain: '"Not fully certain" becomes self-fulfilling. Your actions will only go as far as your deepest belief about what is possible for you, regardless of the strategy you follow.' },
+        { verdict: 'Scarcity Pattern Detected',             type: 'loss',     explain: 'This belief is the core blueprint pattern that keeps wealth at arm\'s length for millions of people. It feels accurate and fair... and it is the single most expensive belief you can carry.' }
+      ]
+    },
+
+    q2: [
+      {
+        // Q2a — empowered (Q1 original index = 0)
+        text: 'You set a bold 12-month financial goal. Three months in, progress is significantly slower than planned. You:',
+        choices: [
+          'Review the strategy honestly, identify what needs to change, and recommit with adjusted tactics and full conviction.',
+          'Stay the course, meaningful progress takes time and patience is part of the process.',
+          'Quietly adjust the goal to something more achievable given the pace of progress so far.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, Adapt and Recommit', type: 'win',     explain: 'Honest strategic review followed by recommitment, without reducing the goal, is the hallmark of wealthy achievers. The goal stays fixed; the strategy adapts. This is the precise difference that determines outcomes.' },
+          { verdict: 'Building Mindset, Patience',           type: 'neutral',  explain: 'Patience is a virtue. The critical distinction: are you staying the course because the strategy is sound, or because changing feels harder than waiting? Honest self-assessment on this is worth everything.' },
+          { verdict: 'Scarcity Pattern Detected',            type: 'loss',     explain: 'Reducing the goal feels pragmatic. But it reinforces the blueprint pattern that big financial outcomes are not really for you. Every time you lower the target, that inner narrative gets stronger.' }
+        ]
+      },
+      {
+        // Q2b — uncertain (Q1 original index = 1)
+        text: 'If you genuinely believed, without doubt, that you would become significantly wealthy, what would you do differently starting tomorrow?',
+        choices: [
+          'Make moves I have been delaying. The hesitation has been the only real obstacle, not the circumstances.',
+          'Invest more aggressively and pursue bigger opportunities. I would feel safer taking bolder steps.',
+          'Probably not much differently. I already act on what I believe is right given my situation.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, The Belief Is the Key', type: 'win',     explain: 'If the only obstacle is internal permission, and it is for the vast majority of people, then your wealth-building capacity is already in place. The belief is the final unlock.' },
+          { verdict: 'Building Mindset, Bigger Steps',          type: 'neutral',  explain: 'Investing more and taking bigger steps are real changes worth making. The deeper question: what is stopping you from doing that today? The answer is your blueprint.' },
+          { verdict: 'Scarcity Pattern Detected',               type: 'loss',     explain: '"I already do what is right" is the most limiting response. If your current actions were sufficient, your current results would be different. The belief that nothing more is available is the blueprint speaking.' }
+        ]
+      },
+      {
+        // Q2c — limiting beliefs (Q1 original index = 2)
+        text: 'The most accurate source of your current financial results is:',
+        choices: [
+          'My beliefs, decisions, and habitual behaviours, which I have full capacity and responsibility to change.',
+          'A combination of mindset and circumstance. Both internal and external factors are genuinely relevant.',
+          'Largely the economic environment, available opportunities, and the starting point I was given.'
+        ],
+        scores: [3, 2, 1],
+        feedback: [
+          { verdict: 'Millionaire Move, Full Responsibility',   type: 'win',     explain: 'Full ownership of your financial results, even the unfair ones, is not a denial of circumstance. It is the only position from which change is possible.' },
+          { verdict: 'Building Mindset, Shared Responsibility', type: 'neutral',  explain: 'Both factors genuinely exist. The practical question: which is within your control to change? Your beliefs, decisions, and habits are entirely within your control. Focusing there is the highest-leverage choice.' },
+          { verdict: 'Scarcity Pattern Detected',               type: 'loss',     explain: 'As long as your results are caused by outside factors, you are permanently relieved of the responsibility, and the power, to change them. External attribution feels accurate... and it is the most limiting stance available.' }
+        ]
+      }
+    ],
+
+    q3: {
+      text: 'A foundational wealth principle: "If you want to change the fruits, you must change the roots." In terms of your financial future, what needs to change most?',
+      choices: [
+        'My internal programming, the inherited beliefs about money that still run silently and shape every decision.',
+        'My financial knowledge and strategy, better information and clearer plans produce better outcomes.',
+        'My income level, once I earn significantly more, all other financial challenges become manageable.'
+      ],
+      scores: [3, 2, 1],
+      feedback: [
+        { verdict: 'Millionaire Move, Root-Level Thinking', type: 'win',     explain: 'Identifying the programming as the primary change required is the most sophisticated financial self-assessment. Strategy and income both matter, but without reprogramming the blueprint, both will be unconsciously constrained.' },
+        { verdict: 'Building Mindset, Strategy Focus',      type: 'neutral',  explain: 'Better knowledge and strategy are genuinely important. The deeper insight: even excellent strategy will be unconsciously undermined if the blueprint is set against wealth. The root comes first.' },
+        { verdict: 'Scarcity Pattern Detected',             type: 'loss',     explain: '"More income will fix it" is the fruit-level answer to a root-level problem. Statistically, people who significantly increase income without changing their blueprint return to their previous financial state within a few years.' }
+      ]
+    }
+  }
+];
+
+/* ══════════════════════════════════════════════
+   ADVICE PLANS
+══════════════════════════════════════════════ */
+const ADVICE_PLANS = {
+  starter: {
+    tierLabel: 'Building Foundation, Under $1,000',
+    low: {
+      headline: 'Your First Priority: Stop the Leak. Build the Base.',
+      sub: 'Before investing, the foundation must be solid. Your blueprint reveals patterns worth addressing, and your capital position gives you a clear starting point.',
+      cards: [
+        { step:'Step 01', title:'Implement a Money Allocation System', body:'Divide every dollar of income across dedicated accounts: Necessities, Financial Freedom, Education, Long-Term Savings, Play, and Give. Start with any percentage, the habit matters more than the amount.' },
+        { step:'Step 02', title:'Build a $1,000 Foundation Fund', body:'Before investing in anything, create a liquid buffer of $1,000. This prevents debt from derailing your wealth-building when unexpected costs arise. Automate $50 to $100 per week.' },
+        { step:'Step 03', title:'Audit One Limiting Belief', body:'Identify one specific belief about money you received from your upbringing. Challenge it with three pieces of counter-evidence from your own life. Write the belief and the counter-evidence.' },
+        { step:'Step 04', title:'Invest in Financial Education', body:'At your stage, the highest ROI investment is financial education. A quality book or course on personal finance fundamentals will return its cost many times over. Choose one resource and start this week.' }
+      ]
+    },
+    high: {
+      headline: 'You Think Like a Wealth Builder. Now Build the Base to Match.',
+      sub: 'Your mindset score is strong. The primary task now is building the capital foundation that matches your thinking.',
+      cards: [
+        { step:'Step 01', title:'Lock In a 20% Savings Rate', body:'Your mindset supports delayed gratification. Channel it into a non-negotiable 20% allocation from every income source. Use automation to remove the decision entirely.' },
+        { step:'Step 02', title:'Open a Dedicated Investment Account', body:'Even small, consistent amounts, $50 to $100 per month, build the habit and the compounding foundation. Select a low-cost index fund appropriate for your timeline.' },
+        { step:'Step 03', title:'Set a 12-Month Capital Target', body:'Set a specific milestone: "$5,000 invested within 12 months." Specificity transforms intention into momentum. Track it weekly.' },
+        { step:'Step 04', title:'Discover the Millionaire Mind Method', body:'Your mindset is ready. Find out how to accelerate from building base to building wealth at millionairemind.online.' }
+      ]
+    }
+  },
+  builder: {
+    tierLabel: 'Growing Capital, $1,000 to $10,000',
+    low: {
+      headline: 'You Have Seed Capital. Your Blueprint Needs to Match It.',
+      sub: 'With $1K to $10K available to deploy, the limiting factor is not capital, it is the mindset patterns your challenge revealed. Address those, and this capital becomes significantly more productive.',
+      cards: [
+        { step:'Step 01', title:'Install the 48-Hour Rule', body:'Your responses reveal patterns that can erode capital through impulsive decisions. Implement a rule: no financial decisions over $500 without a 48-hour reflection period. Implement starting today.' },
+        { step:'Step 02', title:'Deploy Capital Into a Low-Cost Index Fund', body:'$1K to $10K in a diversified, low-cost index fund is a superior starting point to most active strategies at this stage. Begin here and build the habit of regular contributions.' },
+        { step:'Step 03', title:'Discover How to Address the Root Constraint', body:'No strategy consistently overcomes a blueprint set against wealth. Visit millionairemind.online to discover the method specifically designed to permanently change these patterns.' },
+        { step:'Step 04', title:'Build a 6-Month Income Buffer', body:'A buffer of 6 months of living costs eliminates the scarcity-driven decision-making that comes from operating too close to zero. Build this alongside your investment allocation.' }
+      ]
+    },
+    high: {
+      headline: 'Strong Mindset Plus Real Capital. Now Multiply Both.',
+      sub: 'You have both the wealth mindset and seed capital to begin serious wealth-building. Your next step: deploy capital intelligently and add income streams.',
+      cards: [
+        { step:'Step 01', title:'Deploy Capital With a Written Thesis', body:'Create a simple allocation: e.g., 50% index funds, 30% one growth sector you have researched, 20% cash reserve. A written thesis prevents emotional reallocation during volatility.' },
+        { step:'Step 02', title:'Identify Your First Additional Income Stream', body:'At this level, the highest-leverage move is adding a second income stream. Identify one asset or skill-based income source you can begin within 90 days.' },
+        { step:'Step 03', title:'Invest in a High-Quality Mentor', body:'The right mentorship compresses the learning curve by years. At your stage, access to someone who has already achieved what you are building toward is the highest-ROI investment available.' },
+        { step:'Step 04', title:'Set a Capital Doubling Target', body:'With both mindset and capital in place, set a specific target: double your investable capital within 12 months. Break it into monthly milestones and review weekly.' }
+      ]
+    }
+  },
+  scaler: {
+    tierLabel: 'Scaling Capital, $10,000 and Above',
+    low: {
+      headline: 'You Have Capital. Your Blueprint Is the Constraint.',
+      sub: 'At $10K+ in investable capital, the limiting factor your challenge reveals is the mindset patterns that will unconsciously cap how far that capital can grow.',
+      cards: [
+        { step:'Step 01', title:'Identify Your Blueprint Ceiling', body:'Your challenge reveals patterns that will cause capital to plateau regardless of the strategies deployed. Your most important investment is understanding which beliefs are constraining your results.' },
+        { step:'Step 02', title:'Engage a Wealth-Building Advisor', body:'At this capital level, a fee-only financial advisor will pay for themselves within months, not for strategies alone, but for accountability to execute consistently. Research and interview three advisors.' },
+        { step:'Step 03', title:'Discover the Root-Level Solution', body:'The fastest path to results that match your capital is reprogramming the blueprint patterns your challenge identified. Discover how at millionairemind.online.' },
+        { step:'Step 04', title:'Systematise Your Wealth Allocation', body:'Create a documented wealth allocation system: which percentage goes to investment, reinvestment, risk assets, and liquid reserves. Consistency in execution matters more than optimisation.' }
+      ]
+    },
+    high: {
+      headline: 'Elite Mindset Plus Significant Capital. Time to Scale.',
+      sub: 'You have both the financial blueprint and the capital to operate at a significantly higher level. Your challenge positions you to deploy with conviction and build at scale.',
+      cards: [
+        { step:'Step 01', title:'Build or Acquire a Leverage Asset', body:'The highest-impact move at your level is a leverage asset: a business system, property portfolio, or significant equity position that generates returns independently of your time.' },
+        { step:'Step 02', title:'Structure a Formal Wealth Architecture', body:'Move to a deliberate wealth architecture: entities, allocation rules, tax positioning, and inter-generational planning. A qualified wealth manager will be worth a multiple of their fee.' },
+        { step:'Step 03', title:'Expand Your Wealth Network Intentionally', body:'Your net worth is heavily influenced by the five people you spend most time with financially. Find and connect with people already building at your target level.' },
+        { step:'Step 04', title:'Set a 3-Year Net Worth Target', body:'With your profile, set a specific, ambitious 3-year net worth target. Break it into 12 quarterly milestones. Review monthly with an accountability partner who matches your ambition.' }
+      ]
+    }
+  }
+};
+
+/* ══════════════════════════════════════════════
+   VERDICTS — 3 score bands out of 18 (3 bosses × 2 questions × max 3)
+══════════════════════════════════════════════ */
+const VERDICTS = [
+  { min:14, max:18, level:'Wealth Architect',
+    title:'Your Financial Blueprint Is Set for Abundance',
+    body:'Your responses demonstrate the consistent thinking patterns of high net-worth individuals. You approach risk with data rather than fear, prioritise long-term wealth over short-term comfort, and take full ownership of your financial results. Your primary accelerant now is strategic execution, deploying capital, relationships, and systems to match the clarity of the blueprint you have built.',
+    meansTitle:'What Your Score Means in Practice',
+    meansBody:'At this level, the gap between where you are and where you want to be is almost entirely a systems and execution issue. Your beliefs will support bold moves. The most important thing you can do now is surround yourself with people already operating at your next level, that environment is the most powerful accelerant available to someone with your blueprint.' },
+  { min:9, max:13, level:'Growth Builder',
+    title:'You Have the Mindset. Now Build the System.',
+    body:'Your challenge reveals genuine awareness of wealth principles alongside foundational beliefs that are pointed in the right direction. There are moments, particularly under pressure, where older scarcity-based conditioning still influences decisions. You are capable of achieving significant financial outcomes. The gap between your current results and your potential is not a mindset problem at the core, it is a systems, consistency, and blueprint-alignment issue, and all three can be changed.',
+    meansTitle:'Your Primary Opportunity',
+    meansBody:'The patterns identified in your lower-scoring moves are the specific areas where your blueprint is still running older programming. These are not character flaws, they are conditioning. The gap between knowing and doing is not a willpower problem either, it is a blueprint problem, and it has a specific solution. With the right environment and deliberate reprogramming, these patterns can be changed permanently. Discover the approach at millionairemind.online.' },
+  { min:6, max:8, level:'Foundation Phase',
+    title:'Your Blueprint Has Significant Room for Upgrade.',
+    body:'Your responses indicate that scarcity-based programming is consistently influencing your financial decisions. This is not a criticism, it is a precise and actionable diagnosis. The majority of people at this level were conditioned from childhood with money beliefs that keep wealth at arm\'s length, regardless of income, intelligence, or effort. Blueprint reprogramming is entirely possible, at any age, in the right environment.',
+    meansTitle:'Why More Information Won\'t Solve This',
+    meansBody:'At this score range, the primary leverage is not strategy or investment knowledge, it is reprogramming the beliefs that determine how those strategies get executed. Every piece of financial advice you encounter will be filtered through a blueprint currently set against wealth. Change the filter, and everything else becomes dramatically more effective.' }
+];
+
+/* ══════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════ */
+let state = {
+  bossIndex:          0,
+  moveIndex:          0,
+  q1Choice:          -1,     // ORIGINAL index of Q1 answer (used to select Q2 branch)
+  bossScore:          0,
+  totalScore:         0,
+  bossScores:        [],
+  pipStates:         [[],[],[]],
+  // Per-boss answer detail: [q1_score, q2_branch(0/1/2), q2_score, q3_score]
+  bossAnswers:       [[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  userName:          '',
+  userEmail:         '',
+  savingsTier:       'builder',
+  answered:          false,
+  currentDisplayOrder: [],   // shuffle: displayOrder[displayIdx] = originalIdx
+  currentScores:     [],     // scores mapped to display order
+  currentFeedback:   []      // feedback mapped to display order
+};
+
+/* ── ANSWER SHUFFLER ─────────────────────────── */
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* ── HIT OVERLAY ─────────────────────────────── */
+var _hitNextFn = null;
+
+function showHitOverlay(score, fbData) {
+  const overlay = document.getElementById('hit-overlay');
+  const card    = overlay.querySelector('.hit-card');
+
+  let stripe, badgeClass, iconHtml;
+  if (score === 3) {
+    stripe     = 'var(--win)';
+    badgeClass = 'win';
+    iconHtml   = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  } else if (score === 2) {
+    stripe     = 'var(--amber)';
+    badgeClass = 'neutral';
+    iconHtml   = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+  } else {
+    stripe     = 'var(--red)';
+    badgeClass = 'loss';
+    iconHtml   = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>';
+  }
+
+  card.style.setProperty('--card-stripe', stripe);
+  const badgeEl = document.getElementById('hit-badge');
+  badgeEl.textContent = fbData.verdict;
+  badgeEl.className   = 'hit-badge ' + badgeClass;
+
+  const iconEl = document.getElementById('hit-icon');
+  iconEl.innerHTML  = iconHtml;
+  iconEl.className  = 'hit-icon ' + badgeClass;
+
+  document.getElementById('hit-verdict').textContent = fbData.verdict;
+  document.getElementById('hit-explain').textContent = fbData.explain;
+
+  // Update next button label
+  const btnNext    = document.getElementById('hit-next-btn');
+  const isLastMove  = state.moveIndex === 1;
+  const isFinalBoss = state.bossIndex === 2;
+  const arrowSvg   = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+  if (isLastMove && isFinalBoss) {
+    btnNext.innerHTML = 'View My Results ' + arrowSvg;
+  } else if (isLastMove) {
+    btnNext.innerHTML = 'Challenge Complete, Continue ' + arrowSvg;
+  } else {
+    btnNext.innerHTML = 'Got it, Next Move ' + arrowSvg;
+  }
+
+  overlay.classList.add('show');
+}
+
+function dismissHitOverlay() {
+  document.getElementById('hit-overlay').classList.remove('show');
+  if (_hitNextFn) { var fn = _hitNextFn; _hitNextFn = null; fn(); }
+}
+
+/* ── SCREEN MANAGER ──────────────────────────── */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('active'); window.scrollTo({top:0, behavior:'smooth'}); }
+}
+
+/* ── PDF PRINT — opens clean standalone window, no web-builder chrome ── */
+function printResultOnly() {
+  var resultEl = document.getElementById('screen-result');
+  if (!resultEl) return;
+  var clone = resultEl.cloneNode(true);
+
+  // Strip sections not needed in PDF
+  ['download-btn-wrap','email-notice','offer-section','faq-section','footer'].forEach(function(cls) {
+    clone.querySelectorAll('.' + cls).forEach(function(el) { el.remove(); });
+  });
+
+  // ── Standalone print CSS (no inherited page styles) ──
+  var css = [
+    '@page { margin: 0; size: A4; }',
+    '* { box-sizing: border-box; margin: 0; padding: 0; }',
+    'html, body { background: #fff; font-family: Inter, sans-serif; font-size: 15px; line-height: 1.6; color: #1a1a1a; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+
+    /* ── Return bar (screen only) ── */
+    '.pdf-return-bar { background: #032d02; padding: 13px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }',
+    '.pdf-return-bar span { color: rgba(255,255,255,0.75); font-size: 13px; }',
+    '.pdf-return-btn { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); color: #fff; padding: 8px 20px; border-radius: 4px; font-size: 13px; cursor: pointer; font-family: Inter, sans-serif; white-space: nowrap; }',
+    '.pdf-return-btn:hover { background: rgba(255,255,255,0.22); }',
+    '@media print { .pdf-return-bar { display: none !important; } }',
+
+    /* ── HERO ── */
+    '.result-hero { background: linear-gradient(155deg, #0f3d0f 0%, #1a5c1a 40%, #0c2e0c 75%, #061506 100%); padding: 52px 40px 40px; text-align: center; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.rh-tag { font-family: Inter, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #D4AF37; margin-bottom: 16px; opacity: 1; display: block; }',
+    '.rh-greeting { font-size: 15px; color: rgba(255,255,255,0.72); margin-bottom: 12px; }',
+    '.rh-score { font-family: Cinzel, serif; font-size: 80px; font-weight: 700; color: #D4AF37; line-height: 1; margin-bottom: 6px; display: block; }',
+    '.rh-score-denom { font-size: 32px; color: rgba(255,255,255,0.38); font-family: Cinzel, serif; }',
+    '.rh-level { font-family: Cinzel, serif; font-size: 24px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #D4AF37; margin: 14px 0 10px; display: block; }',
+    '.rh-title { font-family: Cinzel, serif; font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.88); line-height: 1.3; margin-bottom: 28px; display: block; }',
+
+    /* ── STATS ── */
+    '.result-stats { display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212,175,55,0.44); border-radius: 6px; overflow: hidden; max-width: 420px; margin: 0 auto 20px; background: rgba(255,255,255,0.07); -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.rs-item { flex: 1; padding: 14px 10px; text-align: center; }',
+    '.rs-item + .rs-item { border-left: 1px solid rgba(212,175,55,0.24); }',
+    '.rs-num { font-family: Cinzel, serif; font-size: 22px; font-weight: 700; color: #D4AF37; display: block; }',
+    '.rs-label { font-size: 9px; color: rgba(255,255,255,0.50); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; display: block; }',
+
+    /* ── RESULT BODY ── */
+    '.result-body { padding: 36px 44px; background: #fff; max-width: 820px; margin: 0 auto; }',
+    '.result-section { margin-bottom: 36px; }',
+    '.rs-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #a78138; margin-bottom: 10px; display: block; }',
+    '.rs-heading { font-family: Cinzel, serif; font-size: 17px; font-weight: 700; color: #032d02; margin-bottom: 12px; line-height: 1.3; }',
+    '.rs-body { font-size: 14px; color: #333; line-height: 1.75; }',
+
+    /* ── BOSS BREAKDOWN ── */
+    '.boss-breakdown { display: flex; flex-direction: column; gap: 8px; }',
+    '.bb-row { display: flex; align-items: center; gap: 14px; background: #f2f9f0; border-radius: 6px; border: 1px solid #c8e6c2; padding: 12px 16px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.bb-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; background: #e0f0dc; display: flex; align-items: center; justify-content: center; color: #054b03; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.bb-info { flex: 1; }',
+    '.bb-name { font-size: 13px; font-weight: 700; color: #032d02; margin-bottom: 5px; }',
+    '.bb-track { height: 4px; background: #ddd; border-radius: 100px; overflow: hidden; }',
+    '.bb-fill { height: 100%; border-radius: 100px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.bb-num { font-size: 13px; font-weight: 700; color: #054b03; flex-shrink: 0; min-width: 36px; text-align: right; }',
+
+    /* ── ADVICE BLOCK ── */
+    '.advice-block { background: #f2f9f0; border-radius: 8px; padding: 32px 36px; margin-bottom: 36px; border: 1px solid #c8e6c2; border-top: 3px solid #a78138; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.ab-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #a78138; margin-bottom: 10px; display: block; }',
+    '.ab-tier { display: inline-flex; align-items: center; gap: 6px; background: #e0f0dc; border: 1px solid #9ec49a; border-radius: 100px; padding: 4px 12px; font-size: 11px; font-weight: 700; color: #032d02; margin-bottom: 16px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.ab-headline { font-family: Cinzel, serif; font-size: 17px; font-weight: 700; color: #032d02; line-height: 1.3; margin-bottom: 8px; }',
+    '.ab-sub { font-size: 14px; color: #333; line-height: 1.65; margin-bottom: 28px; }',
+
+    /* ── ROADMAP ── */
+    '.roadmap { position: relative; padding-left: 52px; }',
+    '.roadmap-track { position: absolute; left: 17px; top: 18px; bottom: 18px; width: 2px; background: linear-gradient(to bottom, #a78138, #d4b870, #dde8dd); -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.rm-step { position: relative; margin-bottom: 20px; }',
+    '.rm-step:last-child { margin-bottom: 0; }',
+    '.rm-node { position: absolute; left: -52px; top: 0; width: 32px; height: 32px; border-radius: 50%; background: #054b03; border: 2px solid #028f02; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #fff; font-family: Cinzel, serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.rm-content { background: #fafff8; border-radius: 6px; border: 1px solid #c8e6c2; border-left: 3px solid #a78138; padding: 14px 18px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }',
+    '.rm-step-label { font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #a78138; margin-bottom: 5px; display: block; }',
+    '.rm-step-title { font-size: 14px; font-weight: 700; color: #032d02; margin-bottom: 5px; line-height: 1.35; }',
+    '.rm-step-body { font-size: 13px; color: #444; line-height: 1.65; margin-bottom: 8px; }',
+    '.rm-step-action { font-size: 11px; font-weight: 700; color: #054b03; text-transform: uppercase; letter-spacing: 1px; display: block; }',
+
+    /* ── HIDE unwanted ── */
+    '.download-btn-wrap, .email-notice, .offer-section, .faq-section, .footer { display: none !important; }',
+
+    /* ── PRINT ── */
+    '@media print { html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }'
+  ].join('\n');
+
+  // ── Return bar (visible on screen, hidden when printing) ──
+  var returnBar = '<div class="pdf-return-bar">' +
+    '<span>Your results are ready — save or print below</span>' +
+    '<button class="pdf-return-btn" onclick="window.close()">&#8592; Close &amp; Return to Results</button>' +
+    '</div>';
+
+  // ── Auto-print + close script ──
+  var script = '<script>' +
+    'window.addEventListener("load", function(){' +
+    '  setTimeout(function(){ window.print(); }, 700);' +
+    '});' +
+    'window.onafterprint = function(){ window.close(); };' +
+    '</script>';
+
+  var html = '<!DOCTYPE html><html lang="en"><head>' +
+    '<meta charset="UTF-8">' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+    '<title>Your Financial Blueprint Result</title>' +
+    '<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">' +
+    '<style>' + css + '</style>' +
+    '</head><body>' +
+    returnBar +
+    clone.innerHTML +
+    script +
+    '</body></html>';
+
+  var w = window.open('', '_blank');
+  if (!w) {
+    alert('Please allow pop-ups for this site, then tap Download My Results again.');
+    return;
+  }
+  w.document.open();
+  w.document.write(html);
+  w.document.close();
+}
+
+/* ── TIER SELECTOR ───────────────────────────── */
+function selectTier(tier) {
+  document.querySelectorAll('.tier-pill').forEach(p => p.classList.remove('selected'));
+  const pill = document.querySelector('[data-tier="' + tier + '"]');
+  if (pill) pill.classList.add('selected');
+  document.getElementById('g-tier').value = tier;
+}
+
+/* ── OPT-IN HANDLER ──────────────────────────── */
+function handleOptIn(e) {
+  e.preventDefault();
+  const name  = document.getElementById('g-name').value.trim();
+  const email = document.getElementById('g-email').value.trim();
+  const tier  = document.getElementById('g-tier').value;
+  if (!name || !email) return;
+  if (!tier) { alert('Please select your current investable capital range to continue.'); return; }
+
+  state.userName    = name;
+  state.userEmail   = email;
+  state.savingsTier = tier;
+
+  const greet = document.getElementById('intro-name');
+  if (greet) greet.textContent = name;
+  showScreen('screen-intro');
+}
+
+/* ── START GAME ──────────────────────────────── */
+function startGame() {
+  state.bossIndex  = 0;
+  state.moveIndex  = 0;
+  state.q1Choice   = -1;
+  state.bossScore  = 0;
+  state.totalScore = 0;
+  state.bossScores = [];
+  state.pipStates  = [[],[],[]];
+  state.bossAnswers = [[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  state.answered   = false;
+  renderBattle();
+  showScreen('screen-battle');
+}
+
+/* ── RENDER BATTLE ───────────────────────────── */
+function renderBattle() {
+  const boss = BOSSES[state.bossIndex];
+  let q;
+  if      (state.moveIndex === 0) q = boss.q1;
+  else if (state.moveIndex === 1) q = boss.q2[state.q1Choice >= 0 ? state.q1Choice : 0];
+  else                             q = boss.q3;
+
+  state.answered = false;
+
+  // Shuffle answer order for this question
+  const order = shuffleArray([0, 1, 2]);
+  state.currentDisplayOrder = order;
+  state.currentScores    = order.map(i => q.scores[i]);
+  state.currentFeedback  = order.map(i => q.feedback[i]);
+  const displayChoices   = order.map(i => q.choices[i]);
+
+  // HUD
+  document.getElementById('hud-boss').textContent      = (state.bossIndex + 1) + ' / 3';
+  document.getElementById('hud-boss-name').textContent = boss.name.toUpperCase();
+  document.getElementById('hud-score').textContent     = state.totalScore;
+
+  // Move pips
+  for (let i = 0; i < 2; i++) {
+    const pip = document.getElementById('mpip-' + i);
+    if (!pip) continue;
+    const ps = state.pipStates[state.bossIndex][i];
+    pip.className = 'move-pip';
+    if (ps === 'win')          pip.classList.add('done-correct');
+    else if (ps === 'neutral') pip.classList.add('done-neutral');
+    else if (ps === 'loss')    pip.classList.add('done-wrong');
+    else if (i === state.moveIndex) pip.classList.add('current');
+  }
+
+  // Boss header
+  document.getElementById('bh-icon').innerHTML      = boss.icon;
+  document.getElementById('bh-level').textContent   = 'CHALLENGE ' + boss.bossNum + ' OF 3';
+  document.getElementById('bh-name').textContent    = boss.name;
+  document.getElementById('bh-subtitle').textContent = boss.subtitle;
+
+  // Question tag
+  document.getElementById('q-tag').textContent = 'Round ' + (state.moveIndex + 1) + ' of 2';
+
+  // Adaptive label on Q2
+  const persEl = document.getElementById('q-personal');
+  if (state.moveIndex === 1) {
+    persEl.style.display = 'block';
+    persEl.textContent   = 'Based on your previous answer, ' + state.userName + ':';
+  } else {
+    persEl.style.display = 'none';
+  }
+
+  // Question text
+  document.getElementById('q-text').textContent = q.text;
+
+  // Choices (shuffled)
+  const wrap = document.getElementById('choices-wrap');
+  wrap.innerHTML = displayChoices.map((c, i) =>
+    '<button class="choice-btn" id="cb-' + i + '" onclick="selectMove(' + i + ')">' +
+      '<div class="choice-key">' + ['A','B','C'][i] + '</div>' +
+      '<div class="choice-text">' + c + '</div>' +
+    '</button>'
+  ).join('');
+}
+
+/* ── SELECT MOVE ─────────────────────────────── */
+function selectMove(displayIdx) {
+  if (state.answered) return;
+  state.answered = true;
+
+  // Get score and feedback from shuffled mapping
+  const score  = state.currentScores[displayIdx];
+  const fbData = state.currentFeedback[displayIdx];
+
+  // If Q1, store the ORIGINAL index for Q2 branch selection + record answer detail
+  if (state.moveIndex === 0) {
+    state.q1Choice = state.currentDisplayOrder[displayIdx];
+    state.bossAnswers[state.bossIndex][0] = score;           // Q1 score
+    state.bossAnswers[state.bossIndex][1] = state.q1Choice;  // Q2 branch (0=A, 1=B, 2=C)
+  } else if (state.moveIndex === 1) {
+    state.bossAnswers[state.bossIndex][2] = score;           // Q2 score
+  } else {
+    state.bossAnswers[state.bossIndex][3] = score;           // Q3 score
+  }
+
+  state.bossScore  += score;
+  state.totalScore += score;
+  document.getElementById('hud-score').textContent = state.totalScore;
+
+  // Track pip state
+  const pipType = score === 3 ? 'win' : score === 2 ? 'neutral' : 'loss';
+  state.pipStates[state.bossIndex][state.moveIndex] = pipType;
+
+  // Update pip immediately
+  const pip = document.getElementById('mpip-' + state.moveIndex);
+  if (pip) {
+    pip.className = 'move-pip';
+    pip.classList.add('done-' + (score === 3 ? 'correct' : score === 2 ? 'neutral' : 'wrong'));
+  }
+
+  // Style chosen button
+  document.querySelectorAll('.choice-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === displayIdx) {
+      btn.classList.add(score === 3 ? 'is-correct' : score === 2 ? 'is-neutral' : 'is-wrong');
+    } else {
+      btn.style.opacity = '0.35';
+    }
+  });
+
+  // What happens after overlay is dismissed
+  _hitNextFn = function() {
+    state.moveIndex++;
+    if (state.moveIndex > 1) {
+      state.bossScores.push(state.bossScore);
+      state.bossScore = 0;
+      if (state.bossIndex === 2) {
+        showAnalysisScreen();
+      } else {
+        showBossComplete();
+      }
+    } else {
+      renderBattle();
+    }
+  };
+
+  showHitOverlay(score, fbData);
+}
+
+/* ── BOSS COMPLETE ───────────────────────────── */
+function showBossComplete() {
+  const boss    = BOSSES[state.bossIndex];
+  const bScore  = state.bossScores[state.bossScores.length - 1];
+  const nextNum = state.bossIndex + 2;
+
+  document.getElementById('bc-eyebrow').textContent   = 'Challenge ' + boss.bossNum + ' Complete';
+  document.getElementById('bc-title').textContent     = boss.name;
+  document.getElementById('bc-insight').textContent   = state.userName + ', ' + boss.insight;
+  document.getElementById('bc-score-num').textContent = bScore;
+  document.getElementById('bc-next-num').textContent  = nextNum;
+
+  showScreen('screen-boss-complete');
+}
+
+/* ── ADVANCE BOSS ────────────────────────────── */
+function advanceBoss() {
+  state.bossIndex++;
+  state.moveIndex = 0;
+  state.q1Choice  = -1;
+  renderBattle();
+  showScreen('screen-battle');
+}
+
+/* ── ANALYSIS ────────────────────────────────── */
+function showAnalysisScreen() {
+  const sub = document.getElementById('an-sub');
+  if (sub) sub.textContent = state.userName + ', your responses are being analysed to build your personalised financial blueprint score.';
+
+  showScreen('screen-analysis');
+
+  const fill = document.getElementById('an-prog-fill');
+  let pct = 0;
+  const ticker = setInterval(() => { pct = Math.min(pct + 2, 100); if (fill) fill.style.width = pct + '%'; if (pct >= 100) clearInterval(ticker); }, 55);
+
+  const steps  = ['an-s0','an-s1','an-s2'];
+  const labels = ['Analysing','Scoring','Generating'];
+  [0, 1200, 2400].forEach((delay, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(steps[i]);
+      if (el) { el.classList.add('active'); el.querySelector('.an-step-state').textContent = labels[i]; }
+    }, delay);
+    setTimeout(() => {
+      const el = document.getElementById(steps[i]);
+      if (el) { el.classList.remove('active'); el.classList.add('done'); el.querySelector('.an-step-state').textContent = 'Done'; }
+    }, delay + 900);
+  });
+
+  setTimeout(showResultScreen, 4200);
+}
+
+/* ── PROGRAM ROUTING ─────────────────────────── */
+function getRecommendedProgram(c1, c2, c3, total) {
+  var primary, secondary;
+
+  // C3 (Inner Blueprint) is weak → mindset must come first (out of 6 per boss)
+  if (c3 <= 3) {
+    primary   = 'EWTC';
+    secondary = 'GBI';
+  }
+  // Top-tier score + strong action + strong belief → ready to teach & leverage
+  else if (total >= 15 && c1 >= 5 && c3 >= 5) {
+    primary   = 'TTT';
+    secondary = 'NWA';
+  }
+  // Disciplined with money + solid overall → make money work harder
+  else if (c2 >= 5 && total >= 12) {
+    primary   = 'NWA';
+    secondary = 'EWTC';
+  }
+  // Action-taker but needs business systems to channel it
+  else if (c1 >= 4) {
+    primary   = 'GBI';
+    secondary = 'EWTC';
+  }
+  // Default — inner work is still the bottleneck
+  else {
+    primary   = 'EWTC';
+    secondary = 'GBI';
+  }
+
+  return { primary: primary, secondary: secondary };
+}
+
+/* ── ZAPIER WEBHOOK ──────────────────────────── */
+function fireZapierWebhook(verdict, programs) {
+  try {
+    var ba = state.bossAnswers;
+    var branchLabel = function(b) { return ['A','B','C'][b] || 'A'; };
+
+    var payload = {
+      // Group A — Contact
+      timestamp:            new Date().toISOString(),
+      first_name:           state.userName,
+      email:                state.userEmail,
+
+      // Group B — Results
+      total_score:          state.totalScore,
+      financial_stage:      ({ 'Wealth Architect':'Master', 'Growth Builder':'Advanced', 'Foundation Phase':'Foundation' })[verdict.level] || verdict.level,
+      recommended_program:  programs.primary,
+      secondary_program:    programs.secondary,
+      capital_tier:         state.savingsTier,
+
+      // Group C — Challenge Scores
+      c1_score:             state.bossScores[0] || 0,
+      c2_score:             state.bossScores[1] || 0,
+      c3_score:             state.bossScores[2] || 0,
+
+      // Group D — Individual Answer Scores
+      c1_q1_score:          ba[0][0],
+      c1_q2_branch:         branchLabel(ba[0][1]),
+      c1_q2_score:          ba[0][2],
+      c1_q3_score:          ba[0][3],
+
+      c2_q1_score:          ba[1][0],
+      c2_q2_branch:         branchLabel(ba[1][1]),
+      c2_q2_score:          ba[1][2],
+      c2_q3_score:          ba[1][3],
+
+      c3_q1_score:          ba[2][0],
+      c3_q2_branch:         branchLabel(ba[2][1]),
+      c3_q2_score:          ba[2][2],
+      c3_q3_score:          ba[2][3]
+    };
+
+    // Send as form-encoded — most reliable format for browser-to-Zapier webhooks
+    var params = new URLSearchParams();
+    Object.keys(payload).forEach(function(k) { params.append(k, payload[k]); });
+
+    fetch('https://hooks.zapier.com/hooks/catch/3673966/u7ir2tb/', {
+      method: 'POST',
+      body:   params
+    }).catch(function() {});  // Silent fail — never breaks the quiz
+
+  } catch(e) {}  // Safety net
+}
+
+/* ── RESULT SCREEN ───────────────────────────── */
+function showResultScreen() {
+  const total    = state.totalScore;
+  const pct      = Math.round((total / 18) * 100);
+  const verdict  = VERDICTS.find(v => total >= v.min && total <= v.max) || VERDICTS[VERDICTS.length - 1];
+  const programs = getRecommendedProgram(
+    state.bossScores[0] || 0,
+    state.bossScores[1] || 0,
+    state.bossScores[2] || 0,
+    total
+  );
+
+  // Fire data to Zapier → Google Sheets → ActiveCampaign (silent, non-blocking)
+  fireZapierWebhook(verdict, programs);
+
+  const stageMap = { 'Wealth Architect':'Master', 'Growth Builder':'Advanced', 'Foundation Phase':'Foundation' };
+  const stageLabel = stageMap[verdict.level] || verdict.level;
+
+  document.getElementById('rh-greeting').textContent = state.userName + ', your result is ready.';
+  document.getElementById('rh-score').innerHTML      = pct + '<span class="rh-score-denom">/100</span>';
+  document.getElementById('rh-level').textContent    = verdict.level;
+  document.getElementById('rh-title').textContent    = verdict.title;
+  document.getElementById('rs-score').textContent    = pct;
+  document.getElementById('rs-pct').textContent      = stageLabel;
+
+  document.getElementById('res-verdict-title').textContent = verdict.title;
+  document.getElementById('res-verdict-body').textContent  = verdict.body;
+  document.getElementById('res-means-title').textContent   = verdict.meansTitle;
+  document.getElementById('res-means-body').textContent    = verdict.meansBody;
+
+  // Boss breakdown bars
+  const bd = document.getElementById('boss-breakdown');
+  if (bd) {
+    bd.innerHTML = BOSSES.map((b, i) => {
+      const bs   = state.bossScores[i] || 0;
+      const bpct = Math.round((bs / 6) * 100);
+      const col  = bs >= 5 ? 'var(--win)' : bs >= 4 ? 'var(--amber)' : 'var(--red)';
+      return '<div class="bb-row">' +
+        '<div class="bb-icon">' + b.icon + '</div>' +
+        '<div class="bb-info">' +
+          '<div class="bb-name">Challenge ' + (i+1) + ' &middot; ' + b.name + '</div>' +
+          '<div class="bb-track"><div class="bb-fill" style="width:' + bpct + '%;background:' + col + '"></div></div>' +
+        '</div>' +
+        '<div class="bb-num">' + bs + '/6</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  // Advice roadmap
+  const tierPlan = ADVICE_PLANS[state.savingsTier] || ADVICE_PLANS.builder;
+  const band     = total >= 12 ? 'high' : 'low';
+  const plan     = tierPlan[band];
+
+  document.getElementById('ab-tier').textContent     = tierPlan.tierLabel;
+  document.getElementById('ab-headline').textContent = plan.headline;
+  document.getElementById('ab-sub').textContent      = plan.sub;
+
+  const roadmapEl = document.getElementById('ab-roadmap');
+  if (roadmapEl) {
+    roadmapEl.innerHTML =
+      '<div class="roadmap-track"></div>' +
+      plan.cards.map((c, idx) =>
+        '<div class="rm-step">' +
+          '<div class="rm-node">' + (idx + 1) + '</div>' +
+          '<div class="rm-content">' +
+            '<div class="rm-step-label">' + c.step + '</div>' +
+            '<div class="rm-step-title">' + c.title + '</div>' +
+            '<div class="rm-step-body">' + c.body + '</div>' +
+          '</div>' +
+        '</div>'
+      ).join('');
+  }
+
+  showScreen('screen-result');
+
+  // Animate bars
+  setTimeout(() => {
+    document.querySelectorAll('.bb-fill').forEach(f => {
+      const w = f.style.width; f.style.width = '0%';
+      requestAnimationFrame(() => { f.style.width = w; });
+    });
+  }, 300);
+}
+</script>
+</div><!-- #quiz-root -->
+</body>
+</html>

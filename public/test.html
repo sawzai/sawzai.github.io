@@ -1,0 +1,21 @@
+<script>
+  const path = window.location.pathname;
+
+  const cityContent = {
+    "/kuala-lumpur": "Kuala Lumpur Event",
+    "/malaga": "Malaga Event",
+    "/warsaw": "Warsaw Event",
+    "/london": "London Event",
+    "/berlin": "Berlin Event",
+    "/johor-bahru": "Johor Bahru Event",
+    "/geneva": "Geneva Event",
+    "/madrid": "Madrid Event",
+    "/rotterdam": "Rotterdam Event",
+    "/kuala-lumpur-oct": "Kuala Lumpur October Event",
+    "/birmingham": "Birmingham Event",
+    "/brussels": "Brussels Event"
+  };
+
+  document.getElementById("city-title").textContent =
+    cityContent[path] || "Default Event";
+</script>

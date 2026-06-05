@@ -117,6 +117,19 @@ export default {
         MY: {
           contact: [
             { icon: 'fa-phone-square', text: '+603 7801 2888', href: 'tel:+60378012888' },
+            { icon: 'fa-whatsapp', text: '+6019 3396 435', href: 'https://api.whatsapp.com/send?phone=60193396435&text=Hi%20Emily,%20' },
+            { icon: 'fa-envelope', text: 'info.my@srglobal.com', href: 'mailto:info.my@srglobal.com' }
+          ],
+          address: `
+          <b>Success Resources Malaysia Group Sdn. Bhd.</b><br>
+            23-3, Block D2, Jln PJU 1/39 <br>
+            Dataran Prima, 47301 Petalling Jaya <br>
+            Selangor Darul Ehsan, Malaysia
+          `
+        },
+        MYE: {
+          contact: [
+            { icon: 'fa-phone-square', text: '+603 7801 2888', href: 'tel:+60378012888' },
             { icon: 'fa-whatsapp', text: '+19 362 491 065', href: 'https://wa.me/19362491065' },
             { icon: 'fa-envelope', text: 'info.my@srglobal.com', href: 'mailto:info.my@srglobal.com' }
           ],

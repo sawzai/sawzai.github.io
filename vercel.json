@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/kuala-lumpur", "destination": "/test.html" },
+    { "source": "/malaga", "destination": "/test.html" },
+    { "source": "/warsaw", "destination": "/test.html" }
+  ]
+}

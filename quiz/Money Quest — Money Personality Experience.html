@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Money Quest — Money Personality Experience</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;scroll-behavior:smooth}
+:root{
+  --bg:#05080f;
+  --bg2:#080d18;
+  --surface:rgba(14,22,38,.82);
+  --surface2:rgba(18,28,48,.9);
+  --line:rgba(255,255,255,.07);
+  --line2:rgba(255,255,255,.13);
+  --text:#edf3f7;
+  --muted:#8ea4b4;
+  --hint:#4a6070;
+  --gold:#c9a84c;
+  --gold2:#e8c97a;
+  --gold3:rgba(201,168,76,.12);
+  --green:#3dd68c;
+  --green2:rgba(61,214,140,.10);
+  --red:#f06a6a;
+  --cyan:#69d7ff;
+  --purple:#b08cff;
+  --r:22px;
+  --rlg:28px;
+  --shadow:0 24px 64px rgba(0,0,0,.45);
+  --glow:0 0 40px rgba(61,214,140,.08);
+}
+body{
+  font-family:'Manrope',ui-sans-serif,system-ui,sans-serif;
+  font-weight:300;
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+/* ── DBBIENT ── */
+.amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.amb::before{
+  content:'';position:absolute;
+  width:800px;height:800px;
+  background:radial-gradient(circle,rgba(61,214,140,.09) 0%,transparent 65%);
+  top:-300px;left:-200px;
+  animation:d1 22s ease-in-out infinite alternate;
+}
+.amb::after{
+  content:'';position:absolute;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 65%);
+  bottom:-200px;right:-100px;
+  animation:d2 28s ease-in-out infinite alternate;
+}
+.amb-grid{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at 50% 40%,black 0%,transparent 75%);
+  opacity:.5;
+}
+
+/* ── PREMIUM INTERACTIVE BACKGROUND ── */
+.bg-canvas,
+.bg-glow,
+.bg-noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
+.bg-canvas{z-index:0;opacity:.72;mix-blend-mode:screen}
+.bg-glow{z-index:0;overflow:hidden}
+.bg-glow::before,
+.bg-glow::after{
+  content:'';
+  position:absolute;
+  width:52vw;
+  height:52vw;
+  border-radius:50%;
+  filter:blur(70px);
+  opacity:.26;
+  transform:translate3d(0,0,0);
+}
+.bg-glow::before{
+  left:-12vw;
+  top:-10vw;
+  background:radial-gradient(circle, rgba(118,211,255,.34) 0%, rgba(61,214,140,.14) 32%, rgba(0,0,0,0) 72%);
+  animation:bgFloatA 26s ease-in-out infinite alternate;
+}
+.bg-glow::after{
+  right:-14vw;
+  bottom:-18vw;
+  background:radial-gradient(circle, rgba(61,214,140,.26) 0%, rgba(105,215,255,.10) 34%, rgba(0,0,0,0) 72%);
+  animation:bgFloatB 32s ease-in-out infinite alternate;
+}
+.bg-noise{
+  z-index:0;
+  opacity:.055;
+  mix-blend-mode:screen;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.85) 0 .6px, transparent .8px),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,.85) 0 .55px, transparent .75px),
+    radial-gradient(circle at 40% 70%, rgba(255,255,255,.85) 0 .5px, transparent .7px),
+    radial-gradient(circle at 65% 55%, rgba(255,255,255,.85) 0 .45px, transparent .65px);
+  background-size:180px 180px, 220px 220px, 260px 260px, 320px 320px;
+  animation:bgNoiseShift 28s linear infinite;
+}
+@keyframes bgFloatA{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(8vw,7vh,0) scale(1.12)}
+}
+@keyframes bgFloatB{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(-7vw,-8vh,0) scale(1.1)}
+}
+@keyframes bgNoiseShift{
+  0%{transform:translate3d(0,0,0)}
+  100%{transform:translate3d(-30px,18px,0)}
+}
+
+@keyframes d1{to{transform:translate(120px,180px) scale(1.08)}}
+@keyframes d2{to{transform:translate(-90px,-130px) scale(1.06)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulseRing{from{transform:translate(-50%,-50%) scale(.3);opacity:.9}to{transform:translate(-50%,-50%) scale(8);opacity:0}}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes barGrow{from{width:0}to{width:var(--w)}}
+@keyframes countUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes borderPulse{0%,100%{border-color:rgba(201,168,76,.3)}50%{border-color:rgba(201,168,76,.7)}}
+
+.app{position:relative;z-index:1}
+.shell{max-width:1200px;margin:0 auto;padding:32px 20px 48px}
+
+/* ── SCREENS ── */
+.screen{display:none;min-height:100vh;align-items:center;justify-content:center}
+.screen.active{display:flex;animation:fadeUp .5s cubic-bezier(.22,1,.36,1)}
+
+/* ── SHARED ── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:999px;
+  border:1px solid rgba(61,214,140,.25);
+  background:rgba(61,214,140,.05);
+  color:var(--green);
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  backdrop-filter:blur(12px);
+}
+.eyebrow-gold{
+  border-color:rgba(201,168,76,.25);
+  background:rgba(201,168,76,.05);
+  color:var(--gold);
+}
+.gradient-text{
+  background:linear-gradient(135deg,var(--text) 0%,var(--gold2) 45%,var(--green) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.panel{
+  background:linear-gradient(160deg,rgba(16,26,44,.88),rgba(10,18,32,.94));
+  border:1px solid var(--line);
+  border-radius:var(--rlg);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.035);
+  backdrop-filter:blur(20px);
+}
+.result-side{display:flex;flex-direction:column}
+.result-side .mmi-cta{order:1}
+.result-side .mirror-block{order:2}
+.result-side .role-model-card{order:3}
+.result-side .score-panel{order:4}
+.result-side .cta-wrap{order:5}
+
+/* ── BUTTONS ── */
+.btn{
+  appearance:none;border:none;cursor:pointer;
+  font-family:'Manrope',sans-serif;font-size:15px;font-weight:500;
+  padding:15px 26px;border-radius:16px;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .2s ease;
+  letter-spacing:.01em;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.38;cursor:not-allowed;transform:none}
+.btn-primary{
+  color:#04100a;
+  background:linear-gradient(135deg,var(--green),#b4ffd8 55%,var(--gold2));
+  box-shadow:0 12px 40px rgba(61,214,140,.22);
+}
+.btn-primary:hover{box-shadow:0 18px 50px rgba(61,214,140,.32)}
+.btn-gold{
+  color:#040a05;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  box-shadow:0 12px 40px rgba(201,168,76,.2);
+}
+.btn-ghost{
+  color:var(--muted);
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--line);
+}
+.btn-ghost:hover{border-color:var(--line2);color:var(--text)}
+
+/* ── HERO ── */
+.hero-wrap{text-align:center;width:min(940px,100%)}
+.hero-wrap h1{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(48px,7.5vw,96px);
+  font-weight:300;line-height:.92;
+  letter-spacing:-.03em;
+  margin:28px 0 20px;
+}
+.hero-wrap h1 em{font-style:italic;color:var(--gold2)}
+.hero-lede{color:var(--muted);font-size:clamp(17px,2.2vw,21px);line-height:1.7;max-width:680px;margin:0 auto 36px}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-meta{margin-top:18px;color:var(--hint);font-size:13px;letter-spacing:.06em}
+
+/* ── WAKE ── */
+.wake-wrap{width:min(1180px,100%)}
+.wake-card{padding:30px}
+.wake-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}
+.wake-stage{
+  display:grid;
+  gap:20px;
+  justify-items:center;
+  align-items:center;
+  text-align:center;
+  width:100%;
+}
+.wake-eyebrow{margin-bottom:4px}
+.wake-subcopy{
+  max-width:820px;
+  margin:0 auto;
+  color:#b9cfdd;
+  font-size:17px;
+  line-height:1.7;
+  text-align:center;
+}
+.wake-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto;
+}
+.wake-chip-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.wake-chip{
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.08);
+  color:#cfe2eb;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.wake-flip-scene{
+  perspective:1800px;
+  width:min(1040px,100%);
+  margin:0 auto;
+}
+.wake-flip-card{
+  position:relative;
+  width:100%;
+  min-height:380px;
+  border-radius:34px;
+  transform-style:preserve-3d;
+  -webkit-transform-style:preserve-3d;
+  transition:transform .95s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+  box-shadow:0 28px 80px rgba(0,0,0,.42);
+}
+.wake-flip-card.is-flipped{transform:rotateY(180deg)}
+.wake-face{
+  position:absolute;
+  inset:0;
+  padding:34px 40px;
+  border-radius:34px;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  overflow:hidden;
+  border:1px solid rgba(105,215,255,.14);
+  background:#0a1628;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:18px;
+  isolation:isolate;
+}
+.wake-face::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(105,215,255,.22), transparent 22%),
+    radial-gradient(circle at 88% 18%, rgba(61,214,140,.16), transparent 24%),
+    linear-gradient(120deg, rgba(255,255,255,.05), transparent 36%, rgba(255,255,255,.02) 60%, transparent 78%);
+  pointer-events:none;
+}
+.wake-face::after{
+  content:'';
+  position:absolute;
+  inset:auto -8% -24% auto;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(61,214,140,.18), transparent 66%);
+  filter:blur(10px);
+  pointer-events:none;
+}
+.wake-face.back{
+  transform:rotateY(180deg);
+  -webkit-transform:rotateY(180deg);
+  background:#071020;
+}
+.wake-card-top{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  gap:18px;
+  margin-bottom:6px;
+}
+.wake-kicker{
+  display:inline-flex;
+  margin:0 auto;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(105,215,255,.18);
+  background:rgba(105,215,255,.08);
+  color:#d8f4ff;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.wake-dollar{
+  position:relative;
+  z-index:1;
+  width:100%;
+  margin:0 auto 6px;
+  font-family:'Sora',sans-serif;
+  font-size:clamp(52px,8vw,86px);
+  line-height:.94;
+  letter-spacing:-.06em;
+  color:#f4f9fb;
+  text-align:center;
+  text-shadow:0 10px 30px rgba(0,0,0,.24);
+}
+.wake-dollar span{color:var(--green)}
+.wake-front-title,
+.wake-back-title{
+  position:relative;
+  z-index:1;
+  font-family:'Sora',sans-serif;
+  font-size:clamp(28px,3.8vw,48px);
+  font-weight:600;
+  line-height:1.02;
+  letter-spacing:-.04em;
+  max-width:860px;
+  margin:0 auto 8px;
+  text-align:center;
+}
+.wake-front-copy,
+.wake-back-copy{
+  position:relative;
+  z-index:1;
+  font-size:17px;
+  line-height:1.7;
+  max-width:780px;
+  margin:0 auto;
+  color:#b7cedb;
+  text-align:center;
+}
+.wake-card-stack{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:4px;
+}
+.wake-stack-item{
+  padding:15px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.07);
+  color:#d8e7ef;
+  font-size:14px;
+  line-height:1.55;
+  text-align:left;
+}
+.wake-stack-item strong{color:#ffffff;display:block;margin-bottom:4px}
+.wake-signal{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:4px;
+}
+.wake-signal-card{
+  padding:16px 14px;
+  border-radius:20px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  text-align:left;
+}
+.wake-signal-card span{
+  display:block;
+  margin-bottom:8px;
+  color:#d9f6ea;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.wake-signal-card strong{
+  display:block;
+  font-size:18px;
+  line-height:1.2;
+  letter-spacing:-.03em;
+  margin-bottom:6px;
+}
+.wake-signal-card p{
+  color:#a9c0ce;
+  font-size:13px;
+  line-height:1.55;
+}
+.wake-hint{
+  position:relative;
+  z-index:1;
+  margin:2px auto 0;
+  color:#86a2b3;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-align:center;
+}
+.wake-spin-button{
+  position:absolute;
+  top:22px;
+  right:22px;
+  z-index:2;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  color:#eff7fb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  cursor:pointer;
+  backdrop-filter:blur(12px);
+  transition:transform .2s ease, background .2s ease, border-color .2s ease;
+}
+.wake-spin-button:hover{
+  transform:rotate(12deg) scale(1.04);
+  background:rgba(255,255,255,.10);
+  border-color:rgba(255,255,255,.18);
+}
+@media(max-width:980px){
+  .wake-flip-card{min-height:400px}
+  .wake-card-stack,.wake-signal{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .wake-card{padding:20px}
+  .wake-face{padding:24px 20px;gap:14px}
+  .wake-flip-card{min-height:420px}
+  .wake-actions{width:100%}
+  .wake-subcopy{font-size:16px}
+  .wake-spin-button{
+    top:18px;
+    right:18px;
+    width:46px;
+    height:46px;
+    font-size:18px;
+  }
+}
+
+/* ── GDBE ── */
+.game-layout{display:grid;grid-template-columns:300px 1fr;gap:22px;width:min(1200px,100%);align-items:start}
+.sidebar{padding:20px;position:sticky;top:22px}
+.balance-block{
+  padding:24px;border-radius:26px;
+  background:linear-gradient(145deg,rgba(61,214,140,.1),rgba(201,168,76,.07));
+  border:1px solid rgba(61,214,140,.15);
+  margin-bottom:18px;
+}
+.bal-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(61,214,140,.8);margin-bottom:8px}
+.bal-value{
+  font-family:'Sora',sans-serif;
+  font-size:46px;
+  font-weight:300;
+  letter-spacing:-.04em;
+  color:var(--green);
+
+  white-space: nowrap;              /* 🔥 FIX: prevent line break */
+  font-variant-numeric: tabular-nums; /* 🔥 cleaner number alignment */
+  transition:color .3s ease;
+}
+.bal-value.drained{color:var(--red)}
+.bal-nw{font-size:13px;color:var(--muted);margin-top:4px}
+.prog-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px}
+.bar-track{height:6px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;margin-bottom:18px}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:999px;transition:width .45s cubic-bezier(.22,1,.36,1)}
+.traits-head{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
+.trait-row{margin-bottom:13px}
+.trait-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:5px}
+.trait-label span:last-child{font-variant-numeric:tabular-nums}
+.mini-track{height:4px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.mini-fill{height:100%;border-radius:999px;transition:width .5s cubic-bezier(.22,1,.36,1);width:0}
+.mf-a{background:linear-gradient(90deg,#42d7ff,#8af5ff)}
+.mf-d{background:linear-gradient(90deg,var(--green),#a8ffd4)}
+.mf-r{background:linear-gradient(90deg,#ffaf66,#ffd06d)}
+.mf-s{background:linear-gradient(90deg,var(--purple),#d8c4ff)}
+.mf-l{background:linear-gradient(90deg,#ff8da1,#ffd1a8)}
+.sidebar-note{font-size:12px;color:var(--hint);line-height:1.6;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.sidebar-btns{margin-top:14px;display:grid;gap:8px}
+.btn-sm{font-size:12px;padding:10px 16px;border-radius:10px}
+
+/* main card */
+.main-card{padding:28px;min-height:640px;position:relative;overflow:hidden}
+.main-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(61,214,140,.3),rgba(201,168,76,.3),transparent);
+}
+.round-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.r-badge{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(201,168,76,.25);
+  padding:7px 14px;border-radius:999px;background:rgba(201,168,76,.06);
+}
+.r-mood{font-size:13px;color:var(--muted);font-style:italic;max-width:400px;text-align:right}
+.round-title{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(32px,4.5vw,52px);
+  font-weight:300;line-height:1.02;letter-spacing:-.04em;
+  margin-bottom:12px;
+}
+.round-copy{color:var(--muted);font-size:16px;line-height:1.75;max-width:740px;margin-bottom:28px}
+
+/* decision cards */
+.decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.opt{
+  position:relative;overflow:hidden;
+  padding:20px;border-radius:20px;
+  border:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+  cursor:pointer;text-align:left;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease;
+  min-height:230px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+}
+.opt:hover:not(.disabled):not(.selected){
+  transform:translateY(-3px);
+  border-color:rgba(255,255,255,.15);
+  box-shadow:0 20px 48px rgba(0,0,0,.3);
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.03));
+}
+.opt.selected{
+  border-color:rgba(61,214,140,.55);
+  box-shadow:0 0 0 3px rgba(61,214,140,.1),0 20px 48px rgba(0,0,0,.35);
+  background:linear-gradient(180deg,rgba(61,214,140,.07),rgba(255,255,255,.025));
+}
+.opt.selected::after{
+  content:'✓';position:absolute;top:14px;right:14px;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--green);color:#04100a;
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  line-height:22px;text-align:center;
+}
+.opt.disabled{opacity:.38;cursor:not-allowed;filter:saturate(.5)}
+.opt.disabled:hover{transform:none;border-color:rgba(255,255,255,.07);box-shadow:none}
+.opt-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px}
+.opt-icon{font-size:26px}
+.opt-pill{
+  font-size:12px;padding:7px 12px;border-radius:999px;
+  background:rgba(255,255,255,.06);color:#e0ecf2;
+  border:1px solid rgba(255,255,255,.07);font-weight:500;
+}
+.opt-pill.free{background:rgba(61,214,140,.08);color:var(--green);border-color:rgba(61,214,140,.2)}
+.opt-pill.loan{background:rgba(201,168,76,.08);color:var(--gold);border-color:rgba(201,168,76,.2)}
+.opt h3{font-size:clamp(16px,1.6vw,20px);font-weight:500;letter-spacing:-.025em;margin-bottom:8px;line-height:1.2}
+.opt p{font-size:13px;color:#b4c8d4;line-height:1.6;margin-bottom:14px}
+.impact-chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip-tag{
+  font-size:11px;padding:5px 9px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);
+  color:#ccdde6;
+}
+.chip-pos{background:rgba(61,214,140,.07);border-color:rgba(61,214,140,.2);color:var(--green)}
+.chip-neg{background:rgba(240,106,106,.07);border-color:rgba(240,106,106,.2);color:var(--red)}
+.pulse-ring{
+  position:absolute;width:14px;height:14px;border-radius:50%;
+  background:rgba(61,214,140,.6);pointer-events:none;
+  animation:pulseRing .9s ease-out forwards;
+}
+.game-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px}
+.feedback-txt{
+  font-size:14px;color:var(--green);font-style:italic;
+  min-height:22px;transition:opacity .3s;flex:1;
+}
+.game-actions{display:flex;gap:12px}
+
+/* loan banner */
+.loan-banner{
+  margin-top:14px;padding:16px 20px;border-radius:16px;
+  background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+.loan-info p{font-size:13px;color:var(--gold);font-weight:500;margin-bottom:3px}
+.loan-info span{font-size:12px;color:var(--hint)}
+.btn-loan{font-size:13px;padding:9px 18px;border-radius:10px}
+
+/* ── GCTERMISSION ── */
+.inter-card{text-align:center;width:min(780px,100%);padding:44px}
+.inter-card h2{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(36px,5.5vw,62px);
+  font-weight:300;letter-spacing:-.04em;line-height:1.06;
+  margin:20px 0 16px;
+}
+.inter-card h2 em{font-style:italic;color:var(--gold2)}
+.inter-copy{color:var(--muted);font-size:18px;line-height:1.75;max-width:620px;margin:0 auto 28px}
+.pattern-pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.ppill{
+  font-size:12px;padding:8px 16px;border-radius:999px;
+  border:1px solid rgba(201,168,76,.3);
+  color:var(--gold2);background:rgba(201,168,76,.06);
+}
+
+/* ── ANALYSIS ── */
+.analysis-wrap{width:min(1060px,100%)}
+.analysis-card{padding:36px}
+.analysis-inner{width:100%;margin:0 auto;text-align:center}
+.analysis-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-top:20px;text-align:left}
+@media(max-width:700px){.analysis-cols{grid-template-columns:1fr}}
+.analysis-title{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(36px,5.5vw,66px);
+  font-weight:300;line-height:.96;letter-spacing:-.05em;
+  margin:20px 0 14px;
+}
+.analysis-copy{color:var(--muted);font-size:18px;line-height:1.75;max-width:560px;margin:0 auto 28px}
+.analysis-fin{
+  padding:28px;border-radius:22px;
+  border:1px solid var(--line);background:rgba(255,255,255,.03);
+  margin-bottom:20px;
+}
+.fin-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.fin-number{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(52px,7vw,88px);
+  font-weight:300;letter-spacing:-.05em;
+  line-height:1;color:var(--green);
+  transition:color .4s;margin-bottom:8px;
+}
+.fin-number.neg{color:var(--red)}
+.fin-outcome{font-size:16px;color:var(--muted);margin-bottom:20px;min-height:24px}
+.steps-list{display:grid;gap:10px;text-align:left;margin-bottom:16px}
+.step-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;border-radius:14px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+  transition:border-color .3s,background .3s;
+}
+.step-row.active{border-color:rgba(61,214,140,.3);background:rgba(61,214,140,.04)}
+.step-row.done{border-color:rgba(201,168,76,.25);background:rgba(201,168,76,.03)}
+.step-left{display:flex;align-items:center;gap:12px;font-size:14px;color:#d0e0ea}
+.step-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,.14);flex:none;
+  transition:background .3s,box-shadow .3s;
+}
+.step-row.active .step-dot{background:var(--green);box-shadow:0 0 16px rgba(61,214,140,.5)}
+.step-row.done .step-dot{background:var(--gold)}
+.step-state{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--hint)}
+.step-row.active .step-state{color:var(--green)}
+.step-row.done .step-state{color:var(--gold)}
+.prog-wrap{margin-bottom:12px;text-align:left}
+.prog-bar{height:6px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:999px;transition:width .4s ease}
+.analysis-note{min-height:44px;color:#c8dce8;font-size:15px;line-height:1.7;margin-bottom:20px;text-align:left}
+
+/* partial reveals */
+.partial-grid{display:grid;gap:10px;text-align:left;margin-bottom:20px}
+.partial-item{
+  padding:14px 16px;border-radius:14px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+}
+.partial-lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.ghost{
+  display:inline-block;height:13px;border-radius:999px;
+  background:linear-gradient(90deg,rgba(255,255,255,.04),rgba(255,255,255,.1),rgba(255,255,255,.04));
+  background-size:200% 100%;
+  animation:shimmer 1.6s linear infinite;vertical-align:middle;
+}
+.ghost.md{width:70%}
+.ghost.lg{width:90%}
+.partial-text{font-size:14px;color:var(--muted);line-height:1.6;min-height:20px}
+
+/* gate */
+.gate-box{
+  padding:26px;border-radius:20px;
+  border:1px solid rgba(201,168,76,.3);
+  background:rgba(201,168,76,.04);
+  text-align:left;width:100%;
+}
+.gate-title{
+  font-family:'Sora',sans-serif;
+  font-size:28px;font-weight:300;margin-bottom:6px;
+}
+.gate-sub{font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.gate-input{
+  width:100%;padding:14px 16px;border-radius:12px;
+  border:1px solid var(--line);background:rgba(255,255,255,.04);
+  color:var(--text);font-family:'Manrope',sans-serif;font-size:15px;
+  outline:none;margin-bottom:10px;
+  transition:border-color .2s,box-shadow .2s;
+}
+.gate-input:focus{border-color:rgba(61,214,140,.4);box-shadow:0 0 0 3px rgba(61,214,140,.08)}
+.gate-input::placeholder{color:var(--hint)}
+
+/* ── RESULTS ── */
+.results-wrap{width:min(1140px,100%);display:grid;grid-template-columns:1fr 360px;gap:22px;padding:12px 0}
+.result-main,.result-side{
+  background:linear-gradient(160deg,rgba(16,26,44,.88),rgba(10,18,32,.94));
+  border:1px solid var(--line);border-radius:var(--rlg);
+  padding:28px;box-shadow:var(--shadow);
+  backdrop-filter:blur(20px);
+}
+.result-side{display:flex;flex-direction:column}
+.result-side .mmi-cta{order:1}
+.result-side .mirror-block{order:2}
+.result-side .role-model-card{order:3}
+.result-side .score-panel{order:4}
+.result-side .cta-wrap{order:5}
+.res-badge{
+  display:inline-flex;padding:8px 14px;border-radius:999px;
+  background:rgba(61,214,140,.07);border:1px solid rgba(61,214,140,.2);
+  color:var(--green);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.archetype-name{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(38px,5vw,68px);
+  font-weight:300;line-height:1;letter-spacing:-.05em;
+  margin-bottom:10px;
+}
+.archetype-tagline{font-size:20px;color:var(--gold2);margin-bottom:18px;font-style:italic}
+.archetype-desc{color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:28px}
+
+/* performance */
+.perf-block{
+  padding:22px;border-radius:20px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+  margin-bottom:24px;
+}
+.perf-head{font-size:13px;color:var(--muted);margin-bottom:6px}
+.perf-number{
+  font-family:'Sora',sans-serif;
+  font-size:clamp(38px,5vw,60px);
+  font-weight:300;letter-spacing:-.04em;line-height:1;
+  margin-bottom:6px;
+}
+.perf-number.pos{color:var(--green)}
+.perf-number.neg{color:var(--red)}
+.perf-delta{font-size:14px;color:var(--muted);margin-bottom:18px}
+.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.metric-cell{
+  text-align:center;padding:14px 10px;border-radius:14px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+}
+.metric-val{font-size:20px;font-weight:600;margin-bottom:4px;letter-spacing:-.02em}
+.metric-val.pos{color:var(--green)}
+.metric-val.neg{color:var(--red)}
+.metric-val.neu{color:var(--gold)}
+.metric-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--hint)}
+.chart-svg{width:100%;height:180px;display:block;border-radius:12px;overflow:hidden}
+
+/* result sections */
+.res-section{margin-top:24px}
+.res-section-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.strength-chips{display:flex;flex-wrap:wrap;gap:8px}
+.s-chip{
+  font-size:13px;padding:9px 14px;border-radius:999px;
+  background:rgba(61,214,140,.07);border:1px solid rgba(61,214,140,.22);color:var(--green);
+}
+.res-blurb{
+  padding:16px;border-radius:14px;background:rgba(255,255,255,.03);
+  border:1px solid var(--line);color:var(--muted);font-size:15px;line-height:1.75;
+}
+
+/* side panel */
+.mirror-block{
+  padding:20px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(61,214,140,.06));
+  border:1px solid rgba(201,168,76,.2);margin-bottom:16px;
+}
+.mirror-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--hint);margin-bottom:8px}
+.mirror-name{
+  font-family:'Sora',sans-serif;
+  font-size:30px;font-weight:300;letter-spacing:-.04em;
+  color:var(--gold2);margin-bottom:8px;
+}
+.mirror-copy{font-size:14px;color:var(--muted);line-height:1.65}
+.score-panel{
+  padding:18px;border-radius:18px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+  margin-bottom:16px;
+}
+.score-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.cta-wrap{display:grid;gap:10px}
+.replay-sub{font-size:13px;color:var(--hint);line-height:1.6}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;left:50%;bottom:24px;
+  transform:translateX(-50%) translateY(14px);
+  padding:11px 18px;border-radius:999px;
+  background:rgba(8,14,26,.9);border:1px solid var(--line2);
+  box-shadow:var(--shadow);color:#dde8ef;
+  z-index:100;opacity:0;pointer-events:none;
+  transition:all .28s cubic-bezier(.22,1,.36,1);
+  font-size:14px;backdrop-filter:blur(16px);
+  white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+
+/* ── PREMIUM MOTION / DEPTH ── */
+body::before{
+  content:'';position:fixed;inset:-20%;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(105,215,255,.10), transparent 24%),
+    radial-gradient(circle at 82% 16%, rgba(176,140,255,.10), transparent 22%),
+    radial-gradient(circle at 50% 86%, rgba(61,214,140,.10), transparent 20%);
+  pointer-events:none;z-index:0;filter:blur(30px);opacity:.85;
+  animation:auroraDrift 18s ease-in-out infinite alternate;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.025), transparent 35%, rgba(255,255,255,.02) 55%, transparent 72%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.03), transparent 48%);
+  mix-blend-mode:screen;opacity:.45;
+}
+@keyframes auroraDrift{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(2.5%, -2%, 0) scale(1.06)}
+}
+@keyframes floatSoft{
+  0%,100%{transform:translateY(0px)}
+  50%{transform:translateY(-6px)}
+}
+@keyframes glowSweep{
+  0%{transform:translateX(-130%) skewX(-18deg);opacity:0}
+  20%{opacity:.2}
+  100%{transform:translateX(160%) skewX(-18deg);opacity:0}
+}
+.screen.active{animation:fadeUp .6s cubic-bezier(.22,1,.36,1)}
+.panel,.opt,.btn,.mirror-block,.score-panel,.perf-block,.analysis-fin,.reality-card{
+  position:relative;isolation:isolate;
+}
+.panel::after,.opt::before,.mirror-block::before,.perf-block::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(135deg, rgba(255,255,255,.05), transparent 28%, transparent 72%, rgba(255,255,255,.03));
+  opacity:.65;
+}
+.btn{
+  position:relative;overflow:hidden;
+  box-shadow:0 10px 24px rgba(3,8,17,.24), inset 0 1px 0 rgba(255,255,255,.16);
+}
+.btn::after{
+  content:'';position:absolute;top:-10%;bottom:-10%;width:34%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+  transform:translateX(-150%) skewX(-18deg);
+}
+.btn:hover::after{animation:glowSweep .8s ease}
+.btn-primary{box-shadow:0 16px 44px rgba(61,214,140,.24), inset 0 1px 0 rgba(255,255,255,.24)}
+.btn-gold{color:#041018;background:linear-gradient(135deg, rgba(79,214,165,1), rgba(153,227,215,1) 52%, rgba(190,223,154,1));box-shadow:0 16px 44px rgba(79,214,165,.22), inset 0 1px 0 rgba(255,255,255,.22)}
+.opt{
+  transform-style:preserve-3d;
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease,filter .22s ease;
+}
+.opt:hover:not(.disabled):not(.selected){
+  filter:saturate(1.04);
+}
+.opt.selected{
+  transform:translateY(-2px) scale(1.01);
+}
+.main-card,.result-main,.result-side,.wake-card,.analysis-card,.inter-card{
+  box-shadow:0 22px 64px rgba(0,0,0,.42), 0 1px 0 rgba(255,255,255,.04) inset, 0 0 0 1px rgba(255,255,255,.015) inset;
+}
+.bar-fill,.prog-fill,.mini-fill{
+  box-shadow:0 0 18px rgba(255,255,255,.08);
+}
+.balance-block,.mirror-block,.perf-block,.analysis-fin{
+  overflow:hidden;
+}
+.balance-block::after,.mirror-block::after,.perf-block::after,.analysis-fin::after{
+  content:'';position:absolute;inset:auto -25% -45% auto;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.08), transparent 65%);
+  pointer-events:none;filter:blur(10px);
+}
+.hero-wrap h1,.wake-title,.round-title,.analysis-title,.archetype-name,.mirror-name,.money-value,.fin-number,.perf-number{
+  letter-spacing:-.045em;
+}
+.hero-wrap h1,.wake-title,.analysis-title,.archetype-name{
+  text-shadow:0 8px 30px rgba(0,0,0,.28);
+}
+
+/* ── ROLE MODEL CARD ── */
+.role-model-card{
+  padding:20px;border-radius:22px;
+  background:linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px solid var(--line);margin-bottom:16px;
+}
+.simple-role-card{display:block}
+.role-visual,.role-badge,.role-initials,.role-art{display:none !important}
+.role-meta h4{font-size:24px;font-weight:700;margin-bottom:6px}
+.role-meta p{font-size:14px;color:var(--muted);line-height:1.7}
+.role-vibe{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:12px;padding:7px 10px;border-radius:999px;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:#ccebe7;background:rgba(105,215,255,.08);border:1px solid rgba(105,215,255,.16);
+}
+
+/* ── MMI CTA ── */
+.mmi-cta{
+  order:-1;
+  margin-bottom:16px;padding:22px;border-radius:24px;
+  background:linear-gradient(160deg, rgba(61,214,140,.12), rgba(105,215,255,.08) 45%, rgba(18,28,48,.82));
+  border:1px solid rgba(79,214,165,.22);
+  box-shadow:0 20px 52px rgba(4,12,22,.34), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.mmi-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-bottom:12px;padding:8px 12px;border-radius:999px;
+  background:rgba(105,215,255,.08);border:1px solid rgba(105,215,255,.16);
+  color:#ccebe7;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+}
+.mmi-cta h3{
+  font-family:'Sora',sans-serif;font-size:26px;font-weight:700;line-height:1.08;margin-bottom:10px;max-width:300px;
+}
+.mmi-cta p{font-size:15px;color:#d7e6ee;line-height:1.72;margin-bottom:16px;max-width:310px}
+.mmi-bridge{
+  padding:14px 16px;border-radius:16px;margin-bottom:16px;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);
+  color:#c7dae4;font-size:14px;line-height:1.65;
+}
+.mmi-cta .btn{width:100%;font-size:16px;padding:16px 22px;border-radius:16px}
+.mmi-sub{margin-top:10px;font-size:12px;color:var(--hint);line-height:1.55}
+
+@media(max-width:980px){
+  .role-visual{height:190px}
+}
+
+
+/* ── CLEAN MMI CTA (OVERRIDES CLUTTER) ── */
+.mmi-main-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #4fd1a5, #69d7ff);
+  color: #04100a;
+  border: none;
+  box-shadow: 0 10px 28px rgba(61, 214, 140, 0.22);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.mmi-main-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(61, 214, 140, 0.32);
+}
+.mmi-main-btn:active {
+  transform: scale(0.97);
+}
+.mmi-main-btn::after {
+  display: none !important;
+}
+
+
+/* ── RESPONSIVE ── */
+@media(max-width:980px){
+  .wake-grid,.game-layout,.results-wrap{grid-template-columns:1fr}
+  .sidebar{position:relative;top:0}
+  .decision-grid{grid-template-columns:1fr}
+  .main-card{min-height:unset}
+  .r-mood{text-align:left}
+}
+@media(max-width:640px){
+  .shell{padding:16px 14px 32px}
+  .btn{width:100%;text-align:center}
+  .hero-actions,.wake-actions,.game-actions{display:grid;grid-template-columns:1fr}
+  .decision-grid{grid-template-columns:1fr}
+  .bal-value{font-size:38px}
+  .metric-row{grid-template-columns:1fr}
+}
+
+/* ── ROLE MODEL CARD NO IMAGE PATCH ── */
+.role-model-card{
+  padding:22px;
+}
+.role-model-card .role-meta{
+  display:block;
+}
+.role-model-card .role-vibe{
+  margin-bottom:12px;
+}
+.role-model-card h4{
+  font-size:32px;
+  line-height:1.05;
+  margin-bottom:10px;
+}
+.role-model-card p{
+  font-size:15px;
+  line-height:1.7;
+}
+
+</style>
+</head>
+<body>
+<div class="amb"></div>
+<div class="amb-grid"></div>
+<canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+<div class="bg-glow" aria-hidden="true"></div>
+<div class="bg-noise" aria-hidden="true"></div>
+<div class="app">
+<div class="shell">
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="screen active">
+  <div class="hero-wrap">
+    <div class="eyebrow">Money Quest · Interactive Decision Game</div>
+    <h1>You wake up with <em>$100,000.</em><br>What you do next<br>reveals everything.</h1>
+    <p class="hero-lede">Not your goals. Not your opinions. Your actual instinct. Where the money goes first tells a different story than most people expect.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" id="startBtn">Enter the simulation</button>
+          </div>
+    <p class="hero-meta">6 rounds &nbsp;·&nbsp; 5 minutes &nbsp;·&nbsp; your money personality revealed</p>
+  </div>
+</section>
+
+<!-- ═══ WAKE ═══ -->
+<section id="wake" class="screen">
+  <div class="wake-wrap">
+    <div class="panel wake-card">
+      <div class="wake-grid">
+        <div class="wake-stage">
+          <div class="eyebrow wake-eyebrow">You suddenly wake up</div>
+          <div class="wake-flip-scene">
+            <div class="wake-flip-card" id="wakeFlipCard">
+              <button class="wake-spin-button" id="wakeSpinBtn" type="button" aria-label="Flip card">↻</button>
+              <div class="wake-face front">
+                <div class="wake-card-top">
+                  <div class="wake-kicker">Simulation begins here</div>
+                </div>
+                <div>
+                  <div class="wake-dollar">You now have <span>$100,000</span></div>
+                  <div class="wake-front-title">Simulate your money habits.</div>
+                </div>
+                <div class="wake-hint">Tap the card or the flip button</div>
+              </div>
+              <div class="wake-face back">
+                <div class="wake-card-top">
+                  <div class="wake-kicker">What you will uncover</div>
+                </div>
+                <div>
+                  <div class="wake-back-title">Find the money pattern that keeps repeating underneath your decisions.</div>
+                  <div class="wake-back-copy">A fast pressure simulation that reveals your instinct, your blind spot, and the money loop that keeps showing up.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="wake-subcopy">A fast, choice-based pressure test that shows how you actually behave around money — under pressure.</p>
+          <div class="wake-actions">
+            <button class="btn btn-primary" id="playBtn">Start the simulation</button>
+            <button class="btn btn-ghost" id="backHeroBtn">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GDBE ═══ -->
+<section id="game" class="screen">
+  <div class="game-layout">
+    <aside class="panel sidebar">
+      <div class="balance-block">
+        <div class="bal-label">Balance Remaining</div>
+        <div class="bal-value" id="balValue">$100,000</div>
+        <div class="bal-nw" id="balNW">Net worth: $100,000</div>
+      </div>
+      <div class="prog-row"><span>Progress</span><span id="progText">Round 1 of 6</span></div>
+      <div class="bar-track"><div class="bar-fill" id="progBar" style="width:0%"></div></div>
+      <div class="traits-head">Live analysis</div>
+      <div class="trait-row">
+        <div class="trait-label"><span>Ambition</span><span id="tv-a">0%</span></div>
+        <div class="mini-track"><div class="mini-fill mf-a" id="tb-a"></div></div>
+      </div>
+      <div class="trait-row">
+        <div class="trait-label"><span>Discipline</span><span id="tv-d">0%</span></div>
+        <div class="mini-track"><div class="mini-fill mf-d" id="tb-d"></div></div>
+      </div>
+      <div class="trait-row">
+        <div class="trait-label"><span>Risk Appetite</span><span id="tv-r">0%</span></div>
+        <div class="mini-track"><div class="mini-fill mf-r" id="tb-r"></div></div>
+      </div>
+      <div class="trait-row">
+        <div class="trait-label"><span>Security</span><span id="tv-s">0%</span></div>
+        <div class="mini-track"><div class="mini-fill mf-s" id="tb-s"></div></div>
+      </div>
+      <div class="trait-row">
+        <div class="trait-label"><span>Lifestyle</span><span id="tv-l">0%</span></div>
+        <div class="mini-track"><div class="mini-fill mf-l" id="tb-l"></div></div>
+      </div>
+      <div class="sidebar-note">Your result is being built from how you allocate, protect, pursue, or delay money under real pressure.</div>
+      <div class="sidebar-btns">
+        <button class="btn btn-ghost btn-sm" id="resetGameBtn">↺ Restart</button>
+      </div>
+    </aside>
+
+    <div class="panel main-card">
+      <div class="round-meta">
+        <div class="r-badge" id="rBadge">Round 1 of 6</div>
+        <div class="r-mood" id="rMood"></div>
+      </div>
+      <h2 class="round-title" id="rTitle"></h2>
+      <p class="round-copy" id="rCopy"></p>
+      <div class="decision-grid" id="decGrid"></div>
+      <div class="loan-banner" id="loanBanner" style="display:none">
+        <div class="loan-info">
+          <p>Need more capital?</p>
+          <span id="loanBannerDesc">Borrow $10,000 to unlock options this round. Loans appear in your final results.</span>
+        </div>
+        <button class="btn btn-ghost btn-loan btn-sm" id="loanBtn">Take $10,000 loan</button>
+      </div>
+      <div class="game-footer">
+        <div class="feedback-txt" id="feedbackTxt"></div>
+        <div class="game-actions">
+          <button class="btn btn-primary" id="confirmBtn" disabled>Lock this decision →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GCTERMISSION ═══ -->
+<section id="intermission" class="screen">
+  <div class="panel inter-card">
+    <div class="eyebrow eyebrow-gold" style="margin-bottom:20px">Pattern detected</div>
+    <h2>Interesting. You don't just think this way about money. <em>You act this way.</em></h2>
+    <p class="inter-copy" id="interCopy">By this point, most people have already shown whether they move toward safety, status, growth, or control. The final three rounds sharpen it further.</p>
+    <div class="pattern-pills" id="patternPills"></div>
+    <button class="btn btn-primary" id="continueBtn">Continue to Round 4 →</button>
+  </div>
+</section>
+
+<!-- ═══ ANALYSIS ═══ -->
+<section id="analysis" class="screen">
+  <div class="analysis-wrap">
+    <div class="panel analysis-card">
+      <div class="analysis-inner">
+        <div class="eyebrow" style="margin-bottom:20px">Simulation analysis in progress</div>
+        <h2 class="analysis-title">Calculating what your money choices led to.</h2>
+        <p class="analysis-copy">Your balance, gains, losses, and loans are being processed. Your profile is being built from what you actually did with the money.</p>
+
+        <div class="analysis-cols">
+          <div class="analysis-fin">
+            <div class="fin-label">Financial outcome</div>
+            <div class="fin-number" id="finNumber">$100,000</div>
+            <div class="fin-outcome" id="finOutcome">Calculating net outcome…</div>
+            <div class="steps-list" id="stepsList">
+              <div class="step-row active" data-step="0">
+                <div class="step-left"><div class="step-dot"></div><span>Mapping decision behavior</span></div>
+                <span class="step-state">working</span>
+              </div>
+              <div class="step-row" data-step="1">
+                <div class="step-left"><div class="step-dot"></div><span>Calculating gains, losses &amp; loans</span></div>
+                <span class="step-state">pending</span>
+              </div>
+              <div class="step-row" data-step="2">
+                <div class="step-left"><div class="step-dot"></div><span>Finalizing your money profile</span></div>
+                <span class="step-state">pending</span>
+              </div>
+            </div>
+            <div class="prog-wrap">
+              <div class="prog-bar"><div class="prog-fill" id="analysisProg" style="width:14%"></div></div>
+            </div>
+            <div class="analysis-note" id="analysisNote">Reading where your money went first…</div>
+          </div>
+          <div class="gate-box" id="gateBox">
+            <div class="gate-title">Reveal your full profile</div>
+            <div class="gate-sub">Your archetype, growth edge, and full breakdown are ready. Enter your details to unlock them.</div>
+            <input class="gate-input" id="nameInput" type="text" placeholder="First name" autocomplete="given-name">
+            <input class="gate-input" id="emailInput" type="email" placeholder="Email address" autocomplete="email">
+            <button class="btn btn-gold" id="revealBtn" style="width:100%;margin-top:4px" disabled>Reveal my result →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESULTS ═══ -->
+<section id="results" class="screen">
+  <div class="results-wrap">
+    <div class="result-main">
+      <div class="res-badge">Money personality revealed</div>
+      <div class="archetype-name" id="rName"></div>
+      <div class="archetype-tagline" id="rTagline"></div>
+      <p class="archetype-desc" id="rDesc"></p>
+
+      <div class="perf-block">
+        <div class="perf-head">You turned $100,000 into</div>
+        <div class="perf-number" id="rFinal"></div>
+        <div class="perf-delta" id="rDelta"></div>
+        <div class="metric-row">
+          <div class="metric-cell"><div class="metric-val pos" id="mGains">—</div><div class="metric-lbl">Gains</div></div>
+          <div class="metric-cell"><div class="metric-val neg" id="mLosses">—</div><div class="metric-lbl">Losses</div></div>
+          <div class="metric-cell"><div class="metric-val neu" id="mLoans">—</div><div class="metric-lbl">Loans</div></div>
+        </div>
+        <svg class="chart-svg" id="perfChart" viewBox="0 0 600 180" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="cg-pos" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="rgba(61,214,140,.4)"/>
+              <stop offset="100%" stop-color="rgba(61,214,140,0)"/>
+            </linearGradient>
+            <linearGradient id="cg-neg" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="rgba(240,106,106,.4)"/>
+              <stop offset="100%" stop-color="rgba(240,106,106,0)"/>
+            </linearGradient>
+          </defs>
+          <path id="chartArea" fill="url(#cg-pos)" d=""/>
+          <path id="chartLine" fill="none" stroke="#3dd68c" stroke-width="2.5" stroke-linejoin="round" d=""/>
+        </svg>
+      </div>
+
+      <div class="res-section">
+        <div class="res-section-lbl">Top strengths</div>
+        <div class="strength-chips" id="rStrengths"></div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-lbl">Blind spot</div>
+        <div class="res-blurb" id="rBlind"></div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-lbl">Behavior pattern</div>
+        <div class="res-blurb" id="rPattern"></div>
+      </div>
+      <div class="res-section">
+        <div class="res-section-lbl">Growth edge</div>
+        <div class="res-blurb" id="rGrowth"></div>
+      </div>
+    </div>
+
+    <aside class="result-side">
+      <div class="mirror-block">
+        <div class="mirror-lbl">Mirror profile</div>
+        <div class="mirror-name" id="rMirror"></div>
+        <div class="mirror-copy" id="rMirrorCopy"></div>
+      </div>
+      
+
+      <div class="score-panel">
+        <div class="score-lbl">Your score mix</div>
+        <div class="trait-row">
+          <div class="trait-label"><span>Ambition</span><span id="rs-a">0%</span></div>
+          <div class="mini-track"><div class="mini-fill mf-a" id="rb-a"></div></div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-label"><span>Discipline</span><span id="rs-d">0%</span></div>
+          <div class="mini-track"><div class="mini-fill mf-d" id="rb-d"></div></div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-label"><span>Risk</span><span id="rs-r">0%</span></div>
+          <div class="mini-track"><div class="mini-fill mf-r" id="rb-r"></div></div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-label"><span>Security</span><span id="rs-s">0%</span></div>
+          <div class="mini-track"><div class="mini-fill mf-s" id="rb-s"></div></div>
+        </div>
+        <div class="trait-row">
+          <div class="trait-label"><span>Lifestyle</span><span id="rs-l">0%</span></div>
+          <div class="mini-track"><div class="mini-fill mf-l" id="rb-l"></div></div>
+        </div>
+      </div>
+
+      <div class="mmi-cta">
+        <div class="mmi-kicker">Next step · MMI</div>
+        <h3>Now turn this result into a real money shift.</h3>
+        <p>This quiz showed you the pattern. Millionaire Mind Intensive is where you break it, upgrade it, and build a stronger money identity around it.</p>
+        <div class="mmi-bridge">If this result felt accurate, do not stop at awareness. Use it as your entry point into the deeper mindset and behavior change MMI is designed to create.</div>
+        <a href="https://www.millionairemindworld.com" target="_blank" rel="noopener noreferrer" class="mmi-main-btn" id="mmiBtn">Take Me There →</a>
+        <div class="mmi-sub">This quiz is the introduction. MMI is the full transformation.</div>
+      </div>
+
+      <div class="cta-wrap">
+        <button class="btn btn-primary" id="replayBtn">↺ Play again</button>
+        <div class="replay-sub">Run it again and you may get a different famous role model within the same money personality.</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══ STATE ═══ */
+const S = {
+  round:0, selected:null,
+  balance:100000, gainPos:0, gainNeg:0, loanTaken:0,
+  history:[100000],
+  traits:{a:0,d:0,r:0,s:0,l:0},
+  traitMax:{a:14,d:14,r:14,s:14,l:14},
+  playerName:'',
+  anProgress:14, anDone:false, anInterval:null,
+  currentOptions:[]
+};
+let wakeFlipped = false;
+
+/* ═══ ROUNDS — rich copy from Claude + GPT structure ═══ */
+const ROUNDS = [
+  {
+    badge:'Round 1 · First move',
+    mood:'The first allocation usually says more than people expect.',
+    title:'Where does your first big move go?',
+    copy:'You have $100,000. No guidance, no advisor. The money is real and it is waiting. What gets funded first?',
+    options:[
+      {icon:'🏠',cost:60000,gain:40000,title:'Down payment on property',desc:'Lock in a real asset. Mortgage begins, but so does equity. The oldest wealth vehicle in the world.',impacts:['Security +3','Discipline +2'],traits:{s:3,d:2},feedback:'Property is the oldest wealth vehicle in the world. You chose roots over speculation.'},
+      {icon:'📈',cost:50000,gain:60000,title:'Diversified investment portfolio',desc:'Index funds, growth ETFs, bonds. Let compound interest begin its quiet, relentless work.',impacts:['Discipline +3','Ambition +3'],traits:{d:3,a:3},feedback:'The patient game begins. Compound interest rewards those who start early and stay calm.'},
+      {icon:'🚗',cost:40000,gain:-15000,title:'New car — the upgrade you deserve',desc:"You've waited. You've earned it. It depreciates the moment you drive off the lot — but it feels like success.",impacts:['Lifestyle +4','Risk −1'],traits:{l:4,r:-1},feedback:'Comfort now, cost later. You chose how life feels over how wealth builds.'},
+      {icon:'💼',cost:25000,gain:38000,title:'Start a small business',desc:'Deploy capital into leverage, autonomy, and future upside. The vehicle is small; the ceiling is not.',impacts:['Ambition +3','Risk +2'],traits:{a:3,r:2},feedback:'You see money as something to deploy into possibility, not just park.'},
+    ]
+  },
+  {
+    badge:'Round 2 · Safety vs. upside',
+    mood:'A friend calls. He has a deal. A real one.',
+    title:'Do you back the person or take the safe return?',
+    copy:"Your college friend runs a profitable small business. He needs $30,000 to expand and is offering you 25% equity. Or you take the guaranteed path.",
+    options:[
+      {icon:'🤝',cost:30000,gain:55000,title:'Invest in the business',desc:'You believe in him. 25% of a growing company could be worth multiples — or worth nothing.',impacts:['Risk +4','Ambition +4'],traits:{r:4,a:4},feedback:'Big trust, big upside. You bet on a person, not a product.'},
+      {icon:'🏦',cost:20000,gain:8000,title:'Government bonds',desc:'Guaranteed return. Boring, reliable, slow. The quiet wealth of pension funds everywhere.',impacts:['Security +4','Discipline +3'],traits:{s:4,d:3},feedback:'Predictability has a price — and a real payoff. You chose certainty.'},
+      {icon:'🪙',cost:15000,gain:12000,title:'Gold and commodities',desc:'Real assets that hold value when currencies wobble. Inflation hedge, ancient and effective.',impacts:['Security +2','Risk +2'],traits:{s:2,r:2},feedback:'Ancient money meets modern anxiety. A smart hedge against the unpredictable.'},
+      {icon:'🧱',cost:20000,gain:6000,title:'Emergency fund first',desc:'Build resilience before chasing more. Strengthen the floor before reaching for the ceiling.',impacts:['Security +3','Discipline +2'],traits:{s:3,d:2},feedback:'The foundation matters more than the ceiling. You chose peace of mind.'},
+    ]
+  },
+  {
+    badge:'Round 3 · Life design',
+    mood:"What does money actually buy you? This round decides.",
+    title:'What does wealth mean to you right now?',
+    copy:"You have the capital. A choice appears that has nothing to do with returns — and everything to do with how you want to live.",
+    options:[
+      {icon:'✈️',cost:25000,gain:-5000,title:'Travel the world for 3 months',desc:'Europe, Southeast Asia, South America. Perspective, reset, experience. No financial return — but a different kind of wealth.',impacts:['Lifestyle +5','Ambition −1'],traits:{l:5,a:-1},feedback:'Some investments cannot be measured in dollars. You chose aliveness over assets.'},
+      {icon:'📚',cost:8000,gain:18000,title:'Executive coaching + business course',desc:'12 weeks of intensive development. Skills that compound forever. Your earning power shifts permanently.',impacts:['Discipline +3','Ambition +4'],traits:{d:3,a:4},feedback:'Investing in yourself has the highest long-term ROI of any asset class.'},
+      {icon:'🏋️',cost:3000,gain:5000,title:'Health optimization',desc:'Personal trainer, dietitian, sleep technology. A body that performs better produces a mind that earns more.',impacts:['Lifestyle +2','Discipline +2'],traits:{l:2,d:2},feedback:'The asset that powers all other assets. Often the most overlooked investment.'},
+      {icon:'💡',cost:15000,gain:22000,title:'Buy a digital side business',desc:'Acquire a small online business with proven revenue. Ownership over salary. Cash flow from day one.',impacts:['Ambition +3','Discipline +2','Risk +2'],traits:{a:3,d:2,r:2},feedback:'Cashflow-positive from day one. You chose operator thinking over employee thinking.'},
+    ]
+  },
+  {
+    badge:'Round 4 · Pressure response',
+    mood:'This is where people stop answering and start revealing.',
+    title:'An unexpected hit. How do you respond?',
+    copy:"Markets drop 18%. A family member needs $15,000 urgently. Your portfolio is bleeding. Three problems, one wallet.",
+    options:[
+      {icon:'🤝',cost:15000,gain:2000,title:'Help the family member fully',desc:'You give the money. It strains your plans. But family is non-negotiable. Some debts are not financial.',impacts:['Lifestyle +3','Security −2'],traits:{l:3,s:-2},feedback:'Wealth has a human dimension. You chose people over the clean financial math.'},
+      {icon:'📉',cost:0,gain:25000,title:'Buy the dip aggressively',desc:'Use your reserves to buy assets at a steep discount. This is exactly what sophisticated investors do in downturns.',impacts:['Risk +3','Ambition +4','Discipline +3'],traits:{r:3,a:4,d:3},feedback:'Fear creates opportunity. You saw it clearly while others panicked. Bold.'},
+      {icon:'🧘',cost:0,gain:0,title:'Hold everything. Do not react.',desc:"Market corrections are normal. You sit still while others panic. Your plan doesn't change — only the noise does.",impacts:['Discipline +5','Security +3'],traits:{d:5,s:3},feedback:'The most underestimated skill in investing: the discipline of inaction.'},
+      {icon:'🏃',cost:0,gain:-18000,title:'Sell positions to stop the bleeding',desc:'Lock in the losses. Sleep easier tonight. Your capital is safe — but so is your opportunity cost.',impacts:['Security +4','Risk −3','Ambition −2'],traits:{s:4,r:-3,a:-2},feedback:'Loss aversion is the most expensive emotion in finance. You felt its pull.'},
+    ]
+  },
+  {
+    badge:'Round 5 · Reward vs. reinvest',
+    mood:'What you do after progress is often more revealing than what you do before it.',
+    title:"Your portfolio just jumped 18%. What happens next?",
+    copy:"You suddenly have real breathing room. The gain is real. What you do with it is the question that separates the serious from the curious.",
+    options:[
+      {icon:'🔄',cost:20000,gain:35000,title:'Reinvest everything',desc:'Skip the celebration. Double down. Let the returns from this cycle fuel the next one.',impacts:['Discipline +5','Ambition +4'],traits:{d:5,a:4},feedback:'The compounding machine never sleeps. You chose to keep it running.'},
+      {icon:'🥂',cost:12000,gain:-4000,title:'Celebrate. Upgrade your life.',desc:"You earned this. Mark the moment. Invest in relationships. Visible success has its own value.",impacts:['Lifestyle +5'],traits:{l:5},feedback:'Joy is not a bug in your wealth strategy. It is a feature — if it is intentional.'},
+      {icon:'🏘️',cost:15000,gain:22000,title:'Buy a small rental property',desc:'A modest unit in a growing suburb. Rental income begins. Another cash-flowing asset on the balance sheet.',impacts:['Discipline +3','Security +3'],traits:{d:3,s:3},feedback:'Cash flow creates freedom. You chose passive income over passive satisfaction.'},
+      {icon:'🌓',cost:8000,gain:5000,title:'Reward yourself, keep the machine running',desc:'A small celebration, then back to building. Hold both growth and enjoyment at once.',impacts:['Discipline +2','Lifestyle +2'],traits:{d:2,l:2},feedback:'Balance is its own kind of intelligence. You honored both the journey and the destination.'},
+    ]
+  },
+  {
+    badge:'Round 6 · Endgame instinct',
+    mood:'Your final choice often exposes the financial story you actually want.',
+    title:'The final call. What does your endgame look like?',
+    copy:"One high-stakes opportunity arrives. What you do here — in this last moment with real money on the line — is who you are.",
+    options:[
+      {icon:'🚀',cost:35000,gain:80000,title:'Angel invest in a tech startup',desc:'High risk, massive upside. The founder has a prototype and real users. This could be 10x — or zero.',impacts:['Risk +5','Ambition +5'],traits:{r:5,a:5},feedback:'The biggest swings built the biggest fortunes. You chose the high-variance path.'},
+      {icon:'📊',cost:25000,gain:32000,title:'Systematic portfolio rebalancing',desc:'Move everything into a tax-efficient structure. Boring. Precise. The architecture of serious long-term wealth.',impacts:['Discipline +5','Security +3'],traits:{d:5,s:3},feedback:'Architecture over excitement. The most durable wealth is built on systems, not stories.'},
+      {icon:'💎',cost:18000,gain:14000,title:'Acquire a digital business',desc:'Buy a small online business with proven revenue. Ownership over salary. Cashflow from day one.',impacts:['Ambition +4','Risk +3','Discipline +3'],traits:{a:4,r:3,d:3},feedback:'You chose cashflow-positive ownership. Operator thinking, not speculator thinking.'},
+      {icon:'🌊',cost:8000,gain:2000,title:'Optimize for freedom',desc:'Lower pressure, more mobility, less friction. Use money to create breathing room — not just numbers.',impacts:['Lifestyle +3','Security +2'],traits:{l:3,s:2},feedback:'You want money to create breathing room, not just a bigger scoreboard. That is clarity.'},
+    ]
+  }
+];
+
+/* ═══ ARCHETYPES ═══ */
+const ARCHETYPES = {
+  spenders:{
+    name:'Experience Seeker',
+    tagline:'You use money to feel alive, expressive, and fully in the moment.',
+    desc:"You naturally connect money with enjoyment, freedom, and memorable experiences. When money comes in, your instinct is to use it to make life feel bigger, better, or more alive right now.",
+    strengths:['Decisive energy','Enjoys life','Fast mover','High emotional drive','Open to opportunity'],
+    blind:'You can confuse movement with progress. Money that leaves too quickly cannot protect you or compound for you.',
+    behavior:'You tend to spend to feel momentum, reward yourself, or make life feel bigger in the moment.',
+    growth:'Your next level is not becoming boring. It is learning how to keep pleasure while building structure around it.',
+    mirror:'Rihanna',
+    mirrorCopy:'Turns money into lifestyle, influence, and visible expression without playing small.',
+    roleModels:[
+      {name:'Rihanna', vibe:'Lifestyle power', why:'Recognizable for turning style, identity, and influence into massive wealth.'},
+      {name:'Drake', vibe:'Big spender energy', why:'Represents visible success, lifestyle expression, and money used with confidence.'},
+      {name:'Floyd Mayweather', vibe:'Luxury flex', why:'One of the clearest public examples of spending power, confidence, and money on display.'},
+      {name:'Kim Kardashian', vibe:'Influence spender', why:'Uses visibility, lifestyle, and brand power to make money feel glamorous and immediate.'},
+      {name:'Cristiano Ronaldo', vibe:'High-status lifestyle', why:'Combines elite earnings with visible luxury, image, and aspirational living.'}
+    ]
+  },
+  avoiders:{
+    name:'The Observer',
+    tagline:'You watch, think, and hesitate — often understanding more than you act.',
+    desc:"You are often thoughtful and perceptive around money, but your instinct can be to watch, reflect, and wait instead of acting quickly. You notice patterns — but hesitation can quietly cost you timing and momentum.",
+    strengths:['Low ego around money','Careful when forced','Emotionally aware','Does not chase every trend','Can reset thoughtfully'],
+    blind:'Avoidance quietly compounds. What you delay today often becomes a larger financial problem later.',
+    behavior:'You often hold off, hesitate, or mentally disengage when money decisions feel too loaded or uncertain.',
+    growth:'Your next step is consistency, not perfection. Small repeated money actions will change more than one dramatic decision ever could.',
+    mirror:'Jim Carrey',
+    mirrorCopy:'A famous reminder that success and money do not automatically remove emotional conflict around life or decisions.',
+    roleModels:[
+      {name:'Jim Carrey', vibe:'Emotion over money', why:'Widely known, deeply reflective, and a relatable symbol for people who do not define life purely through money.'},
+      {name:'Nicolas Cage', vibe:'Chaotic money story', why:'One of the most recognizable celebrity examples of extreme wealth followed by messy financial consequences.'},
+      {name:'Mike Tyson', vibe:'Hard lessons', why:'Famously made and lost huge fortunes, making him a very relatable money-warning figure.'},
+      {name:'Johnny Depp', vibe:'Wealth drift', why:'A globally known example of how money can leak when structure is missing.'},
+      {name:'Pamela Anderson', vibe:'Money detachment', why:'Recognizable public figure often associated with a less rigid, less money-controlled approach to life.'}
+    ]
+  },
+  monk:{
+    name:'Disciplined Minimalist',
+    tagline:'You value control, intention, and a calm, disciplined relationship with money.',
+    desc:"You are naturally measured, disciplined, and intentional with money. You do not need excess to feel secure. You would rather preserve, simplify, and stay in control than chase noise, hype, or unnecessary risk.",
+    strengths:['Disciplined restraint','Strong control','Low impulsiveness','Can protect capital','Simple decision making'],
+    blind:'Too much restraint can become self-denial. You may protect money so hard that you limit growth, reach, and scale.',
+    behavior:'You minimize waste, avoid excess, and prefer a more controlled relationship with money.',
+    growth:'Your next level is selective expansion. Keep the discipline — but allow more money to work for you instead of only sitting safely beside you.',
+    mirror:'Warren Buffett',
+    mirrorCopy:'Globally recognized for restraint, patience, and a deeply disciplined relationship with wealth.',
+    roleModels:[
+      {name:'Warren Buffett', vibe:'Discipline legend', why:'The most recognizable public symbol of patience, simplicity, and disciplined wealth building.'},
+      {name:'Keanu Reeves', vibe:'Quiet restraint', why:'Known worldwide for humility, simplicity, and a low-drama relationship with money and fame.'},
+      {name:'Mark Cuban', vibe:'Controlled operator', why:'Famous, recognizable, and known for practical money discipline despite massive wealth.'},
+      {name:'Jay Leno', vibe:'Old-school discipline', why:'Very well known for saving and living on one income stream while investing the other.'},
+      {name:'Sarah Jessica Parker', vibe:'Grounded saver', why:'Recognizable celebrity often associated with staying measured despite huge fame and wealth.'}
+    ]
+  },
+  savers:{
+    name:'Strategic Builder',
+    tagline:'You think in structure, stability, and long-term wealth building.',
+    desc:"You want money to create structure, stability, and something lasting. You feel best when there is a plan, a buffer, and a strong foundation — but you also want your efforts to build into something bigger over time.",
+    strengths:['Consistent saving','Long-term stability','Responsible planning','Risk awareness','Strong foundation building'],
+    blind:'You can become too conservative and miss bigger upside because safety feels better than expansion.',
+    behavior:'You build reserves, think ahead, and prefer money decisions that strengthen security over flash or speed.',
+    growth:'Your next level is confident growth. The foundation is already there — now let a portion of your money do more than sit still.',
+    mirror:'Bill Gates',
+    mirrorCopy:'One of the most recognizable examples of structured, strategic, long-horizon money thinking.',
+    roleModels:[
+      {name:'Bill Gates', vibe:'Structured giant', why:'Globally recognized for strategy, planning, and long-horizon capital thinking.'},
+      {name:'Charlie Munger', vibe:'Classic saver mind', why:'Famous for disciplined judgment, patience, and protecting wealth through smart restraint.'},
+      {name:'Tim Cook', vibe:'Operational stability', why:'A very recognizable symbol of structure, control, and disciplined stewardship at scale.'},
+      {name:'Taylor Swift', vibe:'Asset protector', why:'A globally known celebrity who is strongly associated with protecting ownership and long-term value.'},
+      {name:'LeBron James', vibe:'Legacy saver', why:'Known worldwide for building wealth carefully while thinking long term about legacy.'}
+    ]
+  }
+};
+
+/* ═══ AUDIO ═══ */
+let audioCtx = null;
+function initAudio(){
+  if(!audioCtx) try{audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}
+}
+function tone(freq, start, duration, type='sine', gain=.03, endFreq=null){
+  if(!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const amp = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, start);
+  if(endFreq) osc.frequency.exponentialRampToValueAtTime(endFreq, start + duration);
+  amp.gain.setValueAtTime(0.0001, start);
+  amp.gain.linearRampToValueAtTime(gain, start + Math.min(duration*.18, .03));
+  amp.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  osc.connect(amp); amp.connect(audioCtx.destination);
+  osc.start(start); osc.stop(start + duration + .01);
+}
+function noiseBurst(start, duration=.045, gain=.015, hp=1200){
+  if(!audioCtx) return;
+  const bufferSize = Math.max(1, Math.floor(audioCtx.sampleRate * duration));
+  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<bufferSize;i++) data[i] = (Math.random()*2-1) * (1 - i/bufferSize);
+  const src = audioCtx.createBufferSource(); src.buffer = buffer;
+  const filter = audioCtx.createBiquadFilter(); filter.type = 'highpass'; filter.frequency.value = hp;
+  const amp = audioCtx.createGain();
+  amp.gain.setValueAtTime(0.0001, start);
+  amp.gain.linearRampToValueAtTime(gain, start + .005);
+  amp.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  src.connect(filter); filter.connect(amp); amp.connect(audioCtx.destination);
+  src.start(start); src.stop(start + duration + .01);
+}
+function sound(type){
+  if(!audioCtx) return;
+  const t = audioCtx.currentTime + 0.005;
+  switch(type){
+    case 'hover':
+      tone(560, t, .045, 'sine', .015, 760);
+      break;
+    case 'click':
+      tone(320, t, .06, 'triangle', .03, 490);
+      noiseBurst(t, .03, .008, 1800);
+      break;
+    case 'select':
+      tone(280, t, .08, 'triangle', .035, 460);
+      tone(560, t+.03, .08, 'sine', .02, 760);
+      noiseBurst(t, .035, .010, 1600);
+      break;
+    case 'confirm':
+      tone(260, t, .12, 'triangle', .04, 430);
+      tone(430, t+.035, .11, 'sine', .028, 700);
+      tone(700, t+.07, .12, 'sine', .016, 980);
+      break;
+    case 'advance':
+      tone(420, t, .08, 'triangle', .03, 620);
+      tone(620, t+.045, .09, 'sine', .02, 860);
+      break;
+    case 'flip':
+      tone(180, t, .08, 'triangle', .018, 130);
+      noiseBurst(t+.01, .05, .009, 900);
+      tone(320, t+.07, .12, 'sine', .016, 520);
+      break;
+    case 'analysis':
+      tone(220, t, .16, 'sine', .02, 260);
+      tone(330, t+.08, .18, 'sine', .018, 390);
+      break;
+    case 'reveal':
+      tone(220, t, .26, 'sine', .03, 440);
+      tone(440, t+.08, .28, 'triangle', .03, 820);
+      tone(660, t+.16, .34, 'sine', .02, 1180);
+      noiseBurst(t+.11, .06, .012, 1400);
+      break;
+    case 'cta':
+      tone(340, t, .09, 'triangle', .03, 560);
+      tone(560, t+.035, .12, 'sine', .02, 840);
+      noiseBurst(t, .026, .006, 2000);
+      break;
+  }
+}
+
+function setWakeFlipState(isFlipped){
+  wakeFlipped = !!isFlipped;
+  const card = $('wakeFlipCard');
+  if(card) card.classList.toggle('is-flipped', wakeFlipped);
+}
+function triggerWakeFlip(forceState){
+  const next = typeof forceState === 'boolean' ? forceState : !wakeFlipped;
+  setWakeFlipState(next);
+  initAudio(); sound('flip');
+}
+
+/* ═══ INTERACTIVE BACKGROUND ═══ */
+const BG = { canvas:null, ctx:null, dpr:1, w:0, h:0, particles:[], pointer:{x:.5,y:.35,tx:.5,ty:.35}, raf:null };
+function initInteractiveBackground(){
+  BG.canvas = $('bgCanvas');
+  if(!BG.canvas) return;
+  BG.ctx = BG.canvas.getContext('2d');
+  resizeInteractiveBackground();
+  buildParticles();
+  window.addEventListener('resize', resizeInteractiveBackground, {passive:true});
+  window.addEventListener('mousemove', onBgPointerMove, {passive:true});
+  window.addEventListener('touchmove', onBgTouchMove, {passive:true});
+  cancelAnimationFrame(BG.raf);
+  animateInteractiveBackground();
+}
+function resizeInteractiveBackground(){
+  if(!BG.canvas) return;
+  BG.dpr = Math.min(window.devicePixelRatio || 1, 1.8);
+  BG.w = window.innerWidth;
+  BG.h = window.innerHeight;
+  BG.canvas.width = Math.round(BG.w * BG.dpr);
+  BG.canvas.height = Math.round(BG.h * BG.dpr);
+  BG.canvas.style.width = BG.w + 'px';
+  BG.canvas.style.height = BG.h + 'px';
+  BG.ctx.setTransform(BG.dpr,0,0,BG.dpr,0,0);
+  buildParticles();
+}
+function buildParticles(){
+  const count = Math.max(20, Math.min(42, Math.round(BG.w / 42)));
+  BG.particles = Array.from({length:count}, (_,i)=>({
+    x: Math.random() * BG.w,
+    y: Math.random() * BG.h,
+    r: 0.9 + Math.random() * 2.8,
+    a: 0.08 + Math.random() * 0.18,
+    vx: (Math.random() - 0.5) * 0.18,
+    vy: (Math.random() - 0.5) * 0.16,
+    p: Math.random() * Math.PI * 2,
+    hue: i % 3 === 0 ? '105,215,255' : i % 3 === 1 ? '61,214,140' : '255,255,255'
+  }));
+}
+function onBgPointerMove(e){
+  BG.pointer.tx = e.clientX / Math.max(window.innerWidth,1);
+  BG.pointer.ty = e.clientY / Math.max(window.innerHeight,1);
+}
+function onBgTouchMove(e){
+  const t = e.touches && e.touches[0];
+  if(!t) return;
+  BG.pointer.tx = t.clientX / Math.max(window.innerWidth,1);
+  BG.pointer.ty = t.clientY / Math.max(window.innerHeight,1);
+}
+function animateInteractiveBackground(){
+  if(!BG.ctx) return;
+  const ctx = BG.ctx;
+  BG.pointer.x += (BG.pointer.tx - BG.pointer.x) * 0.035;
+  BG.pointer.y += (BG.pointer.ty - BG.pointer.y) * 0.035;
+  ctx.clearRect(0,0,BG.w,BG.h);
+
+  const g1 = ctx.createRadialGradient(BG.w*(0.18 + BG.pointer.x*0.08), BG.h*(0.2 + BG.pointer.y*0.06), 0, BG.w*(0.18 + BG.pointer.x*0.08), BG.h*(0.2 + BG.pointer.y*0.06), BG.w*0.42);
+  g1.addColorStop(0,'rgba(105,215,255,0.18)');
+  g1.addColorStop(0.45,'rgba(61,214,140,0.08)');
+  g1.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle = g1;
+  ctx.fillRect(0,0,BG.w,BG.h);
+
+  const g2 = ctx.createRadialGradient(BG.w*(0.82 - BG.pointer.x*0.06), BG.h*(0.78 - BG.pointer.y*0.05), 0, BG.w*(0.82 - BG.pointer.x*0.06), BG.h*(0.78 - BG.pointer.y*0.05), BG.w*0.34);
+  g2.addColorStop(0,'rgba(61,214,140,0.14)');
+  g2.addColorStop(0.5,'rgba(105,215,255,0.06)');
+  g2.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle = g2;
+  ctx.fillRect(0,0,BG.w,BG.h);
+
+  for(const p of BG.particles){
+    p.p += 0.01;
+    p.x += p.vx + Math.sin(p.p) * 0.06;
+    p.y += p.vy + Math.cos(p.p * 1.2) * 0.05;
+    if(p.x < -30) p.x = BG.w + 30;
+    if(p.x > BG.w + 30) p.x = -30;
+    if(p.y < -30) p.y = BG.h + 30;
+    if(p.y > BG.h + 30) p.y = -30;
+    const dx = (BG.pointer.x * BG.w - p.x) * 0.0008;
+    const dy = (BG.pointer.y * BG.h - p.y) * 0.0008;
+    p.x += dx;
+    p.y += dy;
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(${p.hue},${p.a})`;
+    ctx.shadowBlur = 18;
+    ctx.shadowColor = `rgba(${p.hue},0.18)`;
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+  }
+  ctx.shadowBlur = 0;
+
+  for(let i=0;i<BG.particles.length;i++){
+    const p1 = BG.particles[i];
+    for(let j=i+1;j<Math.min(i+6,BG.particles.length);j++){
+      const p2 = BG.particles[j];
+      const dist = Math.hypot(p1.x-p2.x,p1.y-p2.y);
+      if(dist < 160){
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(125,198,225,${(1 - dist/160)*0.08})`;
+        ctx.lineWidth = 1;
+        ctx.moveTo(p1.x,p1.y);
+        ctx.lineTo(p2.x,p2.y);
+        ctx.stroke();
+      }
+    }
+  }
+  BG.raf = requestAnimationFrame(animateInteractiveBackground);
+}
+
+/* ═══ ROLE MODELS ═══ */
+function pickRoleModel(key){
+  const pool = (ARCHETYPES[key] && ARCHETYPES[key].roleModels) || [];
+  if(!pool.length) return null;
+  let lastName = '';
+  try{ lastName = localStorage.getItem('moneyquest:lastRole:'+key) || ''; }catch(e){}
+  let candidates = pool.filter(p => p.name !== lastName);
+  if(!candidates.length) candidates = pool.slice();
+  const pick = candidates[Math.floor(Math.random() * candidates.length)];
+  try{ localStorage.setItem('moneyquest:lastRole:'+key, pick.name); }catch(e){}
+  return pick;
+}
+function applyRoleModel(role){
+  if(!role) return;
+  if($('roleName')) $('roleName').textContent = role.name || '';
+  if($('roleWhy')) $('roleWhy').textContent = role.why || '';
+  if($('roleVibe')) $('roleVibe').textContent = role.vibe || 'Mirror profile';
+}
+
+/* ═══ TOAST ═══ */
+function toast(msg){
+  const el = $('toast'); if(!el) return;
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>el.classList.remove('show'),2000);
+}
+
+/* ═══ HELPERS ═══ */
+const $ = id => document.getElementById(id);
+function fmt(n){ return (n<0?'-':'')+'$'+Math.abs(Math.round(n)).toLocaleString() }
+function clamp(v,mn,mx){ return Math.max(mn,Math.min(mx,v)) }
+function validEmail(v){ return typeof v==='string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) }
+function traitPct(k){ return clamp(Math.round((S.traits[k]/S.traitMax[k])*100),0,100) }
+function netWorth(){ return S.balance + S.gainPos - S.gainNeg - S.loanTaken }
+
+/* ── Self-tests ── */
+console.assert(validEmail('test@example.com')===true,'email valid');
+console.assert(validEmail('bad')===false,'email invalid');
+console.assert(clamp(150,0,100)===100,'clamp upper');
+console.assert(clamp(-10,0,100)===0,'clamp lower');
+
+/* ═══ SCREEN ═══ */
+const SCREENS = ['hero','wake','game','intermission','analysis','results'];
+function showScreen(id){
+  SCREENS.forEach(s=>{
+    const el = $(s); if(el) el.classList.toggle('active', s===id);
+  });
+  if(id === 'wake') setWakeFlipState(false);
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ═══ SIDEBAR ═══ */
+function updateSidebar(){
+  const nw = netWorth();
+  const el = $('balValue');
+  if(el){ el.textContent = fmt(S.balance); el.classList.toggle('drained', S.balance < 20000); }
+  if($('balNW')) $('balNW').textContent = 'Net worth: '+fmt(nw);
+  if($('progText')) $('progText').textContent = `Round ${Math.min(S.round+1,6)} of 6`;
+  if($('progBar')) $('progBar').style.width = (S.round/6*100)+'%';
+  [['a','a'],['d','d'],['r','r'],['s','s'],['l','l']].forEach(([k,suf])=>{
+    const v = traitPct(k);
+    if($(`tv-${suf}`)) $(`tv-${suf}`).textContent = v+'%';
+    if($(`tb-${suf}`)) $(`tb-${suf}`).style.width = v+'%';
+  });
+}
+
+/* ═══ PULSE ═══ */
+function spawnPulse(target, cx, cy){
+  const rect = target.getBoundingClientRect();
+  const p = document.createElement('span');
+  p.className = 'pulse-ring';
+  p.style.cssText = `left:${cx-rect.left}px;top:${cy-rect.top}px`;
+  target.appendChild(p);
+  setTimeout(()=>p.remove(),950);
+}
+
+/* ═══ FREE OPTIONS ═══ */
+function buildFreeOptions(hasAffordable){
+  const extras = [
+    {icon:'⏸️',cost:0,gain:0,title:'Wait and Watch',desc:'Hold your position. Preserve flexibility. Sometimes the best move is no move.',impacts:['Discipline +1'],traits:{d:1},feedback:'The most underrated skill in finance: knowing when to stay still.'},
+    {icon:'🔍',cost:0,gain:1000,title:'Do Free Research',desc:'Spend time studying before committing a single dollar. Knowledge compounds before money does.',impacts:['Discipline +1','Ambition +1'],traits:{d:1,a:1},feedback:'Research without immediate action is still progress. The data changes everything.'}
+  ];
+  if(!hasAffordable){
+    const remaining = 20000 - S.loanTaken;
+    if(remaining > 0){
+      const amt = Math.min(10000, remaining);
+      extras.push({
+        icon:'🏦',cost:0,gain:0,title:`Take a Loan (+${fmt(amt)})`,
+        desc:`Borrow ${fmt(amt)} back into your wallet to unlock paid options this round. Total loan limit: $20,000.`,
+        impacts:['Risk +1'],traits:{r:1},
+        feedback:`You borrowed ${fmt(amt)} to stay in the game. Now choose your funded move.`,
+        isLoan:true, loanAmt:amt
+      });
+    }
+    extras.push({
+      icon:'🪫',cost:0,gain:0,title:'Sit This One Out',
+      desc:"You don't have enough balance for the paid options this round. Capital preserved.",
+      impacts:[],traits:{},
+      feedback:'You ran out of room here. The discipline of earlier rounds determines this moment.',
+      isFallback:true
+    });
+  }
+  return extras;
+}
+
+/* ═══ RENDER ROUND ═══ */
+function renderRound(){
+  S.selected = null; S.currentOptions = [];
+  const round = ROUNDS[S.round];
+  if(!round) return;
+  if($('confirmBtn')) $('confirmBtn').disabled = true;
+  if($('feedbackTxt')) $('feedbackTxt').textContent = '';
+  $('rBadge').textContent = round.badge;
+  $('rMood').textContent = round.mood;
+  $('rTitle').textContent = round.title;
+  $('rCopy').textContent = round.copy;
+  updateSidebar();
+
+  const hasAffordable = round.options.some(o => o.cost <= S.balance);
+  const allOpts = [...round.options, ...buildFreeOptions(hasAffordable)];
+  S.currentOptions = allOpts;
+
+  const grid = $('decGrid'); grid.innerHTML = '';
+  allOpts.forEach((opt, idx) => {
+    const affordable = opt.cost <= S.balance;
+    const disabled = !affordable && !opt.isFallback && !opt.isLoan && opt.cost > 0;
+    const isFree = opt.cost === 0;
+
+    const card = document.createElement('div');
+    card.className = 'opt' + (disabled ? ' disabled' : '');
+    const pillClass = opt.isLoan ? 'loan' : isFree ? 'free' : '';
+    const pillText = opt.isLoan ? '+'+fmt(opt.loanAmt) : isFree ? 'Free' : fmt(-opt.cost);
+    card.innerHTML = `
+      <div class="opt-top">
+        <div class="opt-icon">${opt.icon}</div>
+        <div class="opt-pill ${pillClass}">${pillText}</div>
+      </div>
+      <h3>${opt.title}</h3>
+      <p>${disabled ? opt.desc+' <em style="color:var(--hint);font-size:12px">(Insufficient balance)</em>' : opt.desc}</p>
+      <div class="impact-chips">${opt.impacts.map(im=>{
+        const pos = im.includes('+')&&!im.includes('−');
+        const neg = im.includes('−');
+        return `<span class="chip-tag ${pos?'chip-pos':neg?'chip-neg':''}">${im}</span>`;
+      }).join('')}</div>
+    `;
+    if(!disabled){
+      card.addEventListener('mouseenter',()=>{initAudio();sound('hover')});
+      card.addEventListener('mousemove',e=>{
+        const rect = card.getBoundingClientRect();
+        const rx = ((e.clientY - rect.top) / rect.height - .5) * -5;
+        const ry = ((e.clientX - rect.left) / rect.width - .5) * 6;
+        if(!card.classList.contains('selected')) card.style.transform = `translateY(-3px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      card.addEventListener('mouseleave',()=>{
+        card.style.transform = card.classList.contains('selected') ? 'translateY(-2px) scale(1.01)' : '';
+      });
+      card.addEventListener('click',e=>{
+        initAudio(); sound('select');
+        grid.querySelectorAll('.opt').forEach(c=>{ c.classList.remove('selected'); c.style.transform=''; });
+        card.classList.add('selected');
+        card.style.transform = 'translateY(-2px) scale(1.01)';
+        S.selected = idx;
+        if($('confirmBtn')) $('confirmBtn').disabled = false;
+        if($('feedbackTxt')) $('feedbackTxt').textContent = opt.feedback;
+        spawnPulse(card, e.clientX, e.clientY);
+      });
+    }
+    grid.appendChild(card);
+  });
+
+  // Loan banner
+  const lb = $('loanBanner');
+  const canLoan = !hasAffordable && (20000 - S.loanTaken) > 0;
+  if(lb) lb.style.display = canLoan ? 'flex' : 'none';
+  if(canLoan && $('loanBannerDesc')){
+    const rem = 20000 - S.loanTaken;
+    $('loanBannerDesc').textContent = `Borrow up to ${fmt(Math.min(10000,rem))} to unlock options this round. Loans reduce your final net worth. Used: ${fmt(S.loanTaken)} of $20,000.`;
+  }
+}
+
+/* ═══ CONFIRM ═══ */
+function applyDecision(){
+  if(S.selected == null) return;
+  initAudio(); sound('confirm');
+  const opt = S.currentOptions[S.selected];
+
+  if(opt.isLoan){
+    S.balance += opt.loanAmt;
+    S.loanTaken += opt.loanAmt;
+    Object.entries(opt.traits||{}).forEach(([k,v])=>{ S.traits[k]=clamp(S.traits[k]+v,0,S.traitMax[k]) });
+    updateSidebar();
+    toast(`Loan added · +${fmt(opt.loanAmt)}`);
+    if($('feedbackTxt')) $('feedbackTxt').textContent = opt.feedback;
+    setTimeout(()=>{ sound('advance'); renderRound(); }, 240);
+    return;
+  }
+
+  S.choiceLog.push({ round: S.round + 1, title: opt.title||'', cost: opt.cost||0, gain: opt.gain||0 });
+  S.balance = clamp(S.balance - opt.cost, 0, 9999999);
+  if((opt.gain||0) > 0) S.gainPos += opt.gain;
+  if((opt.gain||0) < 0) S.gainNeg += Math.abs(opt.gain);
+  Object.entries(opt.traits||{}).forEach(([k,v])=>{ S.traits[k]=clamp(S.traits[k]+v,0,S.traitMax[k]) });
+  S.history.push(netWorth());
+  updateSidebar();
+  if(opt.cost > 0) toast(`${opt.title} · ${fmt(-opt.cost)}`);
+
+  setTimeout(()=>{
+    S.round++;
+    sound('advance');
+    if(S.round === 3) showIntermission();
+    else if(S.round >= 6) startAnalysis();
+    else renderRound();
+  }, 480);
+}
+
+function loanInline(){
+  const rem = 20000 - S.loanTaken;
+  if(rem <= 0) return;
+  const amt = Math.min(10000, rem);
+  S.balance += amt; S.loanTaken += amt;
+  S.traits.r = clamp(S.traits.r+1, 0, S.traitMax.r);
+  updateSidebar();
+  toast(`Loan added · +${fmt(amt)}`);
+  renderRound();
+}
+
+/* ═══ GCTERMISSION ═══ */
+function showIntermission(){
+  const pills = $('patternPills'); if(pills) pills.innerHTML = '';
+  const top = Object.entries(S.traits).sort((a,b)=>b[1]-a[1]).slice(0,3);
+  const labels = {a:'Ambition',d:'Discipline',r:'Risk Appetite',s:'Security',l:'Lifestyle'};
+  top.forEach(([k,v])=>{
+    const sp = document.createElement('span');
+    sp.className = 'ppill';
+    sp.textContent = labels[k]+' '+(traitPct(k))+'%';
+    if(pills) pills.appendChild(sp);
+  });
+  showScreen('intermission');
+}
+
+/* ═══ ANALYSIS ═══ */
+function startAnalysis(){
+  showScreen('analysis');
+  resetAnalysisUI();
+  initAudio(); sound('analysis');
+  S.anProgress = 14; S.anDone = false;
+  clearInterval(S.anInterval);
+
+  const key = scoreProfile();
+  const profile = ARCHETYPES[key];
+  const finalNW = netWorth();
+  const outcome = finalNW - 100000;
+  const pct = (outcome/100000)*100;
+
+  let displayed = S.balance;
+  let tick = 0;
+  const notes = [
+    'Reading where your money went first…',
+    'Comparing allocation, protection, and upside choices…',
+    'Calculating gains, losses, and loan drag…',
+    'Finalizing your money personality profile…'
+  ];
+
+  S.anInterval = setInterval(()=>{
+    tick++;
+    if(tick === 2 || tick === 4 || tick === 6) sound('analysis');
+    S.anProgress = Math.min(94, S.anProgress + 7);
+    if($('analysisProg')) $('analysisProg').style.width = S.anProgress+'%';
+
+    if(Math.abs(displayed - finalNW) > 50){
+      displayed += (finalNW - displayed) / 7;
+      if($('finNumber')){
+        $('finNumber').textContent = fmt(displayed);
+        $('finNumber').className = 'fin-number' + (displayed < 100000 ? ' neg' : '');
+      }
+    } else if($('finNumber')){
+      $('finNumber').textContent = fmt(finalNW);
+    }
+
+    if(tick===2){ markStep(0,'done'); markStep(1,'active'); if($('analysisNote')) $('analysisNote').textContent=notes[1]; }
+    if(tick===4){
+      if($('finOutcome')) $('finOutcome').textContent = `${outcome>=0?'+':''}${pct.toFixed(1)}% · ${outcome>=0?'+':'-'}${fmt(Math.abs(outcome))} net`;
+      if($('pr-strengths')) $('pr-strengths').textContent = profile.strengths.slice(0,2).join(', ')+'…';
+      if($('analysisNote')) $('analysisNote').textContent = notes[2];
+    }
+    if(tick===6){
+      markStep(1,'done'); markStep(2,'active');
+      if($('pr-blind')) $('pr-blind').textContent = profile.blind.substring(0,55)+'…';
+      if($('pr-pattern')) $('pr-pattern').textContent = profile.behavior.substring(0,55)+'…';
+      if($('analysisNote')) $('analysisNote').textContent = notes[3];
+    }
+    if(tick>=1 && $('gateBox')) $('gateBox').style.display = 'block';
+    checkGate();
+    if(S.anProgress>=90 && $('analysisNote') && !S.anDone){
+      const name = ($('nameInput')||{}).value?.trim()||'';
+      const email = ($('emailInput')||{}).value?.trim()||'';
+      if(validEmail(email) && name.length>0){
+        $('analysisNote').textContent = 'Analysis complete. Tap the button to reveal your result.';
+      } else {
+        $('analysisNote').textContent = 'Analysis complete. Enter your details to reveal your result.';
+      }
+    }
+  }, 700);
+}
+
+function markStep(i, status){
+  const row = document.querySelector(`#stepsList .step-row[data-step="${i}"]`);
+  if(!row) return;
+  row.classList.remove('active','done');
+  if(status==='active') row.classList.add('active');
+  if(status==='done') row.classList.add('done');
+  const st = row.querySelector('.step-state');
+  if(st) st.textContent = status==='active'?'working':status==='done'?'done':'pending';
+}
+
+function checkGate(){
+  if(S.anProgress < 85) return;
+  const name = ($('nameInput')||{}).value?.trim()||'';
+  const email = ($('emailInput')||{}).value?.trim()||'';
+  if($('revealBtn')) $('revealBtn').disabled = !(name.length>1 && validEmail(email));
+}
+
+function resetAnalysisUI(){
+  if($('analysisProg')) $('analysisProg').style.width='14%';
+  if($('finNumber')){ $('finNumber').textContent='$100,000'; $('finNumber').className='fin-number'; }
+  if($('finOutcome')) $('finOutcome').textContent='Calculating net outcome…';
+  if($('analysisNote')) $('analysisNote').textContent='Reading where your money went first…';
+  if($('pr-strengths')) $('pr-strengths').innerHTML='<span class="ghost md"></span>';
+  if($('pr-blind')) $('pr-blind').innerHTML='<span class="ghost lg"></span>';
+  if($('pr-pattern')) $('pr-pattern').innerHTML='<span class="ghost lg"></span>';
+  if($('gateBox')) $('gateBox').style.display='none';
+  if($('revealBtn')) $('revealBtn').disabled=true;
+  document.querySelectorAll('#stepsList .step-row').forEach((r,i)=>{
+    r.classList.remove('active','done');
+    if(i===0) r.classList.add('active');
+    const st=r.querySelector('.step-state');
+    if(st) st.textContent=i===0?'working':'pending';
+  });
+}
+
+/* ═══ PROFILE SCORGCG ═══ */
+function scoreProfile(){
+  const p = { a:traitPct('a'), d:traitPct('d'), r:traitPct('r'), s:traitPct('s'), l:traitPct('l') };
+  if(p.l >= 62) return 'spenders';
+  if(p.s >= 62 && p.d >= 54) return 'savers';
+  if(p.d >= 60 && p.r <= 55 && p.l <= 58) return 'monk';
+  return 'avoiders';
+}
+
+/* ═══ CHART ═══ */
+function drawChart(isPos){
+  const vals = S.history.length ? S.history : [100000];
+  const lo = Math.min(...vals, 100000) - 8000;
+  const hi = Math.max(...vals, 100000) + 8000;
+  const W=600, H=180;
+  const pts = vals.map((v,i)=>{
+    const x = vals.length>1 ? (i/(vals.length-1))*W : 0;
+    const y = H - ((v-lo)/(hi-lo||1))*(H-20) - 10;
+    return [x,y];
+  });
+  const line = pts.map((p,i)=>`${i?'L':'M'} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+  const area = line+` L ${W} ${H} L 0 ${H} Z`;
+  const color = isPos ? '#3dd68c' : '#f06a6a';
+  const gradId = isPos ? 'cg-pos' : 'cg-neg';
+  if($('chartArea')){ $('chartArea').setAttribute('d',area); $('chartArea').setAttribute('fill',`url(#${gradId})`); }
+  if($('chartLine')){ $('chartLine').setAttribute('d',line); $('chartLine').setAttribute('stroke',color); }
+}
+
+/* ═══ REVEAL RESULTS ═══ */
+async function revealResults(){
+  const name = ($('nameInput')||{}).value?.trim()||'';
+  const email = ($('emailInput')||{}).value?.trim()||'';
+  if(!email){ alert('Please enter a valid email address.'); return; }
+  if(!validEmail(email)||name.length<1) return;
+  if(S.anDone) return;
+  S.anDone = true;
+  clearInterval(S.anInterval);
+  S.playerName = name;
+  markStep(0,'done'); markStep(1,'done'); markStep(2,'done');
+  if($('analysisProg')) $('analysisProg').style.width='100%';
+  if($('analysisNote')) $('analysisNote').textContent='Done. Opening your result…';
+  initAudio(); sound('reveal');
+
+ const _zapKey = scoreProfile();
+const _zapProfile = ARCHETYPES[_zapKey];
+
+const params = new URLSearchParams({
+  name: name,
+  email: email,
+  archetype: _zapProfile ? _zapProfile.name : _zapKey,
+  timestamp: new Date().toISOString(),
+  netWorth: String(netWorth()),
+  gains: String(S.gainPos),
+  losses: String(S.gainNeg),
+  loans: String(S.loanTaken),
+  ambition: String(S.traits.a),
+  discipline: String(S.traits.d),
+  risk: String(S.traits.r),
+  security: String(S.traits.s),
+  lifestyle: String(S.traits.l),
+  source: "MoneyQuest V20"
+});
+
+const zapUrl = "https://hooks.zapier.com/hooks/catch/3673966/u71hhyj/?" + params.toString();
+
+console.log("[Zapier] Sending GET webhook:", zapUrl);
+
+fetch(zapUrl, {
+  method: "GET"
+})
+.then(() => console.log("✅ Zapier success"))
+.catch(err => console.error("❌ Zapier error:", err));
+
+  const key = scoreProfile();
+  const profile = ARCHETYPES[key];
+  const finalNW = netWorth();
+  const outcome = finalNW - 100000;
+  const pct = (outcome/100000)*100;
+  const isPos = outcome >= 0;
+  const role = pickRoleModel(key);
+
+  let titleText='';
+  if (profile.name.startsWith('The ')) {
+    titleText = `${name}, you are ${profile.name}.`;
+  } else {
+    const article = /^[aeiou]/i.test(profile.name) ? 'an' : 'a';
+    titleText = `${name}, you are ${article} ${profile.name}.`;
+  }
+  $('rName').textContent = titleText;
+  $('rTagline').textContent = profile.tagline;
+  $('rDesc').textContent = profile.desc;
+  const fn = $('rFinal'); fn.textContent = fmt(finalNW); fn.className='perf-number '+(isPos?'pos':'neg');
+  $('rDelta').textContent = `${outcome>=0?'+':''}${fmt(Math.abs(outcome))} · ${pct>=0?'+':''}${pct.toFixed(1)}% vs starting balance`;
+  $('mGains').textContent = '+'+fmt(S.gainPos);
+  $('mLosses').textContent = '-'+fmt(S.gainNeg);
+  $('mLoans').textContent = S.loanTaken>0 ? '-'+fmt(S.loanTaken) : '$0';
+  $('rStrengths').innerHTML = profile.strengths.map(s=>`<span class="s-chip">${s}</span>`).join('');
+  $('rBlind').textContent = profile.blind;
+  $('rPattern').textContent = profile.behavior;
+  $('rGrowth').textContent = profile.growth;
+  $('rMirror').textContent = role?.name || profile.mirror;
+  $('rMirrorCopy').textContent = role?.why || profile.mirrorCopy;
+
+  const tKeys = [['a','a'],['d','d'],['r','r'],['s','s'],['l','l']];
+  tKeys.forEach(([k,suf])=>{
+    const v=traitPct(k);
+    if($(`rs-${suf}`)) $(`rs-${suf}`).textContent=v+'%';
+    if($(`rb-${suf}`)) $(`rb-${suf}`).style.width=v+'%';
+  });
+  drawChart(isPos);
+  setTimeout(()=>showScreen('results'),900);
+}
+
+/* ═══ RESET ═══ */
+function resetAll(){
+  S.round=0; S.selected=null;
+  S.balance=100000; S.gainPos=0; S.gainNeg=0; S.loanTaken=0;
+  S.history=[100000]; S.playerName=''; S.anProgress=14; S.anDone=false;
+  S.choiceLog=[];
+  clearInterval(S.anInterval);
+  S.traits={a:0,d:0,r:0,s:0,l:0};
+  if($('nameInput')) $('nameInput').value='';
+  if($('emailInput')) $('emailInput').value='';
+  resetAnalysisUI(); updateSidebar();
+}
+
+/* ═══ BGCDGCGS ═══ */
+document.addEventListener('click', initAudio, {once:false});
+document.addEventListener('mouseover', e=>{
+  const btn = e.target.closest('.btn');
+  if(btn && !btn.__hovered){
+    btn.__hovered = true;
+    sound('hover');
+    setTimeout(()=>btn.__hovered = false, 120);
+  }
+});
+document.addEventListener('click', e=>{
+  const btn = e.target.closest('.btn');
+  if(btn) sound(btn.id === 'mmiBtn' ? 'cta' : 'click');
+});
+$('startBtn')?.addEventListener('click',()=>{initAudio();showScreen('wake')});
+$('backHeroBtn')?.addEventListener('click',()=>showScreen('hero'));
+$('wakeSpinBtn')?.addEventListener('click',()=>triggerWakeFlip());
+$('wakeFlipCard')?.addEventListener('click',e=>{ if(!e.target.closest('#wakeSpinBtn')) triggerWakeFlip(); });
+$('playBtn')?.addEventListener('click',()=>{initAudio();resetAll();renderRound();showScreen('game')});
+$('confirmBtn')?.addEventListener('click',()=>applyDecision());
+$('resetGameBtn')?.addEventListener('click',()=>{resetAll();renderRound();toast('Game restarted')});
+$('continueBtn')?.addEventListener('click',()=>{sound('advance'); renderRound();showScreen('game')});
+$('loanBtn')?.addEventListener('click',()=>loanInline());
+$('nameInput')?.addEventListener('input',checkGate);
+$('emailInput')?.addEventListener('input',checkGate);
+(function(){
+  function _bindReveal(){
+    var btn = document.getElementById('revealBtn');
+    if(btn){
+      btn.addEventListener('click', revealResults);
+      console.log('[Zapier] revealBtn listener attached.');
+    } else {
+      console.warn('[Zapier] revealBtn not found at bind time.');
+    }
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', _bindReveal);
+  } else {
+    _bindReveal();
+  }
+})();
+$('replayBtn')?.addEventListener('click',()=>{resetAll();showScreen('hero')});
+$('mmiBtn')?.addEventListener('click',()=>{initAudio(); sound('cta')});
+
+initInteractiveBackground();
+resetAll();
+</script>
+</body>
+</html>
