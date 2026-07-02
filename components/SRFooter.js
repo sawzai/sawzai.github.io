@@ -127,6 +127,20 @@ export default {
             Selangor Darul Ehsan, Malaysia
           `
         },
+        DXB: {
+          contact: [
+            { icon: 'fa-phone-square', text: '+971 4614 7033', href: 'tel:+97146147033' },
+            { icon: 'fa-whatsapp', text: '+447915546500 (Zina)', href: 'https://api.whatsapp.com/send?phone=447915536500' },
+            { icon: 'fa-whatsapp', text: '+6582301682 (Lena)', href: 'https://api.whatsapp.com/send?phone=6582301682' },
+            { icon: 'fa-envelope', text: 'info.dubai@srglobal.com', href: 'mailto:info.dubai@srglobal.com' }
+          ],
+          address: `
+          <b>Success Resources</b><br>
+            Emirates Tower,<br>
+            PO Box 72011<br>
+            Dubai, UAE<br>
+          `
+        },
         MY: {
           contact: [
             { icon: 'fa-phone-square', text: '+603 7801 2888', href: 'tel:+60378012888' },
