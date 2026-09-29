@@ -158,15 +158,15 @@ export default {
             contact: [
               { icon: 'fa-phone-square', text: 'SG: +65 6299 4677', href: 'tel:+6562994677' },
               { icon: 'fa-phone-square', text: 'MY: +603 7801 2888', href: 'tel:+60378012888' },
-              { icon: 'fa-whatsapp', text: 'SG: Lena', href: 'https://wa.link/gbxmu3' },
-              { icon: 'fa-whatsapp', text: 'MY: Emily', href: 'https://wa.link/5a8e65' },
+              { icon: 'fa-whatsapp', text: 'SG: Lena', href: 'https://api.whatsapp.com/send?phone=60193396435&text=Hi%20Emily,%20' },
+              { icon: 'fa-whatsapp', text: 'MY: Emily', href: 'https://api.whatsapp.com/send?phone=60193396435&text=Hi%20Emily,%20' },
               { icon: 'fa-envelope', text: 'info.sg@srglobal.com', href: 'mailto:info.sg@srglobal.com' }
             ]
         },
         SA: {
           contact: [
-            { icon: 'fa-phone-square', text: '+27 10 745 0583', href: 'tel:+27107450583' },
-            { icon: 'fa-whatsapp', text: '+27 72 420 8467', href: 'https://wa.me/27724208467' },
+            { icon: 'fa-phone-square', text: ' +2710 226 9273', href: 'tel:+27102269273' },
+            { icon: 'fa-whatsapp', text: '+27 64 865 8531', href: 'https://wa.me/27648658531' },
             { icon: 'fa-envelope', text: 'info.za@srglobal.com', href: 'mailto:info.za@srglobal.com' }
           ],
           address: `
